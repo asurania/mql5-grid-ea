@@ -10,4 +10,10 @@ This folder is the structured knowledge base for the OpenClaw workspace.
 
 ## Linking
 
-Use Obsidian wiki-links like `[[MEMORY]]`, `[[USER]]`, and `[[2026-04-12]]` to create graph connections.
+Use Obsidian wiki-links like `[[MEMORY]]`, `[[USER]]`, `[[2026-04-12]]`, and [[OpenClaw Memory System]] to create graph connections.
+
+## Related
+
+- [[MEMORY]]
+- [[OBSIDIAN_SETUP]]
+- [[memory-maintenance]]

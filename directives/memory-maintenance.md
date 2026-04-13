@@ -17,3 +17,10 @@ Keep long-term memory concise and useful while preserving raw history in daily l
 - `MEMORY.md` is curated, not exhaustive
 - Daily files can stay messy
 - Prefer short, high-signal entries
+- Add links to [[MEMORY]], [[OpenClaw Memory System]], and related notes when they make retrieval easier
+
+## Related
+
+- [[MEMORY]]
+- [[OpenClaw Memory System]]
+- [[OBSIDIAN_SETUP]]

@@ -11,6 +11,14 @@ The memory system has three layers:
 - OpenClaw injects important workspace files into session context
 - Obsidian can open this workspace as a vault and visualize links in Graph View
 - Semantic search can be added later with QMD or another local retrieval layer
+- Templates live in `templates/` to make consistent notes easier to create
+
+## Entry points
+
+- [[MEMORY]]
+- [[OBSIDIAN_SETUP]]
+- [[memory-maintenance]]
+- [[Second Brain]]
 
 ## Related
 
