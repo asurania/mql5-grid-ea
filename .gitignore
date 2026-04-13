@@ -3,3 +3,5 @@
 .obsidian/cache/
 .obsidian/workspace.json
 node_modules/
+
+obsidian-openclaw-memory/
