@@ -15,10 +15,14 @@ The memory system has three layers:
 
 ## Entry points
 
+- [[HOME]]
 - [[MEMORY]]
 - [[OBSIDIAN_SETUP]]
 - [[memory-maintenance]]
 - [[Second Brain]]
+- [[Memory Dashboard]]
+- [[Journal Dashboard]]
+- [[Concept Dashboard]]
 
 ## Related
 

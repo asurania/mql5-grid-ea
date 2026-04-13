@@ -14,8 +14,10 @@ Curated long-term memory for this workspace.
 
 ## Related
 
+- [[HOME]]
 - [[SOUL]]
 - [[USER]]
 - [[AGENTS]]
 - [[OBSIDIAN_SETUP]]
 - [[OpenClaw Memory System]]
+- [[Memory Dashboard]]

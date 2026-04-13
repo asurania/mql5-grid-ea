@@ -14,6 +14,10 @@ Use Obsidian wiki-links like `[[MEMORY]]`, `[[USER]]`, `[[2026-04-12]]`, and [[O
 
 ## Related
 
+- [[HOME]]
 - [[MEMORY]]
 - [[OBSIDIAN_SETUP]]
 - [[memory-maintenance]]
+- [[Memory Dashboard]]
+- [[Journal Dashboard]]
+- [[Concept Dashboard]]

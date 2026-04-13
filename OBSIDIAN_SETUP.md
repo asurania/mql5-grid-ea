@@ -49,6 +49,10 @@ Use wiki-links like `[[MEMORY]]`, `[[USER]]`, `[[SOUL]]`, and links between conc
 
 ## Related
 
+- [[HOME]]
 - [[MEMORY]]
 - [[OpenClaw Memory System]]
 - [[memory-maintenance]]
+- [[Memory Dashboard]]
+- [[Journal Dashboard]]
+- [[Concept Dashboard]]
