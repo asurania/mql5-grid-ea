@@ -22,13 +22,13 @@ This is a skeleton only.
 Implemented:
 - EA shell
 - timer refresh loop
-- stub policy reader
+- basic file-backed policy reader
 - execution gate
 - logging
 - trade executor stubs
 
 Not implemented yet:
-- JSON parsing of `pair_risk_policy.json`
+- robust JSON parsing of `pair_risk_policy.json` (current reader is schema-specific string extraction)
 - real trade placement wrapper
 - basket/grid logic
 - exposure tracking
