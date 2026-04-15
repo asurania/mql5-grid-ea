@@ -15,6 +15,7 @@ This folder contains the initial MQL5 slave scaffold for the Python-master / MQL
 - `Include/ForexSlave/ExecutionGate.mqh`
 - `Include/ForexSlave/TradeExecutor.mqh`
 - `Include/ForexSlave/PositionRegistry.mqh`
+- `Include/ForexSlave/GridManager.mqh`
 
 ## Current state
 
@@ -28,6 +29,7 @@ Implemented:
 - logging
 - basic real trade executor wrapper around `CTrade`
 - position registry for per-pair open position, lot, and floating PnL tracking
+- GridManager skeleton for new-entry and basket-management decision flow
 
 Not implemented yet:
 - robust JSON parsing of `pair_risk_policy.json` (current reader is schema-specific string extraction)

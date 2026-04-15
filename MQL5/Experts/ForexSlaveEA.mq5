@@ -7,16 +7,19 @@
 #include <ForexSlave/ExecutionGate.mqh>
 #include <ForexSlave/TradeExecutor.mqh>
 #include <ForexSlave/PositionRegistry.mqh>
+#include <ForexSlave/GridManager.mqh>
 
-CTelemetryLogger g_logger;
-CPolicyReader    g_policyReader;
-CExecutionGate   g_gate;
-CTradeExecutor   g_tradeExecutor;
+CTelemetryLogger  g_logger;
+CPolicyReader     g_policyReader;
+CExecutionGate    g_gate;
+CTradeExecutor    g_tradeExecutor;
 CPositionRegistry g_positions;
+CGridManager      g_grid;
 
 int OnInit()
   {
    EventSetTimer(InpPolicyRefreshSeconds);
+   g_grid.Configure(g_logger, g_positions);
    g_logger.Info("ForexSlaveEA initialized");
    if(!g_policyReader.Refresh())
       g_logger.Warn("Initial policy refresh failed: " + g_policyReader.GetLastError());
@@ -60,14 +63,10 @@ void OnTick()
    );
 
    if(!canOpen)
-     {
       g_logger.LogTradeDecision(_Symbol, "BLOCK_NEW_TRADE", reason);
-      return;
-     }
+   else
+      g_logger.LogTradeDecision(_Symbol, "ALLOW_NEW_TRADE", reason);
 
-   g_logger.LogTradeDecision(_Symbol, "ALLOW_NEW_TRADE", reason);
-
-   // Stub only. Real strategy/grid logic will be attached later.
-   // Example future call:
-   // g_tradeExecutor.OpenBuy(_Symbol, 0.01, 0.0, 0.0, "stub");
+   g_grid.EvaluateNewEntries(_Symbol, policy, canOpen);
+   g_grid.EvaluateBasketManagement(_Symbol, policy);
   }
