@@ -4,6 +4,7 @@
 #include <ForexSlave/TelemetryLogger.mqh>
 #include <ForexSlave/PositionRegistry.mqh>
 #include <ForexSlave/RiskOverlay.mqh>
+#include <ForexSlave/EntrySignal.mqh>
 
 class CGridManager
   {
@@ -11,6 +12,7 @@ private:
    CTelemetryLogger *m_logger;
    CPositionRegistry *m_positions;
    CRiskOverlay *m_risk;
+   CEntrySignal *m_entrySignal;
 
 public:
    CGridManager()
@@ -18,13 +20,15 @@ public:
       m_logger = NULL;
       m_positions = NULL;
       m_risk = NULL;
+      m_entrySignal = NULL;
      }
 
-   void Configure(CTelemetryLogger &logger,CPositionRegistry &positions,CRiskOverlay &risk)
+   void Configure(CTelemetryLogger &logger,CPositionRegistry &positions,CRiskOverlay &risk,CEntrySignal &entrySignal)
      {
       m_logger = &logger;
       m_positions = &positions;
       m_risk = &risk;
+      m_entrySignal = &entrySignal;
      }
 
    void EvaluateNewEntries(string pair,const PairPolicy &policy,bool canOpenNewTrade)
@@ -55,7 +59,26 @@ public:
          return;
         }
 
-      m_logger.LogTradeDecision(pair, "GRID_READY_FOR_FIRST_ENTRY", "no open basket, entry conditions not implemented yet");
+      if(m_entrySignal == NULL)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "entry signal module not configured");
+         return;
+        }
+
+      EntryDecision decision = m_entrySignal.EvaluateFirstEntry(pair);
+      if(!decision.shouldEnter)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", decision.reason);
+         return;
+        }
+
+      string dir = "none";
+      if(decision.direction == ENTRY_BUY)
+         dir = "buy";
+      else if(decision.direction == ENTRY_SELL)
+         dir = "sell";
+
+      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_SIGNAL", "direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2) + ", reason=" + decision.reason);
      }
 
    void EvaluateBasketManagement(string pair,const PairPolicy &policy)
