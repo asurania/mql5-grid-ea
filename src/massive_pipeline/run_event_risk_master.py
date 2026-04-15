@@ -19,6 +19,7 @@ STEPS = [
     ROOT / "src" / "massive_pipeline" / "build_entry_intent_v2.py",
     ROOT / "src" / "massive_pipeline" / "publish_entry_intent.py",
     ROOT / "src" / "massive_pipeline" / "build_grid_policy.py",
+    ROOT / "src" / "massive_pipeline" / "publish_grid_policy.py",
 ]
 
 
@@ -80,6 +81,7 @@ def main() -> int:
             "entry_intent_json": "data/live/policy/entry_intent.json",
             "published_entry_intent_json": "runtime_handoff/mt5_common/Files/ForexSlave/entry_intent.json",
             "grid_policy_json": "data/live/policy/grid_policy.json",
+            "published_grid_policy_json": "runtime_handoff/mt5_common/Files/ForexSlave/grid_policy.json",
         },
     }
     RUN_LOG_JSON.parent.mkdir(parents=True, exist_ok=True)
