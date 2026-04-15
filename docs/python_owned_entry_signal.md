@@ -46,6 +46,38 @@ Published to the same MT5-style handoff area as policy files.
 
 ## Suggested schema
 
+### v2 (current)
+
+Added alignment scoring, volatility regime filtering, and short-term counter-move detection.
+
+```json
+{
+  "generated_at_utc": "2026-04-15T14:00:00Z",
+  "version": "entry_intent_v2",
+  "pairs": [
+    {
+      "pair": "GBPJPY",
+      "should_enter": true,
+      "direction": "buy",
+      "entry_mode": "initial",
+      "suggested_lots": 0.01,
+      "reason": "v2_aligned_buy_str0.0034_score0.82",
+      "expires_at_utc": "2026-04-15T14:05:00Z",
+      "debug": {
+        "atr_frac_60": 0.001234,
+        "vol_regime": "normal",
+        "alignment_score": 0.82,
+        "trend_strength": 0.0034
+      }
+    }
+  ]
+}
+```
+
+### v1 (deprecated)
+
+Simple trend alignment: all of 15m/60m/240m same sign.
+
 ```json
 {
   "generated_at_utc": "2026-04-15T14:00:00Z",
@@ -57,7 +89,7 @@ Published to the same MT5-style handoff area as policy files.
       "direction": "buy",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "python_signal_long_regime_alignment",
+      "reason": "v1_trend_alignment_long",
       "expires_at_utc": "2026-04-15T14:05:00Z"
     }
   ]
@@ -79,6 +111,29 @@ Published to the same MT5-style handoff area as policy files.
 - `suggested_lots`: optional lot hint
 - `reason`: human/debug string from Python side
 - `expires_at_utc`: stale protection for entry intent
+- `debug`: (v2 only) alignment score, volatility regime, trend strength for diagnostics
+
+## V2 entry intent logic
+
+The v2 signal replaces the simple "all timeframes same sign" rule with:
+
+1. **Volatility regime filter**
+   - Compute ATR fraction (60-bar average range / price)
+   - Reject entries in `dead_chop` (ATR frac < 0.0003) or `extreme_vol` (ATR frac > 0.008)
+
+2. **Weighted alignment score**
+   - Score each timeframe (5m weight=1, 15m weight=2, 60m weight=3, 240m weight=4)
+   - Direction = weighted majority
+   - Alignment score = total weight in majority direction / total weight
+   - Require alignment score >= 0.5 (at least 2 of 3 major TFs agree)
+
+3. **Trend strength filter**
+   - Trend strength = 0.4 * |ret_60m| + 0.6 * |ret_240m|
+   - Must be between 0.0002 and 0.015 (too weak = noise, too strong = chasing)
+
+4. **Short-term counter-move filter**
+   - If 5m return strongly opposes the direction and is >50% of 15m magnitude, skip
+   - Prevents entering against an active reversal
 
 ## Slave behavior
 

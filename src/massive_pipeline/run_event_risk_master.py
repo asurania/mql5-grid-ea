@@ -16,7 +16,7 @@ STEPS = [
     ROOT / "src" / "massive_pipeline" / "run_live_event_risk_inference.py",
     ROOT / "src" / "massive_pipeline" / "build_pair_risk_policy.py",
     ROOT / "src" / "massive_pipeline" / "publish_pair_risk_policy.py",
-    ROOT / "src" / "massive_pipeline" / "build_entry_intent.py",
+    ROOT / "src" / "massive_pipeline" / "build_entry_intent_v2.py",
     ROOT / "src" / "massive_pipeline" / "publish_entry_intent.py",
 ]
 
