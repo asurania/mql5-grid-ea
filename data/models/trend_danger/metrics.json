@@ -1,0 +1,14 @@
+{
+  "target": "y_trend_danger",
+  "train_rows": 44038,
+  "valid_rows": 9166,
+  "test_rows": 4712,
+  "train_positive_rate": 0.09205685998455879,
+  "valid_positive_rate": 0.05727689286493563,
+  "test_positive_rate": 0.09762308998302208,
+  "valid_roc_auc": 0.5102797846369193,
+  "valid_pr_auc": 0.08477683363165407,
+  "test_roc_auc": 0.5624621661417646,
+  "test_pr_auc": 0.14515213715634417,
+  "scale_pos_weight": 9.862851504686729
+}
