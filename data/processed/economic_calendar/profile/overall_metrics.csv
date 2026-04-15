@@ -1,0 +1,10 @@
+metric,value
+rows,30600
+unique_event_names,891
+unique_event_ids,30600
+date_min,2023-01-02 08:30:00+00:00
+date_max,2026-03-31 00:00:00+00:00
+null_actual_num,1871
+null_forecast_num,21512
+null_previous_num,465
+surprise_non_null,8491

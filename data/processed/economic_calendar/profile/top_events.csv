@@ -1,0 +1,101 @@
+event_name,currency_norm,importance_label,rows,forecast_non_null,actual_non_null,previous_non_null
+Nat Gas-EIA Implied Flow*,USD,low_or_unknown,173,0,166,173
+Foreign Bond Investment,JPY,low_or_unknown,167,0,159,167
+Foreign Invest JP Bonds*,JPY,low,167,0,166,167
+EIA Wkly Gsln Stk*,USD,low_or_unknown,166,164,150,166
+3M Bill Auc - HAP*,USD,low,166,0,158,158
+Export Corn Inspected *,USD,low_or_unknown,166,0,163,166
+Foreign Invest JP Stock,JPY,low,166,0,157,166
+Export Wheat Inspected *,USD,low_or_unknown,166,0,162,166
+Exp Soybean Inspected *,USD,low_or_unknown,166,0,161,166
+3M Bill Auc - BTC*,USD,low,166,0,159,159
+Foreign Stock Investment*,JPY,low,166,0,164,166
+EIA Wkly Refn Util*,USD,low_or_unknown,165,163,153,165
+EIA Wkly Dist. Stk*,USD,low,165,163,152,165
+EIA Wkly Crude Stk*,USD,low,165,163,151,165
+6M Bill Auc - TA*,USD,low,165,0,158,158
+MBA Purchase Index,USD,low_or_unknown,165,0,155,165
+EIA Weekly Crude Imports*,USD,low_or_unknown,165,0,153,165
+EIA Wkly Crude Cushing*,USD,low_or_unknown,165,0,152,165
+3M Bill Auc - TA*,USD,low,165,0,160,160
+EIA Weekly Crude Runs*,USD,low_or_unknown,165,0,149,165
+Mortgage Refinance Index,USD,low_or_unknown,165,0,155,165
+EIA Weekly Gasoline O/P*,USD,low_or_unknown,165,0,152,165
+6M Bill Auc - BTC*,USD,low,165,0,159,159
+MBA Mortgage Applications,USD,low_or_unknown,165,0,153,165
+MBA 30-Yr Mortgage Rate,USD,low_or_unknown,165,0,156,165
+Mortgage Market Index,USD,low_or_unknown,165,0,154,165
+EIA Weekly Rfg Stocks*,USD,low_or_unknown,165,0,150,165
+Soybn Oil Exp Sls Net Total *,USD,low_or_unknown,165,0,160,165
+6M Bill Auc - HAP*,USD,low,165,0,158,158
+EIA Weekly Heatoil Stock*,USD,low_or_unknown,165,0,147,165
+EIA Ethanol Ref Stk*,USD,low,164,0,160,164
+EIA Weekly Dist Output*,USD,low_or_unknown,164,0,145,164
+6M Bill Auc - HR*,USD,low,164,0,157,157
+Soymeal Exp Sls Next Yr Net *,USD,low_or_unknown,164,0,156,164
+EIA Weekly Prods Imports*,USD,low_or_unknown,164,0,150,164
+3M Bill Auc - HR*,USD,low,164,0,159,159
+EIA-Nat Gas Chg Bcf*,USD,low,163,161,156,163
+4W Bill Auc - HAP*,USD,low,163,0,159,159
+4W Bill Auc - BTC*,USD,low,163,0,158,158
+EIA Ethanol Fuel Total*,USD,low,163,0,160,163
+4W Bill Auc - HR*,USD,low,163,0,160,160
+4W Bill Auc - TA*,USD,low,163,0,134,133
+Wheat Export Sales New *,USD,low_or_unknown,162,0,152,162
+Soybn Oil Exp Sls Nxt Yr Net *,USD,low_or_unknown,162,0,156,162
+Soybean Exp Sale Next Yr Net *,USD,low_or_unknown,162,0,156,162
+Corn Exp Sale Next Yr Net *,USD,low_or_unknown,162,0,151,162
+Soybean Exp Sale Net Total *,USD,low_or_unknown,162,0,157,162
+Soybn Meal Exp Sls Net Total *,USD,low_or_unknown,162,0,157,162
+Wheat Export Sales Net *,USD,low_or_unknown,162,0,153,162
+Corn Exp Sales Net Total *,USD,low_or_unknown,162,0,150,162
+US Pork Export Sales New *,USD,low,162,0,157,162
+Soybeanmeal Exp Sale Net *,USD,low_or_unknown,162,0,156,162
+Wheat Exp Sale Net Total *,USD,low_or_unknown,162,0,152,162
+US Pork Export Sales Net *,USD,low,162,0,158,162
+Beef Export Sales Net *,USD,low_or_unknown,162,0,155,162
+Soybean Export Sales New *,USD,low_or_unknown,162,0,158,162
+Corn Export Sales Net *,USD,low_or_unknown,162,0,154,162
+Soybeanoil Exp Sales Net *,USD,low_or_unknown,162,0,155,162
+Up Cotton Exp Sales New *,USD,low_or_unknown,162,0,153,162
+Up Cotton Exp Sales Net *,USD,low_or_unknown,162,0,154,162
+Redbook YY *,USD,low_or_unknown,161,0,156,161
+Corn Export Sales New *,USD,low_or_unknown,161,0,153,161
+Beef Export Sales New *,USD,low_or_unknown,161,0,155,161
+Soybean Export Sales Net *,USD,low_or_unknown,161,0,155,161
+Wheat Exp Sale Next Yr Net *,USD,low_or_unknown,160,0,153,160
+Jobless Clm 4Wk Avg*,USD,low_or_unknown,120,0,117,120
+API weekly crude imports *,USD,low_or_unknown,118,0,113,118
+API Wkly gsln stk *,USD,low_or_unknown,117,113,113,117
+API wkly crude Stk *,USD,low_or_unknown,116,111,112,116
+API Wkly crude runs *,USD,low_or_unknown,116,1,112,116
+EIA Wkly Crude Exports *,USD,low,116,0,104,116
+API weekly product imports *,USD,low_or_unknown,116,0,112,116
+Initial Jobless Clm*,USD,medium,114,114,110,114
+Cont Jobless Clm*,USD,low_or_unknown,114,113,111,114
+API weekly heating oil *,USD,low_or_unknown,113,0,111,113
+API Cushing number *,USD,low_or_unknown,113,0,111,113
+API Wkly dist. Stk *,USD,low_or_unknown,112,110,110,112
+Milk Auctions*,NZD,low_or_unknown,78,0,76,76
+Dairy Prices*,NZD,low_or_unknown,78,0,77,77
+API Wkly dist. Stk,USD,low_or_unknown,49,45,47,49
+API Wkly gsln stk,USD,low_or_unknown,49,45,45,49
+API wkly crude Stk,USD,low_or_unknown,49,45,46,49
+API weekly crude imports,USD,low_or_unknown,49,0,45,49
+API weekly heating oil,USD,low_or_unknown,49,0,43,49
+API Cushing number,USD,low_or_unknown,49,0,44,49
+API Wkly crude runs,USD,low_or_unknown,49,0,45,49
+API weekly product imports,USD,low_or_unknown,49,0,42,49
+Overall Net Capital Flows,USD,low_or_unknown,42,0,38,42
+Leading Indicator Revised*,JPY,low,42,0,39,41
+"Net L-T Flows,Incl.Swaps",USD,low_or_unknown,42,0,38,42
+Employment Trends*,USD,low_or_unknown,42,0,36,41
+"Net L-T Flows,Exswaps",USD,low_or_unknown,42,0,38,42
+"Foreign Buying, T-Bonds",USD,low_or_unknown,42,0,38,42
+Industrial Production MM*,USD,low_or_unknown,41,41,38,41
+Manuf Output MM*,USD,low_or_unknown,41,41,38,41
+LSEG IPSOS PCSI,EUR,low_or_unknown,41,0,34,39
+LSEG IPSOS PCSI,GBP,low_or_unknown,41,0,34,39
+Industrial Production YoY*,USD,low,41,0,38,41
+PPI Machine Manuf'ing*,USD,low,41,0,38,41
+Durables Ex-Transport *,USD,low_or_unknown,40,40,36,40
