@@ -25,11 +25,10 @@ Implemented:
 - basic file-backed policy reader
 - fail-safe execution gate with explicit block reasons
 - logging
-- trade executor stubs
+- basic real trade executor wrapper around `CTrade`
 
 Not implemented yet:
 - robust JSON parsing of `pair_risk_policy.json` (current reader is schema-specific string extraction)
-- real trade placement wrapper
 - basket/grid logic
 - exposure tracking
 
