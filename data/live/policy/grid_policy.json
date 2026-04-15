@@ -1,0 +1,59 @@
+{
+  "generated_at_utc": "2026-04-15T21:53:32.077199+00:00",
+  "version": "grid_policy_v1",
+  "model": "static_templates_v1",
+  "pairs": [
+    {
+      "pair": "EURJPY",
+      "allow_new_basket": true,
+      "policy_id": "both_sides_normal",
+      "grid_mode": "both_sides",
+      "step_pips": 12,
+      "initial_lot": 0.01,
+      "multiplier": 1.2,
+      "max_trades_per_side": 5,
+      "confidence": 0.65,
+      "reason": "moderate_signal_keep_both_sides_align1.00",
+      "expires_at_utc": "2026-04-15T21:58:32.077199+00:00"
+    },
+    {
+      "pair": "GBPJPY",
+      "allow_new_basket": true,
+      "policy_id": "both_sides_wide_light",
+      "grid_mode": "both_sides",
+      "step_pips": 22,
+      "initial_lot": 0.01,
+      "multiplier": 1.05,
+      "max_trades_per_side": 4,
+      "confidence": 0.6,
+      "reason": "entry_signal_dead_chop_use_wide_light",
+      "expires_at_utc": "2026-04-15T21:58:32.077199+00:00"
+    },
+    {
+      "pair": "GBPUSD",
+      "allow_new_basket": true,
+      "policy_id": "both_sides_wide_light",
+      "grid_mode": "both_sides",
+      "step_pips": 22,
+      "initial_lot": 0.01,
+      "multiplier": 1.05,
+      "max_trades_per_side": 4,
+      "confidence": 0.6,
+      "reason": "entry_signal_dead_chop_use_wide_light",
+      "expires_at_utc": "2026-04-15T21:58:32.077199+00:00"
+    },
+    {
+      "pair": "NZDUSD",
+      "allow_new_basket": true,
+      "policy_id": "buy_only_conservative",
+      "grid_mode": "buy_only",
+      "step_pips": 15,
+      "initial_lot": 0.01,
+      "multiplier": 1.15,
+      "max_trades_per_side": 4,
+      "confidence": 0.6,
+      "reason": "strong_buy_signal_align1.00_trend0.0017",
+      "expires_at_utc": "2026-04-15T21:58:32.077199+00:00"
+    }
+  ]
+}

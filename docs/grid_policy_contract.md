@@ -170,3 +170,16 @@ Later versions may add:
 ## Recommended immediate implementation
 
 Before ML selection exists, Python can publish a static template-based `grid_policy.json` so the MQL5 side can be built and tested now.
+
+Current prototype:
+- `src/massive_pipeline/build_grid_policy.py`
+- model label: `static_templates_v1`
+- output: `data/live/policy/grid_policy.json`
+
+Prototype selection logic:
+- blocked pair policy -> `no_trade`
+- missing directional signal -> `both_sides_conservative`
+- dead chop -> `both_sides_wide_light`
+- extreme vol -> `no_trade`
+- strong directional signal -> `buy_only_conservative` or `sell_only_conservative`
+- moderate directional signal -> `both_sides_normal`
