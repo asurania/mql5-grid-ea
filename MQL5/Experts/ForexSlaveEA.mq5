@@ -6,11 +6,13 @@
 #include <ForexSlave/PolicyReader.mqh>
 #include <ForexSlave/ExecutionGate.mqh>
 #include <ForexSlave/TradeExecutor.mqh>
+#include <ForexSlave/PositionRegistry.mqh>
 
 CTelemetryLogger g_logger;
 CPolicyReader    g_policyReader;
 CExecutionGate   g_gate;
 CTradeExecutor   g_tradeExecutor;
+CPositionRegistry g_positions;
 
 int OnInit()
   {
@@ -41,6 +43,9 @@ void OnTick()
    string reason = "";
    bool canOpen = g_gate.CanOpenNewTrade(policy, reason);
    string statusText = g_gate.DescribePolicyStatus(policy);
+   int openCount = g_positions.CountOpenPositions(_Symbol);
+   double netLots = g_positions.GetNetLots(_Symbol);
+   double floatingPnl = g_positions.GetFloatingPnL(_Symbol);
 
    g_logger.LogPolicyState(
       _Symbol,
@@ -49,6 +54,9 @@ void OnTick()
       + ", status=" + statusText
       + ", score=" + DoubleToString(policy.maxScoreAvoidSession, 4)
       + ", trigger=" + policy.triggerEventName
+      + ", open_count=" + IntegerToString(openCount)
+      + ", net_lots=" + DoubleToString(netLots, 2)
+      + ", floating_pnl=" + DoubleToString(floatingPnl, 2)
    );
 
    if(!canOpen)
