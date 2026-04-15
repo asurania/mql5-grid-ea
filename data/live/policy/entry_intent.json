@@ -1,42 +1,42 @@
 {
-  "generated_at_utc": "2026-04-15T14:42:00.675547+00:00",
+  "generated_at_utc": "2026-04-15T14:46:26.893834+00:00",
   "version": "entry_intent_v1",
   "pairs": [
     {
       "pair": "EURJPY",
       "should_enter": true,
-      "direction": "none",
+      "direction": "buy",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "no_python_direction_signal_v1",
-      "expires_at_utc": "2026-04-15T14:47:00.675547+00:00"
+      "reason": "v1_trend_alignment_long",
+      "expires_at_utc": "2026-04-15T14:51:26.893834+00:00"
     },
     {
       "pair": "GBPJPY",
-      "should_enter": true,
+      "should_enter": false,
       "direction": "none",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "no_python_direction_signal_v1",
-      "expires_at_utc": "2026-04-15T14:47:00.675547+00:00"
+      "reason": "no_v1_direction_alignment",
+      "expires_at_utc": "2026-04-15T14:51:26.893834+00:00"
     },
     {
       "pair": "GBPUSD",
       "should_enter": true,
-      "direction": "none",
+      "direction": "buy",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "no_python_direction_signal_v1",
-      "expires_at_utc": "2026-04-15T14:47:00.675547+00:00"
+      "reason": "v1_trend_alignment_long",
+      "expires_at_utc": "2026-04-15T14:51:26.893834+00:00"
     },
     {
       "pair": "NZDUSD",
       "should_enter": true,
-      "direction": "none",
+      "direction": "buy",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "no_python_direction_signal_v1",
-      "expires_at_utc": "2026-04-15T14:47:00.675547+00:00"
+      "reason": "v1_trend_alignment_long",
+      "expires_at_utc": "2026-04-15T14:51:26.893834+00:00"
     }
   ]
 }
