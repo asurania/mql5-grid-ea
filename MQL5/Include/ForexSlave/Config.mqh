@@ -1,6 +1,7 @@
 #pragma once
 
 input string InpPolicyFilePath = "ForexSlave\\pair_risk_policy.json";
+input bool   InpEnableLiveTrading = false;
 input int    InpPolicyRefreshSeconds = 30;
 input int    InpFreshnessWarningSeconds = 600;
 input int    InpFreshnessFailSafeSeconds = 1800;

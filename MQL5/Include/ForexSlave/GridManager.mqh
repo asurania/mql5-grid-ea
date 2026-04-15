@@ -90,6 +90,12 @@ public:
          return;
         }
 
+      if(!InpEnableLiveTrading)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_ENTRY", "live trading disabled, would execute direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2));
+         return;
+        }
+
       bool ok = false;
       if(decision.direction == ENTRY_BUY)
          ok = m_tradeExecutor.OpenBuy(pair, decision.lots, 0.0, 0.0, "python_entry_buy");

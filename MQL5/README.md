@@ -35,11 +35,19 @@ Implemented:
 - GridManager flow for Python-authorized first-entry execution and basket-management hooks
 - RiskOverlay for hard spread and exposure safety checks before future entries
 - EntrySignal wired to Python-published entry intent through `EntryIntentReader`
+- explicit dry-run safety switch with live trading disabled by default
 
 Not implemented yet:
 - robust JSON parsing of `pair_risk_policy.json` (current reader is schema-specific string extraction)
 - basket/grid logic
 - exposure tracking
+
+## Safety default
+
+The EA now defaults to:
+- `InpEnableLiveTrading = false`
+
+That means first-entry execution paths will log dry-run decisions unless you explicitly enable live trading.
 
 ## Current handoff path expectation
 
