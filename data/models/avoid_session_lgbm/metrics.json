@@ -1,0 +1,15 @@
+{
+  "target": "y_avoid_session",
+  "model_family": "LightGBM",
+  "train_rows": 44038,
+  "valid_rows": 9166,
+  "test_rows": 4712,
+  "train_positive_rate": 0.11460556791861574,
+  "valid_positive_rate": 0.07276892864935632,
+  "test_positive_rate": 0.11247877758913413,
+  "valid_roc_auc": 0.6620068010470586,
+  "valid_pr_auc": 0.4780446736086592,
+  "test_roc_auc": 0.7193980491414237,
+  "test_pr_auc": 0.42669881983565605,
+  "scale_pos_weight": 7.725579552209234
+}
