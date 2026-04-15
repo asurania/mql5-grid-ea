@@ -1,0 +1,37 @@
+{
+  "ensemble_method": "probability_average",
+  "models": [
+    "xgb_y_avoid_session",
+    "lgbm_y_avoid_session"
+  ],
+  "xgboost": {
+    "valid_roc_auc": 0.6829610256643651,
+    "valid_pr_auc": 0.48076520529445266,
+    "test_roc_auc": 0.7064359383882407,
+    "test_pr_auc": 0.4179086644457987
+  },
+  "lightgbm": {
+    "valid_roc_auc": 0.6620068010470586,
+    "valid_pr_auc": 0.4780446736086592,
+    "test_roc_auc": 0.7193980491414237,
+    "test_pr_auc": 0.42669881983565605
+  },
+  "ensemble": {
+    "valid_roc_auc": 0.6738951385585005,
+    "valid_pr_auc": 0.48139513210353146,
+    "test_roc_auc": 0.7153208269041624,
+    "test_pr_auc": 0.42560281984813503
+  },
+  "strong_avoid_analysis": {
+    "threshold": 0.75,
+    "true_positives": 125,
+    "false_positives": 9,
+    "precision": 0.9328
+  },
+  "standard_avoid_analysis": {
+    "threshold": 0.6,
+    "true_positives": 133,
+    "false_positives": 42,
+    "precision": 0.76
+  }
+}
