@@ -30,3 +30,27 @@ struct PairPolicy
    datetime     generatedAt;
    PolicyStatus status;
   };
+
+enum GridMode
+  {
+   GRID_MODE_BOTH_SIDES = 0,
+   GRID_MODE_BUY_ONLY = 1,
+   GRID_MODE_SELL_ONLY = 2,
+   GRID_MODE_INVALID = 3
+  };
+
+struct GridPolicy
+  {
+   string   pair;
+   bool     allowNewBasket;
+   string   policyId;
+   GridMode gridMode;
+   double   stepPips;
+   double   initialLot;
+   double   multiplier;
+   int      maxTradesPerSide;
+   double   confidence;
+   string   reason;
+   datetime expiresAt;
+   bool     valid;
+  };

@@ -19,6 +19,7 @@ This folder contains the initial MQL5 slave scaffold for the Python-master / MQL
 - `Include/ForexSlave/RiskOverlay.mqh`
 - `Include/ForexSlave/EntrySignal.mqh`
 - `Include/ForexSlave/EntryIntentReader.mqh`
+- `Include/ForexSlave/GridPolicyReader.mqh`
 
 ## Current state
 
@@ -35,6 +36,7 @@ Implemented:
 - GridManager flow for Python-authorized first-entry execution and basket-management hooks
 - RiskOverlay for hard spread and exposure safety checks before future entries
 - EntrySignal wired to Python-published entry intent through `EntryIntentReader`
+- GridPolicyReader wired to Python-published `grid_policy.json` for step size, lot, multiplier, and max trades
 - explicit dry-run safety switch with live trading disabled by default
 
 Not implemented yet:
@@ -53,13 +55,16 @@ That means first-entry execution paths will log dry-run decisions unless you exp
 
 The MQL5 skeleton is now configured to read:
 - `ForexSlave\\pair_risk_policy.json`
+- `ForexSlave\\entry_intent.json`
+- `ForexSlave\\grid_policy.json`
 
 relative to the MT5 common-files root.
 
-In workspace development, this corresponds to the mirrored handoff artifact:
+In workspace development, this corresponds to the mirrored handoff artifacts:
 - `runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json`
+- `runtime_handoff/mt5_common/Files/ForexSlave/entry_intent.json`
+- `runtime_handoff/mt5_common/Files/ForexSlave/grid_policy.json`
 
 ## Recommended next coding step
 
-Implement the real `PolicyReader` file-loading and JSON parsing path first.
-That unlocks meaningful end-to-end testing before any strategy port work.
+Wire `GridManager` basket expansion logic to consume `GridPolicyReader` step size, multiplier, and max-trades-per-side settings for ongoing ladder management.

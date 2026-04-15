@@ -6,6 +6,7 @@
 #include <ForexSlave/RiskOverlay.mqh>
 #include <ForexSlave/EntrySignal.mqh>
 #include <ForexSlave/TradeExecutor.mqh>
+#include <ForexSlave/GridPolicyReader.mqh>
 
 class CGridManager
   {
@@ -15,6 +16,7 @@ private:
    CRiskOverlay *m_risk;
    CEntrySignal *m_entrySignal;
    CTradeExecutor *m_tradeExecutor;
+   CGridPolicyReader m_gridPolicyReader;
 
 public:
    CGridManager()
@@ -76,13 +78,52 @@ public:
          return;
         }
 
+      GridPolicy gridPolicy = m_gridPolicyReader.Evaluate(pair);
+      if(!gridPolicy.valid)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy invalid: " + gridPolicy.reason);
+         return;
+        }
+
+      if(!gridPolicy.allowNewBasket)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy disallows basket: " + gridPolicy.reason);
+         return;
+        }
+
+      if(gridPolicy.gridMode == GRID_MODE_BUY_ONLY && decision.direction != ENTRY_BUY)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy buy_only but entry signal is not buy");
+         return;
+        }
+      if(gridPolicy.gridMode == GRID_MODE_SELL_ONLY && decision.direction != ENTRY_SELL)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy sell_only but entry signal is not sell");
+         return;
+        }
+
       string dir = "none";
       if(decision.direction == ENTRY_BUY)
          dir = "buy";
       else if(decision.direction == ENTRY_SELL)
          dir = "sell";
 
-      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_SIGNAL", "direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2) + ", reason=" + decision.reason);
+      double lots = gridPolicy.initialLot > 0.0 ? gridPolicy.initialLot : decision.lots;
+
+      string gridModeText = "both_sides";
+      if(gridPolicy.gridMode == GRID_MODE_BUY_ONLY)
+         gridModeText = "buy_only";
+      else if(gridPolicy.gridMode == GRID_MODE_SELL_ONLY)
+         gridModeText = "sell_only";
+
+      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_SIGNAL", "direction=" + dir
+         + ", lots=" + DoubleToString(lots, 2)
+         + ", policy_id=" + gridPolicy.policyId
+         + ", grid_mode=" + gridModeText
+         + ", step_pips=" + DoubleToString(gridPolicy.stepPips, 1)
+         + ", multiplier=" + DoubleToString(gridPolicy.multiplier, 2)
+         + ", max_trades_per_side=" + IntegerToString(gridPolicy.maxTradesPerSide)
+         + ", reason=" + decision.reason);
 
       if(m_tradeExecutor == NULL)
         {
@@ -92,15 +133,15 @@ public:
 
       if(!InpEnableLiveTrading)
         {
-         m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_ENTRY", "live trading disabled, would execute direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2));
+         m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_ENTRY", "live trading disabled, would execute direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
          return;
         }
 
       bool ok = false;
       if(decision.direction == ENTRY_BUY)
-         ok = m_tradeExecutor.OpenBuy(pair, decision.lots, 0.0, 0.0, "python_entry_buy");
+         ok = m_tradeExecutor.OpenBuy(pair, lots, 0.0, 0.0, "python_entry_buy");
       else if(decision.direction == ENTRY_SELL)
-         ok = m_tradeExecutor.OpenSell(pair, decision.lots, 0.0, 0.0, "python_entry_sell");
+         ok = m_tradeExecutor.OpenSell(pair, lots, 0.0, 0.0, "python_entry_sell");
 
       if(!ok)
         {
@@ -108,7 +149,7 @@ public:
          return;
         }
 
-      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2));
+      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
      }
 
    void EvaluateBasketManagement(string pair,const PairPolicy &policy)
