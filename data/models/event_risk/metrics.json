@@ -1,0 +1,14 @@
+{
+  "target": "y_post_news_session_risk",
+  "train_rows": 44038,
+  "valid_rows": 9166,
+  "test_rows": 4712,
+  "train_positive_rate": 0.11764839456832735,
+  "valid_positive_rate": 0.08127863844643247,
+  "test_positive_rate": 0.12266553480475383,
+  "valid_roc_auc": 0.6327014040482049,
+  "valid_pr_auc": 0.4038683403690555,
+  "test_roc_auc": 0.6264683283028912,
+  "test_pr_auc": 0.34364073982928695,
+  "scale_pos_weight": 7.499903493534067
+}
