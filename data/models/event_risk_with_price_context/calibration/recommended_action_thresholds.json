@@ -1,0 +1,11 @@
+{
+  "safe_lt": 0.2,
+  "reduce_risk_gte": 0.2,
+  "halt_gte": 0.45,
+  "avoid_session_gte": 0.7,
+  "notes": [
+    "Use conservative action bands because this target is session-risk oriented, not a direct execution signal.",
+    "Prefer avoid_session only at high probability because false positives are expensive in opportunity cost.",
+    "Halt is the default strong action for elevated risk when confidence is moderate-high."
+  ]
+}
