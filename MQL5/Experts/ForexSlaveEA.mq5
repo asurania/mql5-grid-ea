@@ -8,18 +8,21 @@
 #include <ForexSlave/TradeExecutor.mqh>
 #include <ForexSlave/PositionRegistry.mqh>
 #include <ForexSlave/GridManager.mqh>
+#include <ForexSlave/RiskOverlay.mqh>
 
 CTelemetryLogger  g_logger;
 CPolicyReader     g_policyReader;
 CExecutionGate    g_gate;
 CTradeExecutor    g_tradeExecutor;
 CPositionRegistry g_positions;
+CRiskOverlay      g_risk;
 CGridManager      g_grid;
 
 int OnInit()
   {
    EventSetTimer(InpPolicyRefreshSeconds);
-   g_grid.Configure(g_logger, g_positions);
+   g_risk.Configure(g_positions);
+   g_grid.Configure(g_logger, g_positions, g_risk);
    g_logger.Info("ForexSlaveEA initialized");
    if(!g_policyReader.Refresh())
       g_logger.Warn("Initial policy refresh failed: " + g_policyReader.GetLastError());
