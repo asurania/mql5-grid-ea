@@ -6,10 +6,12 @@ import json
 
 import polars as pl
 import xgboost as xgb
+import joblib
 
 EVENTS_FILE = Path("data/processed/economic_calendar/events_with_session_avoidance.parquet")
 PRICE_DIR = Path("data/processed/massive/fx_minute_bars")
-MODEL_FILE = Path("data/models/avoid_session/xgb_y_avoid_session.json")
+XGB_MODEL_FILE = Path("data/models/avoid_session/xgb_y_avoid_session.json")
+LGBM_MODEL_FILE = Path("data/models/avoid_session_lgbm/lgbm_y_avoid_session.joblib")
 THRESHOLDS_FILE = Path("data/models/avoid_session/calibration/recommended_thresholds.json")
 OUT_DIR = Path("data/live/event_risk")
 TARGET_PAIRS = ["EURJPY", "GBPJPY", "GBPUSD", "NZDUSD"]
@@ -189,8 +191,11 @@ def build_event_pair_rows(events: pl.DataFrame) -> pl.DataFrame:
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     thresholds = load_thresholds()
-    model = xgb.XGBClassifier()
-    model.load_model(str(MODEL_FILE))
+
+    # Load both models for ensemble
+    xgb_model = xgb.XGBClassifier()
+    xgb_model.load_model(str(XGB_MODEL_FILE))
+    lgbm_model = joblib.load(str(LGBM_MODEL_FILE))
 
     now_utc = datetime.now(timezone.utc)
     events = pl.read_parquet(EVENTS_FILE).with_columns(
@@ -234,8 +239,15 @@ def main() -> None:
 
     pdf = joined.to_pandas().sort_values(["event_timestamp_utc", "pair"]).reset_index(drop=True)
     pdf["pair"] = pdf["pair"].astype("category")
-    scores = model.predict_proba(pdf[FEATURE_COLUMNS])[:, 1]
-    pdf["score_avoid_session"] = scores
+
+    # Ensemble: average XGBoost + LightGBM probabilities
+    xgb_scores = xgb_model.predict_proba(pdf[FEATURE_COLUMNS])[:, 1]
+    lgbm_scores = lgbm_model.predict_proba(pdf[FEATURE_COLUMNS])[:, 1]
+    ensemble_scores = (xgb_scores + lgbm_scores) / 2.0
+
+    pdf["score_xgb"] = xgb_scores
+    pdf["score_lgbm"] = lgbm_scores
+    pdf["score_avoid_session"] = ensemble_scores
 
     payload_rows = []
     for row in pdf.to_dict(orient="records"):
@@ -246,19 +258,21 @@ def main() -> None:
                 "event_id": row["event_id"],
                 "event_timestamp_utc": row["event_timestamp_utc"].isoformat(),
                 "event_name": row["event_name"],
-                "model": "xgb_y_avoid_session",
+                "model": "ensemble_xgb_lgbm",
+                "score_xgb": round(float(row["score_xgb"]), 6),
+                "score_lgbm": round(float(row["score_lgbm"]), 6),
                 "score_avoid_session": round(float(row["score_avoid_session"]), 6),
                 "risk_action": action,
                 "risk_band": band,
-                "threshold_version": "avoid_session_v1",
+                "threshold_version": "avoid_session_ensemble_v1",
                 "generated_at_utc": now_utc.isoformat(),
             }
         )
 
     out = {
         "generated_at_utc": now_utc.isoformat(),
-        "model": "xgb_y_avoid_session",
-        "threshold_version": "avoid_session_v1",
+        "model": "ensemble_xgb_lgbm",
+        "threshold_version": "avoid_session_ensemble_v1",
         "rows": payload_rows,
     }
     (OUT_DIR / "event_risk_actions.json").write_text(json.dumps(out, indent=2), encoding="utf-8")

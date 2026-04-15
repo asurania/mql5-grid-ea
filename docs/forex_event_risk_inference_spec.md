@@ -5,10 +5,15 @@
 This document defines the production inference contract for the first live economic-event risk model used by the Python master in the Forex trading system.
 
 Current live candidate model:
-- Model family: XGBoost classifier
+- Model family: XGBoost + LightGBM ensemble (probability average)
 - Target: `y_avoid_session`
-- Artifact: `data/models/avoid_session/xgb_y_avoid_session.json`
+- XGBoost artifact: `data/models/avoid_session/xgb_y_avoid_session.json`
+- LightGBM artifact: `data/models/avoid_session_lgbm/lgbm_y_avoid_session.joblib`
 - Calibration: `data/models/avoid_session/calibration/recommended_thresholds.json`
+- Ensemble metrics: `data/models/avoid_session_ensemble/metrics.json`
+
+The ensemble averages XGBoost and LightGBM probabilities for better calibration.
+Test ROC AUC: 0.715, Test PR AUC: 0.426, strong-avoid precision at 0.75: 93.3%.
 
 The model predicts whether an upcoming economic event should cause the strategy to avoid the surrounding session for a given pair.
 
@@ -144,11 +149,13 @@ For each pair-event inference row, Python master should emit:
   "pair": "GBPJPY",
   "event_timestamp_utc": "2026-04-15T12:30:00Z",
   "event_name": "UK CPI y/y",
-  "model": "xgb_y_avoid_session",
+  "model": "ensemble_xgb_lgbm",
+  "score_xgb": 0.64,
+  "score_lgbm": 0.70,
   "score_avoid_session": 0.67,
   "risk_action": "avoid_session",
   "risk_band": "standard_avoid",
-  "threshold_version": "avoid_session_v1",
+  "threshold_version": "avoid_session_ensemble_v1",
   "generated_at_utc": "2026-04-15T12:25:00Z"
 }
 ```
@@ -190,8 +197,8 @@ Use `0.60` as the default cutoff for session avoidance.
 4. pull latest completed minute bars for each pair
 5. compute pre-event regime features
 6. assemble inference feature row in training-compatible schema
-7. load XGBoost model artifact
-8. compute `score_avoid_session`
+7. load XGBoost and LightGBM model artifacts
+8. compute `score_avoid_session` as the average of both model probabilities
 9. map score to decision thresholds
 10. publish pair risk policy to execution layer
 
@@ -230,8 +237,12 @@ Score only pairs relevant to the event currency mix and trading universe:
 
 ### Model artifacts
 - `data/models/avoid_session/xgb_y_avoid_session.json`
+- `data/models/avoid_session_lgbm/lgbm_y_avoid_session.joblib`
+- `data/models/avoid_session_ensemble/metrics.json`
 - `data/models/avoid_session/metrics.json`
+- `data/models/avoid_session_lgbm/metrics.json`
 - `data/models/avoid_session/feature_importance.csv`
+- `data/models/avoid_session_lgbm/feature_importance.csv`
 
 ### Calibration artifacts
 - `data/models/avoid_session/calibration/recommended_thresholds.json`
@@ -247,5 +258,7 @@ Score only pairs relevant to the event currency mix and trading universe:
 Build a production inference script in Python that:
 - loads upcoming events
 - computes the required pre-event feature row
-- scores the `xgb_y_avoid_session` model
+- scores the ensemble (XGBoost + LightGBM averaged probabilities)
 - emits a compact pair risk action payload for the MQL5 slave
+
+(This script now exists as `src/massive_pipeline/run_live_event_risk_inference.py`.)
