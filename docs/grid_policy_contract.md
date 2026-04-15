@@ -57,6 +57,8 @@ It answers:
       "initial_lot": 0.01,
       "multiplier": 1.10,
       "max_trades_per_side": 3,
+      "basket_tp_currency": 2.0,
+      "flatten_on_strong_avoid": true,
       "confidence": 0.72,
       "reason": "ml_grid_policy_both_sides_conservative",
       "expires_at_utc": "2026-04-15T21:05:00Z"
@@ -89,6 +91,8 @@ It answers:
 - `initial_lot`: first trade lot size
 - `multiplier`: lot multiplier for subsequent trades on that side
 - `max_trades_per_side`: maximum ladder depth for buy side and sell side independently
+- `basket_tp_currency`: pair basket floating-profit threshold that triggers close-all
+- `flatten_on_strong_avoid`: whether to flatten the pair basket if strong-avoid policy activates
 - `confidence`: optional probability/confidence score
 - `reason`: human/debug explanation
 - `expires_at_utc`: freshness deadline
@@ -105,6 +109,7 @@ MQL5 should reject the policy row if:
 - `initial_lot <= 0`
 - `multiplier < 1.0`
 - `max_trades_per_side < 1`
+- `basket_tp_currency < 0`
 - `expires_at_utc` invalid or expired
 
 Even with a valid row, MQL5 may still reject execution if:
@@ -154,6 +159,8 @@ For v1:
 - one `multiplier` shared by both sides
 - one `step_pips` shared by both sides
 - one `max_trades_per_side`
+- one `basket_tp_currency` for pair-level close-all
+- optional `flatten_on_strong_avoid`
 - no separate TP mode yet
 
 Later versions may add:

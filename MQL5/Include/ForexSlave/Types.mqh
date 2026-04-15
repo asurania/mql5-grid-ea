@@ -49,6 +49,8 @@ struct GridPolicy
    double   initialLot;
    double   multiplier;
    int      maxTradesPerSide;
+   double   basketTpCurrency;
+   bool     flattenOnStrongAvoid;
    double   confidence;
    string   reason;
    datetime expiresAt;

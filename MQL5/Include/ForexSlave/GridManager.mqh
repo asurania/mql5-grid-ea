@@ -17,7 +17,6 @@ private:
    CEntrySignal *m_entrySignal;
    CTradeExecutor *m_tradeExecutor;
    CGridPolicyReader m_gridPolicyReader;
-   double m_basketTakeProfitCurrency;
 
    bool CloseAllPositionsForPair(string pair,string reason)
      {
@@ -55,7 +54,6 @@ public:
       m_risk = NULL;
       m_entrySignal = NULL;
       m_tradeExecutor = NULL;
-      m_basketTakeProfitCurrency = 2.50;
      }
 
    void Configure(CTelemetryLogger &logger,CPositionRegistry &positions,CRiskOverlay &risk,CEntrySignal &entrySignal,CTradeExecutor &tradeExecutor)
@@ -324,7 +322,7 @@ public:
         }
 
       double floatingPnL = m_positions.GetFloatingPnL(pair);
-      if(policy.action == POLICY_BLOCK_NEW_ENTRIES_STRONG)
+      if(policy.action == POLICY_BLOCK_NEW_ENTRIES_STRONG && gridPolicy.flattenOnStrongAvoid)
         {
          m_logger.LogTradeDecision(pair, "GRID_STRONG_AVOID_ACTIVE", "policy strong avoid active, flattening pair basket");
          if(!InpEnableLiveTrading)
@@ -336,10 +334,10 @@ public:
          return;
         }
 
-      if(floatingPnL >= m_basketTakeProfitCurrency)
+      if(gridPolicy.basketTpCurrency > 0.0 && floatingPnL >= gridPolicy.basketTpCurrency)
         {
          m_logger.LogTradeDecision(pair, "GRID_BASKET_TP_SIGNAL", "floating pnl=" + DoubleToString(floatingPnL, 2)
-            + ", threshold=" + DoubleToString(m_basketTakeProfitCurrency, 2));
+            + ", threshold=" + DoubleToString(gridPolicy.basketTpCurrency, 2));
          if(!InpEnableLiveTrading)
            {
             m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_CLOSE_PAIR", "would close pair basket at basket TP");
@@ -354,6 +352,8 @@ public:
          + ", step_pips=" + DoubleToString(gridPolicy.stepPips, 1)
          + ", multiplier=" + DoubleToString(gridPolicy.multiplier, 2)
          + ", max_trades_per_side=" + IntegerToString(gridPolicy.maxTradesPerSide)
+         + ", basket_tp_currency=" + DoubleToString(gridPolicy.basketTpCurrency, 2)
+         + ", flatten_on_strong_avoid=" + (gridPolicy.flattenOnStrongAvoid ? "true" : "false")
          + ", floating_pnl=" + DoubleToString(floatingPnL, 2));
 
       if(gridPolicy.gridMode == GRID_MODE_BOTH_SIDES || gridPolicy.gridMode == GRID_MODE_BUY_ONLY)

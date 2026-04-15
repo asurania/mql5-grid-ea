@@ -133,6 +133,8 @@ public:
       out.initialLot = 0.0;
       out.multiplier = 1.0;
       out.maxTradesPerSide = 0;
+      out.basketTpCurrency = 0.0;
+      out.flattenOnStrongAvoid = true;
       out.confidence = 0.0;
       out.reason = "grid policy unavailable";
       out.expiresAt = 0;
@@ -161,6 +163,8 @@ public:
       out.initialLot = ExtractDouble(block, "initial_lot");
       out.multiplier = ExtractDouble(block, "multiplier");
       out.maxTradesPerSide = ExtractInt(block, "max_trades_per_side");
+      out.basketTpCurrency = ExtractDouble(block, "basket_tp_currency");
+      out.flattenOnStrongAvoid = ExtractBool(block, "flatten_on_strong_avoid", true);
       out.confidence = ExtractDouble(block, "confidence");
       out.reason = ExtractString(block, "reason");
       out.expiresAt = StringToTime(ExtractString(block, "expires_at_utc"));
@@ -207,6 +211,11 @@ public:
       if(out.maxTradesPerSide < 1)
         {
          out.reason = "invalid max trades per side";
+         return out;
+        }
+      if(out.basketTpCurrency < 0.0)
+        {
+         out.reason = "invalid basket tp currency";
          return out;
         }
 
