@@ -1,0 +1,16 @@
+{
+  "recommended_live_threshold": 0.6,
+  "fallback_review_threshold": 0.45,
+  "very_high_confidence_threshold": 0.75,
+  "live_rule": {
+    "if_score_gte_0_75": "avoid_session_strong",
+    "elif_score_gte_0_60": "avoid_session",
+    "elif_score_gte_0_45": "review_or_halt_new_entries",
+    "else": "do_not_trigger_avoid_session"
+  },
+  "notes": [
+    "Use 0.60 as the default live cutoff because session avoidance has meaningful opportunity cost.",
+    "Use 0.45 as a softer review band when other regime controls also look bad.",
+    "Use 0.75 for very high-confidence avoidance when you want maximum precision."
+  ]
+}

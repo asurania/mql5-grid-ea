@@ -1,0 +1,4 @@
+policy,threshold,intent
+balanced,0.45,"moderate false positive tolerance, decent recall"
+conservative,0.6,"higher precision, better for costly avoid-session decisions"
+very_conservative,0.75,very high confidence only
