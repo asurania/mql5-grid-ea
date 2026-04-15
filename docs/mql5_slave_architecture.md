@@ -89,12 +89,23 @@ Responsibility:
 - implement local execution strategy mechanics
 - basket management, spacing, lot progression, take-profit logic
 - route first-entry execution only when Python-owned entry intent authorizes it
+- consume Python-owned `grid_policy.json` for lot, step, multiplier, and max-trades settings
 - only act when gate permits
 
 Suggested methods:
 - `void EvaluateNewEntries(string pair)`
 - `void EvaluateBasketManagement(string pair)`
 - `void EvaluateRecoveryLogic(string pair)`
+
+Current implementation status:
+- first-entry execution uses Python-owned `initial_lot`
+- basket expansion uses Python-owned `step_pips`, `multiplier`, and `max_trades_per_side`
+- buy-side expands when Bid <= last buy open price - step distance
+- sell-side expands when Ask >= last sell open price + step distance
+- expansion respects `grid_mode` (`both_sides`, `buy_only`, `sell_only`)
+- current next-lot rule: average side lot × multiplier
+- dry-run logging exists for first entry and basket expansion
+- basket close / recovery / TP orchestration still pending
 
 ### 5. `TradeExecutor`
 Responsibility:
