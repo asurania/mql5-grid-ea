@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ForexSlave/EntryIntentReader.mqh>
+
 enum EntryDirection
   {
    ENTRY_NONE = 0,
@@ -19,16 +21,19 @@ class CEntrySignal
   {
 private:
    double m_defaultLots;
+   CEntryIntentReader *m_reader;
 
 public:
    CEntrySignal()
      {
       m_defaultLots = 0.01;
+      m_reader = NULL;
      }
 
-   void Configure(double defaultLots=0.01)
+   void Configure(CEntryIntentReader &reader,double defaultLots=0.01)
      {
       m_defaultLots = defaultLots;
+      m_reader = &reader;
      }
 
    EntryDecision EvaluateFirstEntry(string pair)
@@ -37,7 +42,14 @@ public:
       out.shouldEnter = false;
       out.direction = ENTRY_NONE;
       out.lots = m_defaultLots;
-      out.reason = "first-entry signal not implemented yet";
+      out.reason = "entry intent reader not configured";
+
+      if(m_reader == NULL)
+         return out;
+
+      out = m_reader.Evaluate(pair);
+      if(out.lots <= 0.0)
+         out.lots = m_defaultLots;
       return out;
      }
   };

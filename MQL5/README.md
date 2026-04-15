@@ -18,6 +18,7 @@ This folder contains the initial MQL5 slave scaffold for the Python-master / MQL
 - `Include/ForexSlave/GridManager.mqh`
 - `Include/ForexSlave/RiskOverlay.mqh`
 - `Include/ForexSlave/EntrySignal.mqh`
+- `Include/ForexSlave/EntryIntentReader.mqh`
 
 ## Current state
 
@@ -33,7 +34,7 @@ Implemented:
 - position registry for per-pair open position, lot, and floating PnL tracking
 - GridManager skeleton for new-entry and basket-management decision flow
 - RiskOverlay for hard spread and exposure safety checks before future entries
-- EntrySignal hook for future deterministic first-entry logic
+- EntrySignal wired to Python-published entry intent through `EntryIntentReader`
 
 Not implemented yet:
 - robust JSON parsing of `pair_risk_policy.json` (current reader is schema-specific string extraction)

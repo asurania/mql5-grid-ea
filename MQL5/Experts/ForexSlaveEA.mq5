@@ -10,21 +10,23 @@
 #include <ForexSlave/GridManager.mqh>
 #include <ForexSlave/RiskOverlay.mqh>
 #include <ForexSlave/EntrySignal.mqh>
+#include <ForexSlave/EntryIntentReader.mqh>
 
-CTelemetryLogger  g_logger;
-CPolicyReader     g_policyReader;
-CExecutionGate    g_gate;
-CTradeExecutor    g_tradeExecutor;
-CPositionRegistry g_positions;
-CRiskOverlay      g_risk;
-CEntrySignal      g_entrySignal;
-CGridManager      g_grid;
+CTelemetryLogger   g_logger;
+CPolicyReader      g_policyReader;
+CExecutionGate     g_gate;
+CTradeExecutor     g_tradeExecutor;
+CPositionRegistry  g_positions;
+CRiskOverlay       g_risk;
+CEntryIntentReader g_entryIntentReader;
+CEntrySignal       g_entrySignal;
+CGridManager       g_grid;
 
 int OnInit()
   {
    EventSetTimer(InpPolicyRefreshSeconds);
    g_risk.Configure(g_positions);
-   g_entrySignal.Configure(0.01);
+   g_entrySignal.Configure(g_entryIntentReader, 0.01);
    g_grid.Configure(g_logger, g_positions, g_risk, g_entrySignal);
    g_logger.Info("ForexSlaveEA initialized");
    if(!g_policyReader.Refresh())
