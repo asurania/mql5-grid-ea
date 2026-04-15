@@ -1,0 +1,17 @@
+pair,reaction_label,rows
+EURJPY,normal,1405
+EURJPY,trend_danger,3835
+EURJPY,volatility_expansion,36
+EURJPY,whipsaw_danger,106
+GBPJPY,normal,1736
+GBPJPY,trend_danger,4392
+GBPJPY,volatility_expansion,88
+GBPJPY,whipsaw_danger,153
+GBPUSD,normal,7999
+GBPUSD,trend_danger,14734
+GBPUSD,volatility_expansion,253
+GBPUSD,whipsaw_danger,993
+NZDUSD,normal,6890
+NZDUSD,trend_danger,13077
+NZDUSD,volatility_expansion,588
+NZDUSD,whipsaw_danger,1631
