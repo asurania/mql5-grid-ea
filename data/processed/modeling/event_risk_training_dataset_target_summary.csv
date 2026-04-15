@@ -1,0 +1,5 @@
+target,positive_rows,total_rows,positive_rate
+y_trend_danger,5039,57916,0.08700531804682644
+y_whipsaw_danger,2053,57916,0.03544789004765522
+y_volatility_expansion,13418,57916,0.2316803646660681
+y_post_news_session_risk,6504,57916,0.11230057324400856
