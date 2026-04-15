@@ -1,0 +1,13 @@
+pair,risk_prior,rows
+EURJPY,halt,295
+EURJPY,reduce_risk,676
+EURJPY,safe,29629
+GBPJPY,halt,779
+GBPJPY,reduce_risk,1124
+GBPJPY,safe,28697
+GBPUSD,halt,539
+GBPUSD,reduce_risk,1838
+GBPUSD,safe,28223
+NZDUSD,halt,55
+NZDUSD,reduce_risk,1263
+NZDUSD,safe,29282
