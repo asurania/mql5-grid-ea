@@ -30,7 +30,8 @@ CATEGORY_RULES = [
 ]
 
 MAJOR_CATEGORIES = {"central_bank", "inflation", "employment", "gdp", "pmi", "retail_sales"}
-NOISY_CATEGORIES = {"auction", "agriculture"}
+SECONDARY_CATEGORIES = {"trade", "housing", "sentiment", "speech"}
+NOISY_CATEGORIES = {"auction", "agriculture", "other"}
 
 
 def category_expr() -> pl.Expr:
@@ -54,20 +55,24 @@ def risk_for_pair_expr(pair: str) -> pl.Expr:
 
     is_primary = rel_col
     is_major = category.is_in(sorted(MAJOR_CATEGORIES))
+    is_secondary = category.is_in(sorted(SECONDARY_CATEGORIES))
     is_noisy = category.is_in(sorted(NOISY_CATEGORIES))
     is_jpy = currency == "JPY"
     is_gbp = currency == "GBP"
     is_usd = currency == "USD"
     is_medium_or_high = importance >= 1
     is_high = importance >= 2
+    is_central_bank = category == pl.lit("central_bank")
+    is_speech = category == pl.lit("speech")
 
     halt_condition = (
         is_primary
         & (
-            (is_major & is_high)
-            | (is_jpy & pl.lit(pair_cfg["jpy_cross"]) & is_major)
-            | (is_gbp & pl.lit(pair_cfg["gbp_pair"]) & is_major)
-            | (category == pl.lit("central_bank"))
+            is_central_bank
+            | (is_major & is_high)
+            | (is_jpy & pl.lit(pair_cfg["jpy_cross"]) & is_major & (importance >= 0))
+            | (is_gbp & pl.lit(pair_cfg["gbp_pair"]) & is_major & (importance >= 0))
+            | (is_usd & pl.lit(pair_cfg["usd_pair"]) & is_major & is_high)
         )
     )
 
@@ -75,18 +80,18 @@ def risk_for_pair_expr(pair: str) -> pl.Expr:
         is_primary
         & ~halt_condition
         & (
-            (is_major & (importance >= 0))
-            | (is_jpy & pl.lit(pair_cfg["jpy_cross"]))
-            | (is_gbp & pl.lit(pair_cfg["gbp_pair"]))
-            | (is_usd & pl.lit(pair_cfg["usd_pair"]) & is_medium_or_high)
-            | ((category == pl.lit("speech")) & (importance >= 0))
+            (is_major & is_medium_or_high)
+            | (is_major & is_jpy & pl.lit(pair_cfg["jpy_cross"]))
+            | (is_major & is_gbp & pl.lit(pair_cfg["gbp_pair"]))
+            | (is_secondary & is_medium_or_high)
+            | (is_speech & (importance >= 0))
         )
     )
 
     return (
         pl.when(~is_primary)
         .then(pl.lit("safe"))
-        .when(is_noisy & (importance <= 0))
+        .when(is_noisy)
         .then(pl.lit("safe"))
         .when(halt_condition)
         .then(pl.lit("halt"))

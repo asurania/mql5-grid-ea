@@ -11,11 +11,10 @@ GBPUSD,asia,asia,pmi,149
 GBPUSD,asia,asia,employment,79
 GBPUSD,asia,asia,gdp,42
 GBPUSD,london,london,inflation,154
-GBPUSD,london,london,pmi,96
 GBPUSD,london,london,employment,42
 GBPUSD,london,london,gdp,24
+GBPUSD,london,london,pmi,18
 NZDUSD,asia,asia,employment,1
 NZDUSD,london,london,inflation,154
-NZDUSD,london,london,pmi,78
 NZDUSD,london,london,employment,42
 NZDUSD,london,london,gdp,24

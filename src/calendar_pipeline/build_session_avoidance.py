@@ -21,6 +21,7 @@ PAIR_CURRENCIES = {
 }
 
 SESSION_MAJOR_CATEGORIES = {"central_bank", "inflation", "employment", "gdp", "pmi", "retail_sales"}
+SESSION_AVOID_STRICT_CATEGORIES = {"central_bank", "inflation", "employment", "gdp"}
 
 
 def session_label_expr() -> pl.Expr:
@@ -46,6 +47,7 @@ def avoid_expr(pair: str) -> pl.Expr:
     pair_ccy = PAIR_CURRENCIES[pair]
     is_primary = currency.is_in(sorted(pair_ccy))
     is_major = category.is_in(sorted(SESSION_MAJOR_CATEGORIES))
+    is_strict = category.is_in(sorted(SESSION_AVOID_STRICT_CATEGORIES))
     is_jpy_cross = pl.lit("JPY" in pair)
     is_gbp_pair = pl.lit("GBP" in pair)
 
@@ -54,9 +56,8 @@ def avoid_expr(pair: str) -> pl.Expr:
         & is_primary
         & is_major
         & (
-            (risk_col == "halt")
-            | (is_jpy_cross & (currency == "JPY"))
-            | ((currency == "JPY") & (importance >= 1))
+            (risk_col == "halt" )
+            | (is_jpy_cross & (currency == "JPY") & is_strict)
         )
     )
 
@@ -66,9 +67,9 @@ def avoid_expr(pair: str) -> pl.Expr:
         & is_major
         & (
             (risk_col == "halt")
-            | (is_gbp_pair & (currency == "GBP"))
-            | ((currency == "USD") & (importance >= 1))
-            | ((currency == "EUR") & (pair == "EURJPY") & (importance >= 1))
+            | (is_gbp_pair & (currency == "GBP") & is_strict)
+            | ((currency == "USD") & is_strict & (importance >= 1))
+            | ((currency == "EUR") & (pair == "EURJPY") & is_strict & (importance >= 1))
         )
     )
 
