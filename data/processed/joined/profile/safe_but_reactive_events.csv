@@ -1,0 +1,101 @@
+pair,event_category,event_name,reaction_label,rows
+EURJPY,auction,Foreign Stock Investment*,trend_danger,128
+EURJPY,auction,Foreign Invest JP Bonds*,trend_danger,128
+EURJPY,auction,Foreign Bond Investment,trend_danger,128
+GBPUSD,auction,MBA Mortgage Applications,trend_danger,127
+GBPUSD,auction,Mortgage Market Index,trend_danger,127
+GBPUSD,auction,Mortgage Refinance Index,trend_danger,127
+GBPUSD,auction,MBA Purchase Index,trend_danger,127
+GBPUSD,auction,MBA 30-Yr Mortgage Rate,trend_danger,127
+EURJPY,auction,Foreign Invest JP Stock,trend_danger,127
+GBPJPY,auction,Foreign Stock Investment*,trend_danger,116
+GBPJPY,auction,Foreign Bond Investment,trend_danger,116
+GBPJPY,auction,Foreign Invest JP Bonds*,trend_danger,116
+GBPJPY,auction,Foreign Invest JP Stock,trend_danger,115
+GBPUSD,other,Redbook YY *,trend_danger,113
+GBPUSD,auction,Nat Gas-EIA Implied Flow*,trend_danger,113
+GBPUSD,auction,EIA Wkly Gsln Stk*,trend_danger,112
+NZDUSD,agriculture,Export Corn Inspected *,trend_danger,112
+GBPUSD,auction,EIA Ethanol Ref Stk*,trend_danger,112
+NZDUSD,agriculture,Export Wheat Inspected *,trend_danger,112
+NZDUSD,agriculture,Exp Soybean Inspected *,trend_danger,112
+GBPUSD,auction,EIA Wkly Refn Util*,trend_danger,111
+GBPUSD,auction,EIA Ethanol Fuel Total*,trend_danger,111
+GBPUSD,auction,EIA Weekly Rfg Stocks*,trend_danger,111
+GBPUSD,auction,EIA Weekly Dist Output*,trend_danger,111
+GBPUSD,auction,EIA Wkly Crude Cushing*,trend_danger,111
+GBPUSD,auction,EIA Weekly Crude Imports*,trend_danger,111
+GBPUSD,other,EIA Weekly Crude Runs*,trend_danger,111
+GBPUSD,auction,EIA Wkly Crude Stk*,trend_danger,111
+GBPUSD,auction,EIA Wkly Dist. Stk*,trend_danger,111
+GBPUSD,other,EIA Weekly Gasoline O/P*,trend_danger,111
+GBPUSD,auction,EIA Weekly Heatoil Stock*,trend_danger,111
+GBPUSD,auction,EIA Weekly Prods Imports*,trend_danger,110
+GBPUSD,agriculture,Export Corn Inspected *,trend_danger,109
+GBPUSD,agriculture,Exp Soybean Inspected *,trend_danger,109
+GBPUSD,agriculture,Export Wheat Inspected *,trend_danger,109
+NZDUSD,auction,MBA 30-Yr Mortgage Rate,trend_danger,108
+NZDUSD,other,Redbook YY *,trend_danger,108
+NZDUSD,auction,MBA Purchase Index,trend_danger,108
+NZDUSD,auction,MBA Mortgage Applications,trend_danger,108
+NZDUSD,auction,Mortgage Market Index,trend_danger,108
+NZDUSD,auction,Mortgage Refinance Index,trend_danger,108
+NZDUSD,auction,Nat Gas-EIA Implied Flow*,trend_danger,108
+GBPUSD,auction,Soymeal Exp Sls Next Yr Net *,trend_danger,107
+GBPUSD,auction,Soybn Oil Exp Sls Net Total *,trend_danger,107
+GBPUSD,auction,EIA-Nat Gas Chg Bcf*,trend_danger,106
+GBPUSD,agriculture,Corn Exp Sale Next Yr Net *,trend_danger,105
+GBPUSD,agriculture,Wheat Export Sales Net *,trend_danger,105
+GBPUSD,agriculture,Wheat Export Sales New *,trend_danger,105
+GBPUSD,auction,US Pork Export Sales New *,trend_danger,105
+GBPUSD,auction,Up Cotton Exp Sales Net *,trend_danger,105
+GBPUSD,auction,Beef Export Sales Net *,trend_danger,105
+GBPUSD,auction,Soybn Oil Exp Sls Nxt Yr Net *,trend_danger,105
+GBPUSD,auction,Soybn Meal Exp Sls Net Total *,trend_danger,105
+GBPUSD,agriculture,Soybeanmeal Exp Sale Net *,trend_danger,105
+GBPUSD,auction,US Pork Export Sales Net *,trend_danger,105
+GBPUSD,agriculture,Soybean Exp Sale Net Total *,trend_danger,105
+GBPUSD,agriculture,Soybean Exp Sale Next Yr Net *,trend_danger,105
+GBPUSD,agriculture,Soybean Export Sales Net *,trend_danger,105
+GBPUSD,agriculture,Corn Exp Sales Net Total *,trend_danger,105
+GBPUSD,agriculture,Soybeanoil Exp Sales Net *,trend_danger,105
+GBPUSD,agriculture,Soybean Export Sales New *,trend_danger,105
+GBPUSD,auction,Beef Export Sales New *,trend_danger,105
+GBPUSD,agriculture,Wheat Exp Sale Net Total *,trend_danger,105
+GBPUSD,auction,Up Cotton Exp Sales New *,trend_danger,105
+GBPUSD,agriculture,Corn Export Sales Net *,trend_danger,105
+GBPUSD,agriculture,Corn Export Sales New *,trend_danger,104
+GBPUSD,agriculture,Wheat Exp Sale Next Yr Net *,trend_danger,103
+NZDUSD,auction,4W Bill Auc - HR*,trend_danger,102
+NZDUSD,auction,4W Bill Auc - TA*,trend_danger,102
+NZDUSD,auction,4W Bill Auc - BTC*,trend_danger,102
+NZDUSD,auction,4W Bill Auc - HAP*,trend_danger,102
+NZDUSD,auction,Soymeal Exp Sls Next Yr Net *,trend_danger,100
+NZDUSD,auction,Soybn Oil Exp Sls Net Total *,trend_danger,100
+NZDUSD,auction,EIA-Nat Gas Chg Bcf*,trend_danger,100
+NZDUSD,auction,EIA Ethanol Ref Stk*,trend_danger,99
+NZDUSD,auction,3M Bill Auc - HAP*,trend_danger,99
+NZDUSD,auction,3M Bill Auc - BTC*,trend_danger,99
+GBPUSD,auction,3M Bill Auc - HAP*,trend_danger,98
+NZDUSD,auction,Soybn Oil Exp Sls Nxt Yr Net *,trend_danger,98
+NZDUSD,agriculture,Corn Exp Sales Net Total *,trend_danger,98
+NZDUSD,agriculture,Soybean Export Sales Net *,trend_danger,98
+NZDUSD,agriculture,Wheat Export Sales New *,trend_danger,98
+NZDUSD,agriculture,Soybeanoil Exp Sales Net *,trend_danger,98
+NZDUSD,agriculture,Soybean Exp Sale Net Total *,trend_danger,98
+NZDUSD,auction,Up Cotton Exp Sales Net *,trend_danger,98
+NZDUSD,agriculture,Soybean Export Sales New *,trend_danger,98
+NZDUSD,auction,US Pork Export Sales Net *,trend_danger,98
+NZDUSD,auction,Beef Export Sales Net *,trend_danger,98
+NZDUSD,auction,EIA Ethanol Fuel Total*,trend_danger,98
+NZDUSD,agriculture,Wheat Exp Sale Net Total *,trend_danger,98
+NZDUSD,auction,Soybn Meal Exp Sls Net Total *,trend_danger,98
+NZDUSD,agriculture,Corn Exp Sale Next Yr Net *,trend_danger,98
+NZDUSD,agriculture,Corn Export Sales Net *,trend_danger,98
+NZDUSD,agriculture,Wheat Export Sales Net *,trend_danger,98
+NZDUSD,agriculture,Soybeanmeal Exp Sale Net *,trend_danger,98
+NZDUSD,auction,3M Bill Auc - HR*,trend_danger,98
+NZDUSD,auction,Up Cotton Exp Sales New *,trend_danger,98
+NZDUSD,auction,US Pork Export Sales New *,trend_danger,98
+NZDUSD,agriculture,Soybean Exp Sale Next Yr Net *,trend_danger,98
+NZDUSD,auction,3M Bill Auc - TA*,trend_danger,98

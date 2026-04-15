@@ -1,0 +1,101 @@
+pair,event_category,event_name,rows,avg_max_abs_ret_60m
+NZDUSD,auction,Soybn Oil Exp Sls Net Total *,39,0.0023828212949052333
+NZDUSD,auction,Soymeal Exp Sls Next Yr Net *,39,0.0023828212949052333
+NZDUSD,auction,Up Cotton Exp Sales New *,38,0.0023899746973680214
+NZDUSD,agriculture,Soybean Export Sales Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Wheat Export Sales New *,38,0.0023899746973680214
+NZDUSD,auction,Beef Export Sales New *,38,0.0023899746973680214
+NZDUSD,auction,Beef Export Sales Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Corn Export Sales Net *,38,0.0023899746973680214
+NZDUSD,auction,Soybn Meal Exp Sls Net Total *,38,0.0023899746973680214
+NZDUSD,agriculture,Soybean Exp Sale Next Yr Net *,38,0.0023899746973680214
+NZDUSD,auction,US Pork Export Sales Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Soybean Export Sales New *,38,0.0023899746973680214
+NZDUSD,auction,Up Cotton Exp Sales Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Wheat Exp Sale Net Total *,38,0.0023899746973680214
+NZDUSD,agriculture,Soybean Exp Sale Net Total *,38,0.0023899746973680214
+NZDUSD,agriculture,Corn Export Sales New *,38,0.0023899746973680214
+NZDUSD,agriculture,Soybeanoil Exp Sales Net *,38,0.0023899746973680214
+NZDUSD,auction,US Pork Export Sales New *,38,0.0023899746973680214
+NZDUSD,agriculture,Corn Exp Sales Net Total *,38,0.0023899746973680214
+NZDUSD,agriculture,Corn Exp Sale Next Yr Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Soybeanmeal Exp Sale Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Wheat Exp Sale Next Yr Net *,38,0.0023899746973680214
+NZDUSD,auction,Soybn Oil Exp Sls Nxt Yr Net *,38,0.0023899746973680214
+NZDUSD,agriculture,Wheat Export Sales Net *,38,0.0023899746973680214
+NZDUSD,employment,Jobless Clm 4Wk Avg*,29,0.0024388843096335992
+NZDUSD,auction,Initial Jobless Clm*,28,0.0023885760343383203
+NZDUSD,auction,Cont Jobless Clm*,28,0.0023885760343383203
+NZDUSD,other,Redbook YY *,22,0.002171404684382546
+GBPUSD,agriculture,Soybean Export Sales Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Soybean Export Sales New *,21,0.0020224843297932385
+GBPUSD,auction,Up Cotton Exp Sales Net *,21,0.0020224843297932385
+GBPUSD,auction,Soybn Oil Exp Sls Net Total *,21,0.0020224843297932385
+GBPUSD,agriculture,Corn Export Sales New *,21,0.0020224843297932385
+GBPUSD,agriculture,Wheat Export Sales New *,21,0.0020224843297932385
+GBPUSD,agriculture,Corn Export Sales Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Soybeanoil Exp Sales Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Wheat Exp Sale Next Yr Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Soybean Exp Sale Next Yr Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Wheat Export Sales Net *,21,0.0020224843297932385
+GBPUSD,auction,US Pork Export Sales Net *,21,0.0020224843297932385
+GBPUSD,auction,Beef Export Sales New *,21,0.0020224843297932385
+GBPUSD,agriculture,Corn Exp Sales Net Total *,21,0.0020224843297932385
+GBPUSD,auction,US Pork Export Sales New *,21,0.0020224843297932385
+GBPUSD,auction,Soybn Oil Exp Sls Nxt Yr Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Soybeanmeal Exp Sale Net *,21,0.0020224843297932385
+GBPUSD,auction,Beef Export Sales Net *,21,0.0020224843297932385
+GBPUSD,auction,Up Cotton Exp Sales New *,21,0.0020224843297932385
+GBPUSD,agriculture,Soybean Exp Sale Net Total *,21,0.0020224843297932385
+GBPUSD,auction,Soybn Meal Exp Sls Net Total *,21,0.0020224843297932385
+GBPUSD,agriculture,Corn Exp Sale Next Yr Net *,21,0.0020224843297932385
+GBPUSD,auction,Soymeal Exp Sls Next Yr Net *,21,0.0020224843297932385
+GBPUSD,agriculture,Wheat Exp Sale Net Total *,21,0.0020224843297932385
+NZDUSD,auction,EIA Weekly Dist Output*,20,0.002253600209306887
+NZDUSD,auction,EIA Wkly Gsln Stk*,20,0.002253600209306887
+NZDUSD,other,EIA Weekly Gasoline O/P*,20,0.002253600209306887
+NZDUSD,auction,EIA Weekly Heatoil Stock*,20,0.002253600209306887
+NZDUSD,auction,EIA Wkly Dist. Stk*,20,0.002253600209306887
+NZDUSD,auction,EIA Wkly Crude Cushing*,20,0.002253600209306887
+NZDUSD,auction,EIA Wkly Refn Util*,20,0.002253600209306887
+NZDUSD,auction,EIA Wkly Crude Stk*,20,0.002253600209306887
+NZDUSD,auction,EIA Weekly Rfg Stocks*,20,0.002253600209306887
+NZDUSD,auction,EIA Weekly Crude Imports*,20,0.002253600209306887
+NZDUSD,other,EIA Weekly Crude Runs*,20,0.002253600209306887
+GBPUSD,auction,EIA-Nat Gas Chg Bcf*,20,0.0019650992015147503
+GBPUSD,auction,Nat Gas-EIA Implied Flow*,20,0.0019650992015147503
+NZDUSD,auction,EIA Weekly Prods Imports*,19,0.002265404421494589
+GBPUSD,employment,Jobless Clm 4Wk Avg*,19,0.0020236800966004827
+NZDUSD,auction,EIA Ethanol Ref Stk*,18,0.0023008616060058423
+NZDUSD,auction,EIA Ethanol Fuel Total*,18,0.0023008616060058423
+GBPUSD,auction,Cont Jobless Clm*,17,0.0020113547578134933
+GBPUSD,auction,Initial Jobless Clm*,17,0.0020113547578134933
+NZDUSD,auction,Nat Gas-EIA Implied Flow*,17,0.0018535856495532832
+NZDUSD,auction,EIA-Nat Gas Chg Bcf*,16,0.0018753482912830792
+NZDUSD,auction,PPI Machine Manuf'ing*,15,0.002219431590064604
+NZDUSD,other,API Wkly crude runs *,13,0.011238040308743065
+NZDUSD,auction,API Cushing number *,13,0.011238040308743065
+NZDUSD,auction,API Wkly gsln stk *,13,0.011238040308743065
+NZDUSD,auction,API weekly crude imports *,13,0.011238040308743065
+NZDUSD,auction,API weekly product imports *,13,0.011238040308743065
+NZDUSD,auction,API Wkly dist. Stk *,13,0.011238040308743065
+NZDUSD,auction,API weekly heating oil *,13,0.011238040308743065
+NZDUSD,auction,API wkly crude Stk *,13,0.011238040308743065
+NZDUSD,auction,Average Workweek Hrs*,13,0.0024236473553161386
+NZDUSD,auction,Private Payrolls*,13,0.0024236473553161386
+NZDUSD,employment,Average Earnings MM*,13,0.0024236473553161386
+NZDUSD,auction,U6 Underemployment*,13,0.0024236473553161386
+NZDUSD,auction,Labor Force Partic*,13,0.0024236473553161386
+NZDUSD,employment,Average Earnings YY*,13,0.0024236473553161386
+NZDUSD,auction,Government Payrolls*,13,0.0024236473553161386
+NZDUSD,auction,Unemployment Rate*,13,0.0024236473553161386
+NZDUSD,auction,Manufacturing Payrolls*,13,0.0024236473553161386
+NZDUSD,employment,Non-Farm Payrolls*,13,0.0024236473553161386
+GBPUSD,auction,EIA Wkly Crude Stk*,12,0.0023294625097570773
+GBPUSD,auction,EIA Wkly Gsln Stk*,12,0.0023294625097570773
+GBPUSD,auction,EIA Wkly Refn Util*,12,0.0023294625097570773
+GBPUSD,auction,EIA Weekly Rfg Stocks*,12,0.0023294625097570773
+GBPUSD,auction,EIA Wkly Dist. Stk*,12,0.0023294625097570773
+GBPUSD,other,EIA Weekly Gasoline O/P*,12,0.0023294625097570773
+GBPUSD,auction,EIA Weekly Dist Output*,12,0.0023294625097570773
+GBPUSD,other,EIA Weekly Crude Runs*,12,0.0023294625097570773

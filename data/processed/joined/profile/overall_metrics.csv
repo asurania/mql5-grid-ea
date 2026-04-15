@@ -1,0 +1,10 @@
+metric,value
+rows,57916
+pairs,4
+events,30600
+date_min,2023-01-02 08:30:00+00:00
+date_max,2026-03-31 00:00:00+00:00
+trend_danger_rows,36038
+whipsaw_danger_rows,5818
+volatility_expansion_rows,8363
+post_news_session_risk_rows,36680
