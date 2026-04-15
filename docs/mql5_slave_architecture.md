@@ -105,7 +105,10 @@ Current implementation status:
 - expansion respects `grid_mode` (`both_sides`, `buy_only`, `sell_only`)
 - current next-lot rule: average side lot × multiplier
 - dry-run logging exists for first entry and basket expansion
-- basket close / recovery / TP orchestration still pending
+- basket close / recovery / TP orchestration partially implemented:
+  - close-all on pair basket floating profit >= configured currency threshold
+  - flatten pair basket when strong-avoid policy becomes active
+  - side-aware profit harvesting and richer recovery logic still pending
 
 ### 5. `TradeExecutor`
 Responsibility:

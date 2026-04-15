@@ -17,6 +17,35 @@ private:
    CEntrySignal *m_entrySignal;
    CTradeExecutor *m_tradeExecutor;
    CGridPolicyReader m_gridPolicyReader;
+   double m_basketTakeProfitCurrency;
+
+   bool CloseAllPositionsForPair(string pair,string reason)
+     {
+      if(m_positions == NULL || m_tradeExecutor == NULL || m_logger == NULL)
+         return false;
+
+      int total = m_positions.CountOpenPositions(pair);
+      if(total <= 0)
+         return true;
+
+      bool allOk = true;
+      for(int i = total - 1; i >= 0; --i)
+        {
+         ulong ticket = m_positions.GetTicketByIndex(pair, i);
+         if(ticket == 0)
+            continue;
+         if(!m_tradeExecutor.ClosePosition(ticket))
+           {
+            allOk = false;
+            m_logger.LogTradeDecision(pair, "GRID_CLOSE_PAIR_FAILED", reason + ", ticket=" + IntegerToString((int)ticket) + ", err=" + m_tradeExecutor.GetLastError());
+           }
+         else
+           {
+            m_logger.LogTradeDecision(pair, "GRID_CLOSE_PAIR_POSITION", reason + ", ticket=" + IntegerToString((int)ticket));
+           }
+        }
+      return allOk;
+     }
 
 public:
    CGridManager()
@@ -26,6 +55,7 @@ public:
       m_risk = NULL;
       m_entrySignal = NULL;
       m_tradeExecutor = NULL;
+      m_basketTakeProfitCurrency = 2.50;
      }
 
    void Configure(CTelemetryLogger &logger,CPositionRegistry &positions,CRiskOverlay &risk,CEntrySignal &entrySignal,CTradeExecutor &tradeExecutor)
@@ -293,11 +323,38 @@ public:
          return;
         }
 
+      double floatingPnL = m_positions.GetFloatingPnL(pair);
+      if(policy.action == POLICY_BLOCK_NEW_ENTRIES_STRONG)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_STRONG_AVOID_ACTIVE", "policy strong avoid active, flattening pair basket");
+         if(!InpEnableLiveTrading)
+           {
+            m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_CLOSE_PAIR", "would flatten pair due to strong avoid policy");
+            return;
+           }
+         CloseAllPositionsForPair(pair, "strong_avoid_flatten");
+         return;
+        }
+
+      if(floatingPnL >= m_basketTakeProfitCurrency)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_BASKET_TP_SIGNAL", "floating pnl=" + DoubleToString(floatingPnL, 2)
+            + ", threshold=" + DoubleToString(m_basketTakeProfitCurrency, 2));
+         if(!InpEnableLiveTrading)
+           {
+            m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_CLOSE_PAIR", "would close pair basket at basket TP");
+            return;
+           }
+         CloseAllPositionsForPair(pair, "basket_take_profit");
+         return;
+        }
+
       m_logger.LogTradeDecision(pair, "GRID_MANAGE_BASKET", "policy_id=" + gridPolicy.policyId
          + ", grid_mode=" + (gridPolicy.gridMode == GRID_MODE_BUY_ONLY ? "buy_only" : (gridPolicy.gridMode == GRID_MODE_SELL_ONLY ? "sell_only" : "both_sides"))
          + ", step_pips=" + DoubleToString(gridPolicy.stepPips, 1)
          + ", multiplier=" + DoubleToString(gridPolicy.multiplier, 2)
-         + ", max_trades_per_side=" + IntegerToString(gridPolicy.maxTradesPerSide));
+         + ", max_trades_per_side=" + IntegerToString(gridPolicy.maxTradesPerSide)
+         + ", floating_pnl=" + DoubleToString(floatingPnL, 2));
 
       if(gridPolicy.gridMode == GRID_MODE_BOTH_SIDES || gridPolicy.gridMode == GRID_MODE_BUY_ONLY)
          EvaluateSideExpansion(pair, gridPolicy, POSITION_TYPE_BUY);

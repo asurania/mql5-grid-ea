@@ -140,4 +140,23 @@ public:
         }
       return lastPrice;
      }
+
+   ulong GetTicketByIndex(string pair,int matchIndex)
+     {
+      int seen = 0;
+      for(int i = PositionsTotal() - 1; i >= 0; --i)
+        {
+         ulong ticket = PositionGetTicket(i);
+         if(ticket == 0)
+            continue;
+         if(!PositionSelectByTicket(ticket))
+            continue;
+         if(PositionGetString(POSITION_SYMBOL) != pair)
+            continue;
+         if(seen == matchIndex)
+            return ticket;
+         seen++;
+        }
+      return 0;
+     }
   };

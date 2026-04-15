@@ -37,6 +37,8 @@ Implemented:
 - RiskOverlay for hard spread and exposure safety checks before future entries
 - EntrySignal wired to Python-published entry intent through `EntryIntentReader`
 - GridPolicyReader wired to Python-published `grid_policy.json` for step size, lot, multiplier, and max trades
+- basket expansion logic wired to Python grid policy (step distance, multiplier, max trades)
+- basket exit hooks: pair flatten on strong avoid, close-all on basket profit target
 - explicit dry-run safety switch with live trading disabled by default
 
 Not implemented yet:
@@ -67,4 +69,4 @@ In workspace development, this corresponds to the mirrored handoff artifacts:
 
 ## Recommended next coding step
 
-Wire `GridManager` basket expansion logic to consume `GridPolicyReader` step size, multiplier, and max-trades-per-side settings for ongoing ladder management.
+Refine basket exit logic to support configurable basket TP, side-aware profit harvesting, and recovery rules beyond the current simple close-all-on-profit implementation.
