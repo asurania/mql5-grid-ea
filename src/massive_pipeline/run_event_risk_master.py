@@ -16,6 +16,8 @@ STEPS = [
     ROOT / "src" / "massive_pipeline" / "run_live_event_risk_inference.py",
     ROOT / "src" / "massive_pipeline" / "build_pair_risk_policy.py",
     ROOT / "src" / "massive_pipeline" / "publish_pair_risk_policy.py",
+    ROOT / "src" / "massive_pipeline" / "build_entry_intent.py",
+    ROOT / "src" / "massive_pipeline" / "publish_entry_intent.py",
 ]
 
 
@@ -74,6 +76,8 @@ def main() -> int:
             "event_risk_actions_json": str(LIVE_EVENT_RISK_JSON.relative_to(ROOT)),
             "pair_risk_policy_json": str(PAIR_POLICY_JSON.relative_to(ROOT)),
             "published_pair_risk_policy_json": "runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json",
+            "entry_intent_json": "data/live/policy/entry_intent.json",
+            "published_entry_intent_json": "runtime_handoff/mt5_common/Files/ForexSlave/entry_intent.json",
         },
     }
     RUN_LOG_JSON.parent.mkdir(parents=True, exist_ok=True)
