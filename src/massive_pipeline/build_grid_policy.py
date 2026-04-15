@@ -17,6 +17,7 @@ GRID_TEMPLATES = {
     "no_trade": {
         "allow_new_basket": False,
         "grid_mode": "both_sides",
+        "seed_mode": "single_side",
         "step_pips": 0,
         "initial_lot": 0.0,
         "multiplier": 1.0,
@@ -29,6 +30,7 @@ GRID_TEMPLATES = {
     "both_sides_conservative": {
         "allow_new_basket": True,
         "grid_mode": "both_sides",
+        "seed_mode": "single_side",
         "step_pips": 18,
         "initial_lot": 0.01,
         "multiplier": 1.10,
@@ -41,6 +43,7 @@ GRID_TEMPLATES = {
     "both_sides_normal": {
         "allow_new_basket": True,
         "grid_mode": "both_sides",
+        "seed_mode": "single_side",
         "step_pips": 12,
         "initial_lot": 0.01,
         "multiplier": 1.20,
@@ -53,6 +56,7 @@ GRID_TEMPLATES = {
     "both_sides_wide_light": {
         "allow_new_basket": True,
         "grid_mode": "both_sides",
+        "seed_mode": "both_sides",
         "step_pips": 22,
         "initial_lot": 0.01,
         "multiplier": 1.05,
@@ -65,6 +69,7 @@ GRID_TEMPLATES = {
     "buy_only_conservative": {
         "allow_new_basket": True,
         "grid_mode": "buy_only",
+        "seed_mode": "single_side",
         "step_pips": 15,
         "initial_lot": 0.01,
         "multiplier": 1.15,
@@ -77,6 +82,7 @@ GRID_TEMPLATES = {
     "sell_only_conservative": {
         "allow_new_basket": True,
         "grid_mode": "sell_only",
+        "seed_mode": "single_side",
         "step_pips": 15,
         "initial_lot": 0.01,
         "multiplier": 1.15,
@@ -178,6 +184,7 @@ def main() -> int:
                 "allow_new_basket": template["allow_new_basket"],
                 "policy_id": template_id,
                 "grid_mode": template["grid_mode"],
+                "seed_mode": template["seed_mode"],
                 "step_pips": template["step_pips"],
                 "initial_lot": template["initial_lot"],
                 "multiplier": template["multiplier"],

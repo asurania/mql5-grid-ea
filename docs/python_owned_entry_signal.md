@@ -148,6 +148,10 @@ Execution still requires:
 4. no local execution blockers
 5. fresh, unexpired entry intent authorizes entry
 
+Note:
+- when `grid_policy.json` uses `grid_mode=both_sides` and `seed_mode=both_sides`, MQL5 may open both a buy and sell starter from an empty basket even if entry intent is directional
+- entry intent still acts as a gate for whether basket start is allowed at all
+
 ## Recommended enforcement order
 
 For first basket entry:

@@ -53,6 +53,7 @@ It answers:
       "allow_new_basket": true,
       "policy_id": "both_sides_conservative",
       "grid_mode": "both_sides",
+      "seed_mode": "single_side",
       "step_pips": 18,
       "initial_lot": 0.01,
       "multiplier": 1.10,
@@ -87,6 +88,9 @@ It answers:
   - `both_sides`
   - `buy_only`
   - `sell_only`
+- `seed_mode`: one of:
+  - `single_side` (default, use entry intent direction only)
+  - `both_sides` (open both a buy and a sell starter when basket is empty)
 - `step_pips`: distance between grid entries
 - `initial_lot`: first trade lot size
 - `multiplier`: lot multiplier for subsequent trades on that side
@@ -105,6 +109,7 @@ MQL5 should reject the policy row if:
 - `pair` missing
 - `allow_new_basket == false`
 - `grid_mode` invalid
+- `seed_mode` invalid
 - `step_pips <= 0`
 - `initial_lot <= 0`
 - `multiplier < 1.0`
@@ -161,6 +166,7 @@ For v1:
 - one `max_trades_per_side`
 - one `basket_tp_currency` for pair-level close-all
 - optional `flatten_on_strong_avoid`
+- optional `seed_mode` for dual-side initial seeding in consolidation
 - no separate TP mode yet
 
 Later versions may add:

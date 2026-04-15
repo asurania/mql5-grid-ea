@@ -159,17 +159,31 @@ public:
          return;
         }
 
+      bool dualSeed = (gridPolicy.gridMode == GRID_MODE_BOTH_SIDES && gridPolicy.seedMode == SEED_MODE_BOTH_SIDES);
+
       if(!InpEnableLiveTrading)
         {
-         m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_ENTRY", "live trading disabled, would execute direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
+         if(dualSeed)
+            m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_ENTRY", "live trading disabled, would dual-seed buy+sell, lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
+         else
+            m_logger.LogTradeDecision(pair, "GRID_DRY_RUN_ENTRY", "live trading disabled, would execute direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
          return;
         }
 
       bool ok = false;
-      if(decision.direction == ENTRY_BUY)
-         ok = m_tradeExecutor.OpenBuy(pair, lots, 0.0, 0.0, "python_entry_buy");
-      else if(decision.direction == ENTRY_SELL)
-         ok = m_tradeExecutor.OpenSell(pair, lots, 0.0, 0.0, "python_entry_sell");
+      if(dualSeed)
+        {
+         bool okBuy = m_tradeExecutor.OpenBuy(pair, lots, 0.0, 0.0, "python_entry_seed_buy");
+         bool okSell = m_tradeExecutor.OpenSell(pair, lots, 0.0, 0.0, "python_entry_seed_sell");
+         ok = okBuy && okSell;
+        }
+      else
+        {
+         if(decision.direction == ENTRY_BUY)
+            ok = m_tradeExecutor.OpenBuy(pair, lots, 0.0, 0.0, "python_entry_buy");
+         else if(decision.direction == ENTRY_SELL)
+            ok = m_tradeExecutor.OpenSell(pair, lots, 0.0, 0.0, "python_entry_sell");
+        }
 
       if(!ok)
         {
@@ -177,7 +191,10 @@ public:
          return;
         }
 
-      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
+      if(dualSeed)
+         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "dual_seed buy+sell, lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
+      else
+         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
      }
 
    double PointsPerPip(string pair)

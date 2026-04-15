@@ -116,6 +116,15 @@ private:
       return GRID_MODE_INVALID;
      }
 
+   SeedMode ParseSeedMode(string value)
+     {
+      if(value == "single_side" || value == "")
+         return SEED_MODE_SINGLE_SIDE;
+      if(value == "both_sides")
+         return SEED_MODE_BOTH_SIDES;
+      return SEED_MODE_INVALID;
+     }
+
 public:
    CGridPolicyReader()
      {
@@ -129,6 +138,7 @@ public:
       out.allowNewBasket = false;
       out.policyId = "";
       out.gridMode = GRID_MODE_INVALID;
+      out.seedMode = SEED_MODE_SINGLE_SIDE;
       out.stepPips = 0.0;
       out.initialLot = 0.0;
       out.multiplier = 1.0;
@@ -159,6 +169,7 @@ public:
       out.allowNewBasket = ExtractBool(block, "allow_new_basket", false);
       out.policyId = ExtractString(block, "policy_id");
       out.gridMode = ParseGridMode(ExtractString(block, "grid_mode"));
+      out.seedMode = ParseSeedMode(ExtractString(block, "seed_mode"));
       out.stepPips = ExtractDouble(block, "step_pips");
       out.initialLot = ExtractDouble(block, "initial_lot");
       out.multiplier = ExtractDouble(block, "multiplier");
@@ -191,6 +202,11 @@ public:
       if(out.gridMode == GRID_MODE_INVALID)
         {
          out.reason = "invalid grid mode";
+         return out;
+        }
+      if(out.seedMode == SEED_MODE_INVALID)
+        {
+         out.reason = "invalid seed mode";
          return out;
         }
       if(out.stepPips <= 0.0)

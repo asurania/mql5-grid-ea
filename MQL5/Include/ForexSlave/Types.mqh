@@ -39,12 +39,20 @@ enum GridMode
    GRID_MODE_INVALID = 3
   };
 
+enum SeedMode
+  {
+   SEED_MODE_SINGLE_SIDE = 0,
+   SEED_MODE_BOTH_SIDES = 1,
+   SEED_MODE_INVALID = 2
+  };
+
 struct GridPolicy
   {
    string   pair;
    bool     allowNewBasket;
    string   policyId;
    GridMode gridMode;
+   SeedMode seedMode;
    double   stepPips;
    double   initialLot;
    double   multiplier;
