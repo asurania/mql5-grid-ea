@@ -1,0 +1,20 @@
+{
+  "train_rows": 595052,
+  "valid_rows": 143413,
+  "test_rows": 149433,
+  "train_label_dist": {
+    "range": 248431,
+    "neutral": 250935,
+    "trend": 95686
+  },
+  "valid_label_dist": {
+    "range": 56063,
+    "neutral": 61791,
+    "trend": 25559
+  },
+  "test_label_dist": {
+    "range": 62719,
+    "neutral": 63863,
+    "trend": 22851
+  }
+}

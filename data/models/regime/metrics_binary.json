@@ -1,0 +1,14 @@
+{
+  "target": "y_trending",
+  "train_rows": 595052,
+  "valid_rows": 143413,
+  "test_rows": 149433,
+  "train_trending_rate": 0.16080275337281447,
+  "valid_trending_rate": 0.17821954773974466,
+  "test_trending_rate": 0.15291803015398206,
+  "valid_roc_auc": 0.5776441093573114,
+  "valid_pr_auc": 0.21262087428245732,
+  "test_roc_auc": 0.6046626006638306,
+  "test_pr_auc": 0.19973812896004817,
+  "scale_pos_weight": 5.2187989883577535
+}

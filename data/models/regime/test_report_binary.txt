@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+not_trending       0.88      0.63      0.73    126582
+    trending       0.20      0.51      0.28     22851
+
+    accuracy                           0.61    149433
+   macro avg       0.54      0.57      0.51    149433
+weighted avg       0.77      0.61      0.66    149433
