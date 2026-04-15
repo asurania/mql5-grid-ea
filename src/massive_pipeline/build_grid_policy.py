@@ -66,6 +66,45 @@ GRID_TEMPLATES = {
         "confidence": 0.60,
         "reason": "static_both_sides_wide_light",
     },
+    "classic_consolidation_light": {
+        "allow_new_basket": True,
+        "grid_mode": "both_sides",
+        "seed_mode": "both_sides",
+        "step_pips": 14,
+        "initial_lot": 0.01,
+        "multiplier": 1.10,
+        "max_trades_per_side": 5,
+        "basket_tp_currency": 2.50,
+        "flatten_on_strong_avoid": True,
+        "confidence": 0.68,
+        "reason": "classic_consolidation_light",
+    },
+    "classic_consolidation_normal": {
+        "allow_new_basket": True,
+        "grid_mode": "both_sides",
+        "seed_mode": "both_sides",
+        "step_pips": 10,
+        "initial_lot": 0.01,
+        "multiplier": 1.20,
+        "max_trades_per_side": 6,
+        "basket_tp_currency": 3.00,
+        "flatten_on_strong_avoid": True,
+        "confidence": 0.70,
+        "reason": "classic_consolidation_normal",
+    },
+    "classic_consolidation_dense": {
+        "allow_new_basket": True,
+        "grid_mode": "both_sides",
+        "seed_mode": "both_sides",
+        "step_pips": 8,
+        "initial_lot": 0.01,
+        "multiplier": 1.25,
+        "max_trades_per_side": 7,
+        "basket_tp_currency": 3.50,
+        "flatten_on_strong_avoid": True,
+        "confidence": 0.62,
+        "reason": "classic_consolidation_dense",
+    },
     "buy_only_conservative": {
         "allow_new_basket": True,
         "grid_mode": "buy_only",
@@ -129,9 +168,21 @@ def choose_template(pair_row: dict | None, entry_row: dict | None) -> tuple[str,
     # But if the reason is dead chop or extreme vol, be more cautious.
     if not should_enter or direction == "none":
         if reason.startswith("vol_regime_dead_chop"):
-            return "both_sides_wide_light", {
-                **GRID_TEMPLATES["both_sides_wide_light"],
-                "reason": "entry_signal_dead_chop_use_wide_light",
+            # Classic grid shines in consolidation, so prefer explicit consolidation templates
+            atr_frac = float(debug.get("atr_frac_60", 0.0) or 0.0)
+            if atr_frac <= 0.00022:
+                return "classic_consolidation_dense", {
+                    **GRID_TEMPLATES["classic_consolidation_dense"],
+                    "reason": "dead_chop_dense_classic_consolidation",
+                }
+            if atr_frac <= 0.00035:
+                return "classic_consolidation_normal", {
+                    **GRID_TEMPLATES["classic_consolidation_normal"],
+                    "reason": "dead_chop_normal_classic_consolidation",
+                }
+            return "classic_consolidation_light", {
+                **GRID_TEMPLATES["classic_consolidation_light"],
+                "reason": "dead_chop_light_classic_consolidation",
             }
         if reason.startswith("vol_regime_extreme_vol"):
             return "no_trade", {

@@ -175,10 +175,53 @@ Recommended v1 template library:
   "policy_id": "both_sides_wide_light",
   "allow_new_basket": true,
   "grid_mode": "both_sides",
+  "seed_mode": "both_sides",
   "step_pips": 22,
   "initial_lot": 0.01,
   "multiplier": 1.05,
   "max_trades_per_side": 4
+}
+```
+
+## Classic consolidation light
+```json
+{
+  "policy_id": "classic_consolidation_light",
+  "allow_new_basket": true,
+  "grid_mode": "both_sides",
+  "seed_mode": "both_sides",
+  "step_pips": 14,
+  "initial_lot": 0.01,
+  "multiplier": 1.10,
+  "max_trades_per_side": 5
+}
+```
+
+## Classic consolidation normal
+```json
+{
+  "policy_id": "classic_consolidation_normal",
+  "allow_new_basket": true,
+  "grid_mode": "both_sides",
+  "seed_mode": "both_sides",
+  "step_pips": 10,
+  "initial_lot": 0.01,
+  "multiplier": 1.20,
+  "max_trades_per_side": 6
+}
+```
+
+## Classic consolidation dense
+```json
+{
+  "policy_id": "classic_consolidation_dense",
+  "allow_new_basket": true,
+  "grid_mode": "both_sides",
+  "seed_mode": "both_sides",
+  "step_pips": 8,
+  "initial_lot": 0.01,
+  "multiplier": 1.25,
+  "max_trades_per_side": 7
 }
 ```
 
