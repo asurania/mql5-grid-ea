@@ -5,6 +5,7 @@
 #include <ForexSlave/PositionRegistry.mqh>
 #include <ForexSlave/RiskOverlay.mqh>
 #include <ForexSlave/EntrySignal.mqh>
+#include <ForexSlave/TradeExecutor.mqh>
 
 class CGridManager
   {
@@ -13,6 +14,7 @@ private:
    CPositionRegistry *m_positions;
    CRiskOverlay *m_risk;
    CEntrySignal *m_entrySignal;
+   CTradeExecutor *m_tradeExecutor;
 
 public:
    CGridManager()
@@ -21,14 +23,16 @@ public:
       m_positions = NULL;
       m_risk = NULL;
       m_entrySignal = NULL;
+      m_tradeExecutor = NULL;
      }
 
-   void Configure(CTelemetryLogger &logger,CPositionRegistry &positions,CRiskOverlay &risk,CEntrySignal &entrySignal)
+   void Configure(CTelemetryLogger &logger,CPositionRegistry &positions,CRiskOverlay &risk,CEntrySignal &entrySignal,CTradeExecutor &tradeExecutor)
      {
       m_logger = &logger;
       m_positions = &positions;
       m_risk = &risk;
       m_entrySignal = &entrySignal;
+      m_tradeExecutor = &tradeExecutor;
      }
 
    void EvaluateNewEntries(string pair,const PairPolicy &policy,bool canOpenNewTrade)
@@ -79,6 +83,26 @@ public:
          dir = "sell";
 
       m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_SIGNAL", "direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2) + ", reason=" + decision.reason);
+
+      if(m_tradeExecutor == NULL)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_EXECUTION", "trade executor not configured");
+         return;
+        }
+
+      bool ok = false;
+      if(decision.direction == ENTRY_BUY)
+         ok = m_tradeExecutor.OpenBuy(pair, decision.lots, 0.0, 0.0, "python_entry_buy");
+      else if(decision.direction == ENTRY_SELL)
+         ok = m_tradeExecutor.OpenSell(pair, decision.lots, 0.0, 0.0, "python_entry_sell");
+
+      if(!ok)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTION_FAILED", m_tradeExecutor.GetLastError());
+         return;
+        }
+
+      m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", lots=" + DoubleToString(decision.lots, 2));
      }
 
    void EvaluateBasketManagement(string pair,const PairPolicy &policy)

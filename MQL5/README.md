@@ -32,7 +32,7 @@ Implemented:
 - logging
 - basic real trade executor wrapper around `CTrade`
 - position registry for per-pair open position, lot, and floating PnL tracking
-- GridManager skeleton for new-entry and basket-management decision flow
+- GridManager flow for Python-authorized first-entry execution and basket-management hooks
 - RiskOverlay for hard spread and exposure safety checks before future entries
 - EntrySignal wired to Python-published entry intent through `EntryIntentReader`
 

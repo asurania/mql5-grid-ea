@@ -27,7 +27,7 @@ int OnInit()
    EventSetTimer(InpPolicyRefreshSeconds);
    g_risk.Configure(g_positions);
    g_entrySignal.Configure(g_entryIntentReader, 0.01);
-   g_grid.Configure(g_logger, g_positions, g_risk, g_entrySignal);
+   g_grid.Configure(g_logger, g_positions, g_risk, g_entrySignal, g_tradeExecutor);
    g_logger.Info("ForexSlaveEA initialized");
    if(!g_policyReader.Refresh())
       g_logger.Warn("Initial policy refresh failed: " + g_policyReader.GetLastError());
