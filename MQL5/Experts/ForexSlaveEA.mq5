@@ -40,8 +40,16 @@ void OnTick()
    PairPolicy policy = g_policyReader.GetPolicy(_Symbol);
    string reason = "";
    bool canOpen = g_gate.CanOpenNewTrade(policy, reason);
+   string statusText = g_gate.DescribePolicyStatus(policy);
 
-   g_logger.LogPolicyState(_Symbol, "band=" + policy.policyBand + ", status=" + IntegerToString((int)policy.status));
+   g_logger.LogPolicyState(
+      _Symbol,
+      "action=" + IntegerToString((int)policy.action)
+      + ", band=" + policy.policyBand
+      + ", status=" + statusText
+      + ", score=" + DoubleToString(policy.maxScoreAvoidSession, 4)
+      + ", trigger=" + policy.triggerEventName
+   );
 
    if(!canOpen)
      {

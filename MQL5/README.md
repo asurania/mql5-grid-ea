@@ -23,7 +23,7 @@ Implemented:
 - EA shell
 - timer refresh loop
 - basic file-backed policy reader
-- execution gate
+- fail-safe execution gate with explicit block reasons
 - logging
 - trade executor stubs
 
