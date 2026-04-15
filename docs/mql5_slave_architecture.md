@@ -87,7 +87,8 @@ Suggested methods:
 ### 4. `GridManager`
 Responsibility:
 - implement local execution strategy mechanics
-- spacing, lot progression, basket logic, take-profit logic
+- basket management, spacing, lot progression, take-profit logic
+- route first-entry execution only when Python-owned entry intent authorizes it
 - only act when gate permits
 
 Suggested methods:
@@ -222,9 +223,11 @@ Add:
 - `PositionRegistry`
 - `GridManager`
 - `RiskOverlay`
+- Python-owned `EntryIntentReader`
 
 Goal:
-- move actual grid or basket logic into the new slave cleanly
+- keep first-entry direction in Python
+- move basket management logic into the new slave cleanly
 
 ### Phase 3, advanced controls
 Optional later:
@@ -299,3 +302,5 @@ Implement a minimal MQL5 skeleton with:
 - stubbed trade decision flow
 
 That gives you a clean foundation before porting any real basket logic.
+
+For first-entry decisions, prefer Python-owned direction and intent over local MQL5 signal generation.
