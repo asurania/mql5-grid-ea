@@ -1,0 +1,14 @@
+{
+  "target": "y_avoid_session",
+  "train_rows": 44038,
+  "valid_rows": 9166,
+  "test_rows": 4712,
+  "train_positive_rate": 0.11460556791861574,
+  "valid_positive_rate": 0.07276892864935632,
+  "test_positive_rate": 0.11247877758913413,
+  "valid_roc_auc": 0.6829610256643651,
+  "valid_pr_auc": 0.48076520529445266,
+  "test_roc_auc": 0.7064359383882407,
+  "test_pr_auc": 0.4179086644457987,
+  "scale_pos_weight": 7.725579552209234
+}
