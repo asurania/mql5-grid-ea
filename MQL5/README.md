@@ -32,7 +32,16 @@ Not implemented yet:
 - real trade placement wrapper
 - basket/grid logic
 - exposure tracking
-- stale-file timestamp enforcement from real payload timestamps
+
+## Current handoff path expectation
+
+The MQL5 skeleton is now configured to read:
+- `ForexSlave\\pair_risk_policy.json`
+
+relative to the MT5 common-files root.
+
+In workspace development, this corresponds to the mirrored handoff artifact:
+- `runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json`
 
 ## Recommended next coding step
 

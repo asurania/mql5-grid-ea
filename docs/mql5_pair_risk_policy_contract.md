@@ -7,6 +7,9 @@ This document defines how the MQL5 slave should consume and apply the pair-level
 Primary upstream artifact:
 - `data/live/policy/pair_risk_policy.json`
 
+Published MT5-facing handoff artifact:
+- `runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json`
+
 ## Design goal
 
 The MQL5 slave should remain execution-focused.
@@ -20,7 +23,7 @@ It should only:
 ## Source artifact schema
 
 Expected file:
-- `pair_risk_policy.json`
+- `ForexSlave/pair_risk_policy.json` relative to the MT5 common-files root
 
 Top-level example:
 
@@ -147,7 +150,7 @@ If you prefer a less conservative posture, make it a config option, but the defa
 
 ## Missing-file behavior
 
-If `pair_risk_policy.json` is missing:
+If `ForexSlave/pair_risk_policy.json` is missing:
 - treat as policy unavailable
 - default recommendation: **fail closed for new entries** on covered pairs
 - continue existing position management
