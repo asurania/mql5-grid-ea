@@ -1,22 +1,30 @@
 {
   "status": "ok",
-  "started_at_utc": "2026-04-15T13:40:35.822424+00:00",
-  "finished_at_utc": "2026-04-15T13:40:36.821157+00:00",
+  "started_at_utc": "2026-04-15T13:57:00.311647+00:00",
+  "finished_at_utc": "2026-04-15T13:57:01.322535+00:00",
   "steps": [
     {
       "script": "src/massive_pipeline/run_live_event_risk_inference.py",
-      "started_at_utc": "2026-04-15T13:40:35.822427+00:00",
-      "finished_at_utc": "2026-04-15T13:40:36.800866+00:00",
+      "started_at_utc": "2026-04-15T13:57:00.311650+00:00",
+      "finished_at_utc": "2026-04-15T13:57:01.279230+00:00",
       "returncode": 0,
-      "stdout": "{\n  \"generated_at_utc\": \"2026-04-15T13:40:36.585608+00:00\",\n  \"rows\": []\n}\n",
+      "stdout": "{\n  \"generated_at_utc\": \"2026-04-15T13:57:01.062851+00:00\",\n  \"rows\": []\n}\n",
       "stderr": ""
     },
     {
       "script": "src/massive_pipeline/build_pair_risk_policy.py",
-      "started_at_utc": "2026-04-15T13:40:36.800993+00:00",
-      "finished_at_utc": "2026-04-15T13:40:36.821020+00:00",
+      "started_at_utc": "2026-04-15T13:57:01.279363+00:00",
+      "finished_at_utc": "2026-04-15T13:57:01.299447+00:00",
       "returncode": 0,
-      "stdout": "{\n  \"generated_at_utc\": \"2026-04-15T13:40:36.817753+00:00\",\n  \"source_model\": \"xgb_y_avoid_session\",\n  \"threshold_version\": \"avoid_session_v1\",\n  \"pair_policies\": [\n    {\n      \"pair\": \"EURJPY\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:40:36.817753+00:00\"\n    },\n    {\n      \"pair\": \"GBPJPY\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:40:36.817753+00:00\"\n    },\n    {\n      \"pair\": \"GBPUSD\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:40:36.817753+00:00\"\n    },\n    {\n      \"pair\": \"NZDUSD\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:40:36.817753+00:00\"\n    }\n  ]\n}\n",
+      "stdout": "{\n  \"generated_at_utc\": \"2026-04-15T13:57:01.296210+00:00\",\n  \"source_model\": \"xgb_y_avoid_session\",\n  \"threshold_version\": \"avoid_session_v1\",\n  \"pair_policies\": [\n    {\n      \"pair\": \"EURJPY\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:57:01.296210+00:00\"\n    },\n    {\n      \"pair\": \"GBPJPY\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:57:01.296210+00:00\"\n    },\n    {\n      \"pair\": \"GBPUSD\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:57:01.296210+00:00\"\n    },\n    {\n      \"pair\": \"NZDUSD\",\n      \"policy_action\": \"allow_trading\",\n      \"policy_band\": \"no_active_event_risk\",\n      \"max_score_avoid_session\": 0.0,\n      \"trigger_event_id\": null,\n      \"trigger_event_name\": null,\n      \"trigger_event_timestamp_utc\": null,\n      \"generated_at_utc\": \"2026-04-15T13:57:01.296210+00:00\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "src/massive_pipeline/publish_pair_risk_policy.py",
+      "started_at_utc": "2026-04-15T13:57:01.299542+00:00",
+      "finished_at_utc": "2026-04-15T13:57:01.322282+00:00",
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"ok\",\n  \"started_at_utc\": \"2026-04-15T13:57:01.318734+00:00\",\n  \"finished_at_utc\": \"2026-04-15T13:57:01.318978+00:00\",\n  \"source_policy\": \"data/live/policy/pair_risk_policy.json\",\n  \"published_policy\": \"runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json\"\n}\n",
       "stderr": ""
     }
   ],
@@ -26,6 +34,7 @@
   },
   "artifacts": {
     "event_risk_actions_json": "data/live/event_risk/event_risk_actions.json",
-    "pair_risk_policy_json": "data/live/policy/pair_risk_policy.json"
+    "pair_risk_policy_json": "data/live/policy/pair_risk_policy.json",
+    "published_pair_risk_policy_json": "runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json"
   }
 }
