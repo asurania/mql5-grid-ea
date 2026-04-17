@@ -33,20 +33,33 @@ TARGET_PROFIT_PCT = {
     "high": 0.02,
 }
 SESSION_WINDOWS_NY = {
-    "asia": (18, 0, 2, 0),       # 6:00 PM – 2:00 AM NY time
-    "london": (2, 0, 11, 0),      # 2:00 AM – 11:00 AM NY time
-    "new_york": (8, 0, 17, 0),    # 8:00 AM – 5:00 PM NY time
+    "asia": (18, 0, 22, 0),       # 6:00 PM – 10:00 PM NY time (4:00 PM – 8:00 PM Calgary MDT)
+    "london": (22, 0, 6, 0),       # 10:00 PM – 6:00 AM NY time (9:00 PM – 3:00 AM Calgary MDT)
+    "new_york": (8, 0, 17, 0),     # 8:00 AM – 5:00 PM NY time (standard)
 }
 
 # Session close times in UTC (for liquidation timing)
-# These are the END of each trading session in UTC
+# Custom schedule: Asia closes at 9 PM Calgary, London closes at 4 AM Calgary
 SESSION_CLOSE_UTC = {
-    "asia": (6, 0),       # 2:00 AM NY = 06:00 UTC (midnight Calgary)
-    "london": (15, 0),    # 11:00 AM NY = 15:00 UTC (9:00 AM Calgary)
-    "new_york": (21, 0),  # 5:00 PM NY = 21:00 UTC (3:00 PM Calgary)
+    "asia": (3, 0),       # 9:00 PM Calgary = 03:00 UTC (Asia early close)
+    "london": (10, 0),    # 4:00 AM Calgary = 10:00 UTC (London early close)
+    "new_york": (21, 0),  # 5:00 PM NY = 21:00 UTC (standard close)
 }
 
-# Variable TP targets by session (in pips)
+# Custom managed close minutes before session end
+# Asia: managed close at 9 PM = session close, liquidate 10 min after
+# London: managed close at 4 AM = session close, liquidate 10 min after
+MANAGED_CLOSE_MINUTES = {
+    "asia": 10,       # Stop new baskets 10 min before 9 PM Calgary (8:50 PM)
+    "london": 10,     # Stop new baskets 10 min before 4 AM Calgary (3:50 AM)
+    "new_york": 30,   # Standard 30 min before NY close
+}
+
+LIQUIDATE_MINUTES = {
+    "asia": 0,        # Liquidate exactly at session close (9 PM Calgary)
+    "london": 0,       # Liquidate exactly at session close (4 AM Calgary)
+    "new_york": 10,    # 10 min before NY close
+}
 # Old EA: Asia = 4 pips, London/NY = 3 pips
 SESSION_TP_PIPS = {
     "asia": 4.0,
@@ -707,8 +720,8 @@ def main() -> int:
         "allow_gbpjpy_demo_override": args.allow_gbpjpy_demo_override,
         "session_name": infer_session_name(now_utc),
         "session_close_utc": get_session_close_utc(now_utc, infer_session_name(now_utc)),
-        "managed_close_utc": get_managed_close_utc(now_utc, infer_session_name(now_utc), 30),
-        "liquidate_utc": get_liquidate_utc(now_utc, infer_session_name(now_utc), 10),
+        "managed_close_utc": get_managed_close_utc(now_utc, infer_session_name(now_utc), MANAGED_CLOSE_MINUTES.get(infer_session_name(now_utc), 30)),
+        "liquidate_utc": get_liquidate_utc(now_utc, infer_session_name(now_utc), LIQUIDATE_MINUTES.get(infer_session_name(now_utc), 10)),
         "pairs": rows,
     }
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
