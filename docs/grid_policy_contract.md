@@ -100,6 +100,9 @@ It answers:
 - `multiplier`: lot multiplier for subsequent trades on that side
 - `max_trades_per_side`: maximum ladder depth for buy side and sell side independently
 - `basket_tp_currency`: pair basket floating-profit threshold that triggers close-all
+- `basket_tp_pips`: weighted-average TP target in pips (session-dependent: Asia=4.0, London=3.0, NY=3.0)
+- `basket_sl_pips`: weighted-average SL distance in pips (session-dependent: Asia=40, London=55, NY=50)
+- `broker_visible_tp_sl`: if true, set broker-visible TP/SL on all positions every tick
 - `max_gross_lots`: hard ceiling for total open lots on the pair basket
 - `max_basket_drawdown_currency`: hard ceiling for tolerated floating loss on the pair basket
 - `min_step_to_spread_ratio`: minimum allowed ratio of configured step size to live spread before entries/expansions are blocked
@@ -108,6 +111,13 @@ It answers:
 - `confidence`: optional probability/confidence score
 - `reason`: human/debug explanation
 - `expires_at_utc`: freshness deadline
+
+### Top-level session fields
+
+- `session_name`: current session (asia, london, new_york)
+- `session_close_utc`: UTC time when the current session ends
+- `managed_close_utc`: UTC time when managed close starts (30 min before close)
+- `liquidate_utc`: UTC time when forced liquidation starts (10 min before close)
 
 ---
 
