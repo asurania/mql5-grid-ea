@@ -281,8 +281,8 @@ public:
      }
 
    // Extract top-level session timing fields from grid policy JSON
-   // Returns true if all three timestamps were found and parsed
-   bool ExtractSessionTimings(datetime &managedCloseUTC, datetime &liquidateUTC, datetime &sessionCloseUTC)
+   // Returns true if all required timestamps were found and parsed
+   bool ExtractSessionTimings(datetime &managedCloseUTC, datetime &dailyLiquidateUTC, datetime &sessionCloseUTC)
      {
       if(m_rawJson == "")
         {
@@ -291,14 +291,14 @@ public:
         }
 
       string mcStr = ExtractStringTopLevel("managed_close_utc");
-      string liqStr = ExtractStringTopLevel("liquidate_utc");
+      string dlStr = ExtractStringTopLevel("daily_liquidate_utc");
       string scStr = ExtractStringTopLevel("session_close_utc");
 
       managedCloseUTC = StringToTime(mcStr);
-      liquidateUTC = StringToTime(liqStr);
+      dailyLiquidateUTC = StringToTime(dlStr);
       sessionCloseUTC = StringToTime(scStr);
 
-      return (managedCloseUTC > 0 && liquidateUTC > 0 && sessionCloseUTC > 0);
+      return (managedCloseUTC > 0 && dailyLiquidateUTC > 0 && sessionCloseUTC > 0);
      }
 
    // Extract a string value from the top-level JSON (not per-pair)

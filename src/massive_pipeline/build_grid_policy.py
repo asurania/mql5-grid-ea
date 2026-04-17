@@ -38,27 +38,33 @@ SESSION_WINDOWS_NY = {
     "new_york": (8, 0, 17, 0),     # 8:00 AM – 5:00 PM NY time (standard)
 }
 
-# Session close times in UTC (for liquidation timing)
-# Custom schedule: Asia closes at 9 PM Calgary, London closes at 4 AM Calgary
+# Session close times in UTC (for managed close, NOT forced liquidation)
+# Managed close = stop new baskets, let existing manage to TP
 SESSION_CLOSE_UTC = {
-    "asia": (3, 0),       # 9:00 PM Calgary = 03:00 UTC (Asia early close)
-    "london": (10, 0),    # 4:00 AM Calgary = 10:00 UTC (London early close)
+    "asia": (3, 0),       # 9:00 PM Calgary = 03:00 UTC (Asia managed close)
+    "london": (10, 0),    # 4:00 AM Calgary = 10:00 UTC (London managed close)
     "new_york": (21, 0),  # 5:00 PM NY = 21:00 UTC (standard close)
 }
 
-# Custom managed close minutes before session end
-# Asia: managed close at 9 PM = session close, liquidate 10 min after
-# London: managed close at 4 AM = session close, liquidate 10 min after
+# Daily forced liquidation of ALL positions across all sessions
+# This fires once per day, 10 min before the forex market closes
+# 1:50 PM Calgary MDT = 20:50 UTC = 2:50 PM NY time (10 min before 3 PM Calgary close)
+DAILY_LIQUIDATE_UTC = (20, 50)  # 1:50 PM Calgary = 20:50 UTC
+
+# Custom managed close minutes before session close
+# Asia/London: no forced liquidation at session close, just managed close
+# The only forced liquidation is the daily one at 1:50 PM Calgary
 MANAGED_CLOSE_MINUTES = {
     "asia": 10,       # Stop new baskets 10 min before 9 PM Calgary (8:50 PM)
     "london": 10,     # Stop new baskets 10 min before 4 AM Calgary (3:50 AM)
     "new_york": 30,   # Standard 30 min before NY close
 }
 
+# No per-session liquidation — only the daily one at 1:50 PM Calgary
 LIQUIDATE_MINUTES = {
-    "asia": 0,        # Liquidate exactly at session close (9 PM Calgary)
-    "london": 0,       # Liquidate exactly at session close (4 AM Calgary)
-    "new_york": 10,    # 10 min before NY close
+    "asia": 0,         # No forced liquidation at Asia close (just managed close)
+    "london": 0,       # No forced liquidation at London close (just managed close)
+    "new_york": 10,    # Liquidate 10 min before NY close (= daily liquidation)
 }
 # Old EA: Asia = 4 pips, London/NY = 3 pips
 SESSION_TP_PIPS = {
@@ -326,6 +332,17 @@ def get_liquidate_utc(now_utc: datetime, session_name: str, minutes_before: int 
         close_today += timedelta(days=1)
     liquidate_start = close_today - timedelta(minutes=minutes_before)
     return mt5_utc_timestamp(liquidate_start)
+
+
+def get_daily_liquidate_utc(now_utc: datetime) -> str:
+    """Get the UTC time for the daily forced liquidation of all positions.
+    This fires once per day at 1:50 PM Calgary (20:50 UTC), 10 min before market close.
+    """
+    liq_h, liq_m = DAILY_LIQUIDATE_UTC
+    liq_today = now_utc.replace(hour=liq_h, minute=liq_m, second=0, microsecond=0)
+    if now_utc >= liq_today:
+        liq_today += timedelta(days=1)
+    return mt5_utc_timestamp(liq_today)
 
 
 def load_session_range_predictions() -> dict[str, dict]:
@@ -722,6 +739,7 @@ def main() -> int:
         "session_close_utc": get_session_close_utc(now_utc, infer_session_name(now_utc)),
         "managed_close_utc": get_managed_close_utc(now_utc, infer_session_name(now_utc), MANAGED_CLOSE_MINUTES.get(infer_session_name(now_utc), 30)),
         "liquidate_utc": get_liquidate_utc(now_utc, infer_session_name(now_utc), LIQUIDATE_MINUTES.get(infer_session_name(now_utc), 10)),
+        "daily_liquidate_utc": get_daily_liquidate_utc(now_utc),
         "pairs": rows,
     }
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)

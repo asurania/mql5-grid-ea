@@ -10,11 +10,11 @@ class CSessionManager
 private:
    CTelemetryLogger *m_logger;
    SessionState      m_lastState;
-   bool              m_liquidatedThisSession;
+   bool              m_liquidatedToday;
    datetime          m_lastLogTime;
    datetime          m_managedCloseTimeUTC;    // from Python grid policy
-   datetime          m_liquidateTimeUTC;       // from Python grid policy
-   datetime          m_sessionCloseTimeUTC;     // from Python grid policy
+   datetime          m_sessionCloseTimeUTC;    // from Python grid policy
+   datetime          m_dailyLiquidateTimeUTC;  // Daily forced liquidation (1:50 PM Calgary)
    bool              m_usePythonTimings;        // true if Python provided timings
 
    datetime GetNyCloseTimeUTC()
@@ -38,15 +38,6 @@ private:
       return nyClose - InpManagedCloseMinutesBeforeEnd * 60;
      }
 
-   datetime GetEffectiveLiquidateTime()
-     {
-      if(m_usePythonTimings && m_liquidateTimeUTC > 0)
-         return m_liquidateTimeUTC;
-      // Fallback: compute from config
-      datetime nyClose = GetNyCloseTimeUTC();
-      return nyClose - InpLiquidateMinutesBeforeEnd * 60;
-     }
-
    datetime GetEffectiveSessionCloseTime()
      {
       if(m_usePythonTimings && m_sessionCloseTimeUTC > 0)
@@ -55,9 +46,18 @@ private:
       return GetNyCloseTimeUTC();
      }
 
+   datetime GetEffectiveDailyLiquidateTime()
+     {
+      if(m_usePythonTimings && m_dailyLiquidateTimeUTC > 0)
+         return m_dailyLiquidateTimeUTC;
+      // Fallback: 10 min before NY close
+      datetime nyClose = GetNyCloseTimeUTC();
+      return nyClose - InpLiquidateMinutesBeforeEnd * 60;
+     }
+
 public:
-   CSessionManager() : m_logger(NULL), m_lastState(SESSION_ACTIVE), m_liquidatedThisSession(false), m_lastLogTime(0),
-                       m_managedCloseTimeUTC(0), m_liquidateTimeUTC(0), m_sessionCloseTimeUTC(0), m_usePythonTimings(false)
+   CSessionManager() : m_logger(NULL), m_lastState(SESSION_ACTIVE), m_liquidatedToday(false), m_lastLogTime(0),
+                       m_managedCloseTimeUTC(0), m_sessionCloseTimeUTC(0), m_dailyLiquidateTimeUTC(0), m_usePythonTimings(false)
      {
      }
 
@@ -67,16 +67,22 @@ public:
      }
 
    // Called when grid policy is refreshed with Python-provided session timings
-   void UpdatePythonTimings(datetime managedCloseUTC, datetime liquidateUTC, datetime sessionCloseUTC)
+   void UpdatePythonTimings(datetime managedCloseUTC, datetime sessionCloseUTC, datetime dailyLiquidateUTC)
      {
       m_managedCloseTimeUTC = managedCloseUTC;
-      m_liquidateTimeUTC = liquidateUTC;
       m_sessionCloseTimeUTC = sessionCloseUTC;
-      m_usePythonTimings = (managedCloseUTC > 0 && liquidateUTC > 0 && sessionCloseUTC > 0);
+      m_dailyLiquidateTimeUTC = dailyLiquidateUTC;
+      m_usePythonTimings = (managedCloseUTC > 0 && sessionCloseUTC > 0 && dailyLiquidateUTC > 0);
       if(m_usePythonTimings)
         {
          ResetLiquidatedIfNeeded();
         }
+     }
+
+   // Legacy 2-arg version for backward compat (no daily liquidation)
+   void UpdatePythonTimings(datetime managedCloseUTC, datetime liquidateUTC, datetime sessionCloseUTC)
+     {
+      UpdatePythonTimings(managedCloseUTC, sessionCloseUTC, liquidateUTC);
      }
 
    // Parse MT5 timestamp string "2026.04.17 20:30:00" to datetime
@@ -87,11 +93,11 @@ public:
 
    void ResetLiquidatedIfNeeded()
      {
-      // Allow re-liquidation if we've moved to a new session
+      // Reset daily liquidation flag for new day
       MqlDateTime dt;
       TimeToStruct(TimeCurrent(), dt);
-      if(dt.hour >= 0 && dt.hour < 3)  // early UTC hours = new day reset
-         m_liquidatedThisSession = false;
+      if(dt.hour >= 21 || dt.hour < 3)  // after 9 PM UTC or before 3 AM UTC = new day reset
+         m_liquidatedToday = false;
      }
 
    SessionState EvaluateSessionState()
@@ -100,28 +106,34 @@ public:
          return SESSION_ACTIVE;
 
       datetime nowUTC = TimeCurrent();
-      datetime managedCloseUTC = GetEffectiveManagedCloseTime();
-      datetime liquidateUTC = GetEffectiveLiquidateTime();
-      datetime sessionCloseUTC = GetEffectiveSessionCloseTime();
+      datetime dailyLiquidateUTC = GetEffectiveDailyLiquidateTime();
 
-      // If we're past session close, session is closed
-      if(nowUTC >= sessionCloseUTC)
-        {
-         MqlDateTime dt;
-         TimeToStruct(nowUTC, dt);
-         // Reset liquidation flag for next day
-         if(dt.hour >= 23 || dt.hour < 3)
-            m_liquidatedThisSession = false;
-         return SESSION_CLOSED;
-        }
-
-      // Within liquidation window: force close everything
-      if(nowUTC >= liquidateUTC)
+      // --- Daily forced liquidation: highest priority ---
+      // At 1:50 PM Calgary (20:50 UTC), force close EVERYTHING
+      if(nowUTC >= dailyLiquidateUTC && !m_liquidatedToday)
         {
          return SESSION_LIQUIDATE;
         }
 
-      // Within managed close window: no new baskets, let existing manage
+      // After daily liquidation has happened, session is closed until next day
+      if(m_liquidatedToday)
+        {
+         return SESSION_CLOSED;
+        }
+
+      // --- Per-session managed close: no new baskets, but let existing manage ---
+      datetime managedCloseUTC = GetEffectiveManagedCloseTime();
+      datetime sessionCloseUTC = GetEffectiveSessionCloseTime();
+
+      // Past session close time (but before daily liquidation)
+      if(nowUTC >= sessionCloseUTC)
+        {
+         // Between sessions: no new baskets but existing positions can manage to TP
+         // This is NOT forced liquidation — positions stay open until daily liquidate
+         return SESSION_MANAGED_CLOSE;
+        }
+
+      // Within managed close window of current session
       if(nowUTC >= managedCloseUTC)
          return SESSION_MANAGED_CLOSE;
 
@@ -152,8 +164,10 @@ public:
 
    void SetLiquidated()
      {
-      m_liquidatedThisSession = true;
+      m_liquidatedToday = true;
      }
+
+   bool IsLiquidatedToday() const { return m_liquidatedToday; }
 
    void LogStateChange(SessionState newState, string pair)
      {
@@ -177,6 +191,7 @@ public:
          m_logger.Info("SESSION_STATE_CHANGE: " + oldStr + " -> " + stateStr
             + " for " + pair
             + " (source=" + timingSource
+            + ", daily_liquidate=" + TimeToString(GetEffectiveDailyLiquidateTime(), TIME_DATE|TIME_MINUTES)
             + ", managed_close_min=" + IntegerToString(InpManagedCloseMinutesBeforeEnd)
             + ", liquidate_min=" + IntegerToString(InpLiquidateMinutesBeforeEnd)
             + ", ny_close_utc=" + IntegerToString(InpNyCloseHourUTC) + ":" + IntegerToString(InpNyCloseMinuteUTC, 2) + ")");

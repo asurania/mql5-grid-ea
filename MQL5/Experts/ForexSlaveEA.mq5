@@ -60,14 +60,14 @@ void OnTimer()
 
    // Read Python-provided session timings from grid policy
    datetime managedCloseUTC = 0;
-   datetime liquidateUTC = 0;
+   datetime dailyLiquidateUTC = 0;
    datetime sessionCloseUTC = 0;
-   if(g_gridPolicyReader.ExtractSessionTimings(managedCloseUTC, liquidateUTC, sessionCloseUTC))
+   if(g_gridPolicyReader.ExtractSessionTimings(managedCloseUTC, dailyLiquidateUTC, sessionCloseUTC))
      {
-      g_session.UpdatePythonTimings(managedCloseUTC, liquidateUTC, sessionCloseUTC);
+      g_session.UpdatePythonTimings(managedCloseUTC, sessionCloseUTC, dailyLiquidateUTC);
       g_logger.Info("Session timings updated from grid policy: managed_close="
          + TimeToString(managedCloseUTC, TIME_DATE|TIME_MINUTES)
-         + ", liquidate=" + TimeToString(liquidateUTC, TIME_DATE|TIME_MINUTES)
+         + ", daily_liquidate=" + TimeToString(dailyLiquidateUTC, TIME_DATE|TIME_MINUTES)
          + ", session_close=" + TimeToString(sessionCloseUTC, TIME_DATE|TIME_MINUTES));
      }
   }
