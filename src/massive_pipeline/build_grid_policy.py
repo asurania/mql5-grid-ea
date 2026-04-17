@@ -33,17 +33,17 @@ TARGET_PROFIT_PCT = {
     "high": 0.02,
 }
 SESSION_WINDOWS_NY = {
-    "asia": (17, 0, 0, 59),
-    "london": (3, 0, 11, 59),
-    "new_york": (8, 0, 17, 0),
+    "asia": (18, 0, 2, 0),       # 6:00 PM – 2:00 AM NY time
+    "london": (2, 0, 11, 0),      # 2:00 AM – 11:00 AM NY time
+    "new_york": (8, 0, 17, 0),    # 8:00 AM – 5:00 PM NY time
 }
 
 # Session close times in UTC (for liquidation timing)
 # These are the END of each trading session in UTC
 SESSION_CLOSE_UTC = {
-    "asia": (0, 59),     # Asia closes ~00:59 UTC (NY 19:59 previous day)
-    "london": (11, 59),   # London closes ~11:59 UTC (NY 07:59)
-    "new_york": (21, 0),  # NY closes ~21:00 UTC (NY 17:00 EST)
+    "asia": (6, 0),       # 2:00 AM NY = 06:00 UTC (midnight Calgary)
+    "london": (15, 0),    # 11:00 AM NY = 15:00 UTC (9:00 AM Calgary)
+    "new_york": (21, 0),  # 5:00 PM NY = 21:00 UTC (3:00 PM Calgary)
 }
 
 # Variable TP targets by session (in pips)
