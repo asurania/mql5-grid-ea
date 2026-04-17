@@ -1,69 +1,77 @@
 {
-  "generated_at_utc": "2026.04.17 23:01:38",
+  "generated_at_utc": "2026.04.17 23:22:57",
   "version": "entry_intent_v2",
   "pairs": [
     {
       "pair": "EURJPY",
-      "should_enter": false,
-      "direction": "none",
+      "should_enter": true,
+      "direction": "sell",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "legacy_meanrev_buy_requires_price_below_ma",
-      "expires_at_utc": "2026.04.17 23:16:38",
+      "reason": "meanrev_sell_legacy_meanrev_price_above_ma_sell",
+      "expires_at_utc": "2026.04.17 23:37:57",
       "debug": {
         "atr_frac_60": 0.000431,
         "vol_regime": "normal",
-        "alignment_score": 1.0,
-        "trend_strength": 0.000284,
         "legacy_ma_21": 183.421286,
-        "legacy_gann_21": 183.35,
-        "legacy_meanrev_reason": "legacy_meanrev_buy_requires_price_below_ma"
+        "legacy_gann_high_21": 183.53799,
+        "legacy_gann_low_21": 183.35,
+        "legacy_meanrev_reason": "legacy_meanrev_price_above_ma_sell",
+        "alignment_score": 1.0,
+        "alignment_direction": "buy",
+        "trend_strength": 0.000284
       }
     },
     {
       "pair": "GBPJPY",
       "should_enter": true,
-      "direction": "buy",
+      "direction": "sell",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "vol_regime_dead_chop_allow_consolidation",
-      "expires_at_utc": "2026.04.17 23:16:38",
+      "reason": "dead_chop_consolidation_legacy_meanrev_price_above_ma_sell",
+      "expires_at_utc": "2026.04.17 23:37:57",
       "debug": {
         "atr_frac_60": 0.00029,
         "vol_regime": "dead_chop",
-        "dead_chop_consolidation_ok": true
+        "legacy_ma_21": 209.921095,
+        "legacy_gann_high_21": 209.97,
+        "legacy_gann_low_21": 209.85
       }
     },
     {
       "pair": "GBPUSD",
       "should_enter": true,
-      "direction": "buy",
+      "direction": "sell",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "vol_regime_dead_chop_allow_consolidation",
-      "expires_at_utc": "2026.04.17 23:16:38",
+      "reason": "dead_chop_consolidation_legacy_meanrev_price_above_ma_sell",
+      "expires_at_utc": "2026.04.17 23:37:57",
       "debug": {
         "atr_frac_60": 0.000202,
         "vol_regime": "dead_chop",
-        "dead_chop_consolidation_ok": true
+        "legacy_ma_21": 1.32396,
+        "legacy_gann_high_21": 1.32441,
+        "legacy_gann_low_21": 1.3235
       }
     },
     {
       "pair": "NZDUSD",
-      "should_enter": false,
-      "direction": "none",
+      "should_enter": true,
+      "direction": "sell",
       "entry_mode": "initial",
       "suggested_lots": 0.01,
-      "reason": "legacy_meanrev_buy_requires_price_below_ma",
-      "expires_at_utc": "2026.04.17 23:16:38",
+      "reason": "meanrev_sell_legacy_meanrev_price_above_ma_sell",
+      "expires_at_utc": "2026.04.17 23:37:57",
       "debug": {
         "atr_frac_60": 0.000677,
         "vol_regime": "normal",
-        "alignment_score": 1.0,
-        "trend_strength": 0.001671,
         "legacy_ma_21": 0.574979,
-        "legacy_gann_21": 0.5744,
-        "legacy_meanrev_reason": "legacy_meanrev_buy_requires_price_below_ma"
+        "legacy_gann_high_21": 0.5756,
+        "legacy_gann_low_21": 0.5744,
+        "legacy_meanrev_reason": "legacy_meanrev_price_above_ma_sell",
+        "alignment_score": 1.0,
+        "alignment_direction": "buy",
+        "trend_strength": 0.001671
       }
     }
   ]

@@ -169,8 +169,57 @@ def passes_legacy_mean_reversion_filter(direction: str, feat: dict, debug: dict)
     return False, "legacy_meanrev_invalid_direction"
 
 
+def get_legacy_mean_reversion_direction(feat: dict, debug: dict) -> tuple[str | None, str]:
+    """Determine the mean-reversion entry direction from MA and Gann.
+    
+    In the old EA, the initial basket opened AGAIN the stretched price:
+    - If price is BELOW MA21 and BELOW Gann low → start BUY basket (price stretched down, expect reversion up)
+    - If price is ABOVE MA21 and ABOVE Gann high → start SELL basket (price stretched up, expect reversion down)
+    
+    Returns (direction, reason) where direction is 'buy', 'sell', or None if no signal.
+    """
+    close_px = float(feat.get("close") or 0.0)
+    ma_21 = float(feat.get("legacy_ma_21") or 0.0)
+    gann_high = float(feat.get("gann_high_21") or 0.0)
+    gann_low = float(feat.get("gann_low_21") or 0.0)
+
+    debug["legacy_ma_21"] = round(ma_21, 6) if ma_21 else None
+    debug["legacy_gann_high_21"] = round(gann_high, 6) if gann_high else None
+    debug["legacy_gann_low_21"] = round(gann_low, 6) if gann_low else None
+
+    if ma_21 <= 0.0:
+        return None, "legacy_ma_unavailable"
+    if LEGACY_GANN_USE and (gann_high <= 0.0 or gann_low <= 0.0):
+        return None, "legacy_gann_unavailable"
+
+    # Price below both MA and Gann low → stretched down → buy (expect reversion up)
+    if close_px < ma_21:
+        if LEGACY_GANN_USE and close_px < gann_low:
+            return "buy", "legacy_meanrev_price_below_ma_and_gann_low_buy"
+        elif close_px < ma_21:
+            return "buy", "legacy_meanrev_price_below_ma_buy"
+
+    # Price above both MA and Gann high → stretched up → sell (expect reversion down)
+    if close_px > ma_21:
+        if LEGACY_GANN_USE and close_px > gann_high:
+            return "sell", "legacy_meanrev_price_above_ma_and_gann_high_sell"
+        elif close_px > ma_21:
+            return "sell", "legacy_meanrev_price_above_ma_sell"
+
+    # Price near MA → no clear mean-reversion signal
+    return None, "legacy_meanrev_price_near_ma_no_signal"
+
+
 def choose_direction_v2(feat: dict | None) -> tuple[str, str, dict]:
-    """V2 direction logic: weighted alignment + volatility regime filter + legacy MQL4 mean-reversion filter.
+    """V2 direction logic with proper legacy MQL4 mean-reversion behavior.
+    
+    The old EA's MA/Gann filter determined the INITIAL TRADE DIRECTION:
+    - If price stretched BELOW MA → start BUY basket (mean reversion up)
+    - If price stretched ABOVE MA → start SELL basket (mean reversion down)
+    
+    The alignment score is used as a CONFIRMATION, not the primary direction.
+    For a mean-reversion grid, you WANT to enter against the trend (when price is stretched).
+    
     Returns (direction, reason, debug_info).
     """
     if not feat:
@@ -184,19 +233,45 @@ def choose_direction_v2(feat: dict | None) -> tuple[str, str, dict]:
     debug["vol_regime"] = vol_regime
 
     if vol_regime == "dead_chop":
+        # In dead chop, use MA/Gann to pick a direction for consolidation start
+        meanrev_dir, meanrev_reason = get_legacy_mean_reversion_direction(feat, debug)
+        if meanrev_dir:
+            return meanrev_dir, f"dead_chop_consolidation_{meanrev_reason}", debug
+        # No MA signal in dead chop → default buy for both-sides seeding
         debug["dead_chop_consolidation_ok"] = True
         return "buy", "vol_regime_dead_chop_allow_consolidation", debug
     if vol_regime == "extreme_vol":
         return "none", "vol_regime_extreme_vol", debug
 
-    # 2. Compute alignment score
-    alignment_score, direction = compute_alignment_score(feat)
+    # 2. Get MA/Gann mean-reversion direction (PRIMARY direction source)
+    meanrev_dir, meanrev_reason = get_legacy_mean_reversion_direction(feat, debug)
+    debug["legacy_meanrev_reason"] = meanrev_reason
+
+    # 3. Compute alignment score (SECONDARY — confirmation, not primary)
+    alignment_score, alignment_dir = compute_alignment_score(feat)
     debug["alignment_score"] = round(alignment_score, 3)
+    debug["alignment_direction"] = alignment_dir
 
+    # 4. If we have a clear MA/Gann direction, use it
+    if meanrev_dir:
+        # MA/Gann gives direction — but check if it's suicidal
+        # If alignment is EXTREMELY against the mean-reversion direction, skip
+        # (don't buy into a massive downtrend just because price is below MA)
+        if alignment_score >= 0.8 and alignment_dir != meanrev_dir:
+            trend_strength = compute_trend_strength(feat)
+            debug["trend_strength"] = round(trend_strength, 6)
+            if trend_strength > MAX_TREND_STRENGTH:
+                return "none", f"meanrev_{meanrev_dir}_blocked_by_extreme_trend_{alignment_dir}", debug
+
+        direction = meanrev_dir
+        reason = f"meanrev_{direction}_{meanrev_reason}"
+        return direction, reason, debug
+
+    # 5. No clear MA/Gann signal → fall back to alignment-based direction
     if alignment_score < MIN_ALIGNMENT_SCORE:
-        return "none", f"insufficient_alignment_{alignment_score:.2f}", debug
+        return "none", f"insufficient_alignment_{alignment_score:.2f}_and_no_meanrev_signal", debug
 
-    # 3. Check trend strength
+    # 6. Check trend strength for alignment-based direction
     trend_strength = compute_trend_strength(feat)
     debug["trend_strength"] = round(trend_strength, 6)
 
@@ -205,24 +280,17 @@ def choose_direction_v2(feat: dict | None) -> tuple[str, str, dict]:
     if trend_strength > MAX_TREND_STRENGTH:
         return "none", f"extreme_trend_{trend_strength:.6f}", debug
 
-    # 4. Check direction consistency (5m shouldn't strongly oppose)
+    # 7. Check direction consistency (5m shouldn't strongly oppose)
     r5 = float(feat.get("ret_5m") or 0.0)
     r15 = float(feat.get("ret_15m") or 0.0)
-    r60 = float(feat.get("ret_60m") or 0.0)
 
-    # If 5m strongly opposes the direction, skip (potential reversal)
-    if direction == "buy" and r5 < -0.0003 and abs(r5) > abs(r15) * 0.5:
+    if alignment_dir == "buy" and r5 < -0.0003 and abs(r5) > abs(r15) * 0.5:
         return "none", "short_term_counter_buy", debug
-    if direction == "sell" and r5 > 0.0003 and abs(r5) > abs(r15) * 0.5:
+    if alignment_dir == "sell" and r5 > 0.0003 and abs(r5) > abs(r15) * 0.5:
         return "none", "short_term_counter_sell", debug
 
-    passes_meanrev, meanrev_reason = passes_legacy_mean_reversion_filter(direction, feat, debug)
-    debug["legacy_meanrev_reason"] = meanrev_reason
-    if not passes_meanrev:
-        return "none", meanrev_reason, debug
-
-    reason = f"v2_aligned_{direction}_str{trend_strength:.4f}_score{alignment_score:.2f}_legacy_meanrev"
-    return direction, reason, debug
+    reason = f"v2_aligned_{alignment_dir}_str{trend_strength:.4f}_score{alignment_score:.2f}"
+    return alignment_dir, reason, debug
 
 
 def build_pair_intent(pair: str, policy_map: dict[str, dict], feature_map: dict[str, dict], now_utc: datetime) -> dict:

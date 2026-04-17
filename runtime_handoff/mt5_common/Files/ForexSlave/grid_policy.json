@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026.04.17 23:01:41",
+  "generated_at_utc": "2026.04.17 23:22:53",
   "version": "grid_policy_v2",
   "model": "session_risk_optimizer_v1",
   "risk_mode": "medium",
@@ -36,7 +36,7 @@
       "session_name": "asia",
       "predicted_range_pips": 100.62262694344435,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 23:16:41"
+      "expires_at_utc": "2026.04.17 23:37:53"
     },
     {
       "pair": "GBPJPY",
@@ -62,7 +62,7 @@
       "session_name": "asia",
       "predicted_range_pips": 107.51423150818142,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 23:16:41"
+      "expires_at_utc": "2026.04.17 23:37:53"
     },
     {
       "pair": "GBPUSD",
@@ -88,7 +88,7 @@
       "session_name": "asia",
       "predicted_range_pips": 105.30298363949622,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 23:16:41"
+      "expires_at_utc": "2026.04.17 23:37:53"
     },
     {
       "pair": "NZDUSD",
@@ -114,7 +114,7 @@
       "session_name": "asia",
       "predicted_range_pips": 90.64405471764127,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 23:16:41"
+      "expires_at_utc": "2026.04.17 23:37:53"
     }
   ]
 }
