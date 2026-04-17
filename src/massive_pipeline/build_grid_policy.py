@@ -55,8 +55,8 @@ DAILY_LIQUIDATE_UTC = (20, 50)  # 1:50 PM Calgary = 20:50 UTC
 # Asia/London: no forced liquidation at session close, just managed close
 # The only forced liquidation is the daily one at 1:50 PM Calgary
 MANAGED_CLOSE_MINUTES = {
-    "asia": 10,       # Stop new baskets 10 min before 9 PM Calgary (8:50 PM)
-    "london": 10,     # Stop new baskets 10 min before 4 AM Calgary (3:50 AM)
+    "asia": 0,        # Managed close exactly at 9 PM Calgary (session close = managed close)
+    "london": 0,      # Managed close exactly at 4 AM Calgary (session close = managed close)
     "new_york": 30,   # Standard 30 min before NY close
 }
 
