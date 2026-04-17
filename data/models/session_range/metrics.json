@@ -1,0 +1,11 @@
+{
+  "target": "session_range_pips",
+  "model_family": "LightGBMRegressor",
+  "train_rows": 7413,
+  "valid_rows": 1731,
+  "test_rows": 1788,
+  "valid_mae": 44.43629376139958,
+  "valid_rmse": 98.94906771549047,
+  "test_mae": 41.10442115753206,
+  "test_rmse": 55.08699844676832
+}
