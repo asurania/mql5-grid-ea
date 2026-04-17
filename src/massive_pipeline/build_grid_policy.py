@@ -45,6 +45,22 @@ SESSION_CLOSE_UTC = {
     "london": (11, 59),   # London closes ~11:59 UTC (NY 07:59)
     "new_york": (21, 0),  # NY closes ~21:00 UTC (NY 17:00 EST)
 }
+
+# Variable TP targets by session (in pips)
+# Old EA: Asia = 4 pips, London/NY = 3 pips
+SESSION_TP_PIPS = {
+    "asia": 4.0,
+    "london": 3.0,
+    "new_york": 3.0,
+}
+
+# Session SL in pips (derived from max_dd budget per side, approximate)
+# These are fallback SL values when max_basket_drawdown_currency is not directly usable
+SESSION_SL_PIPS = {
+    "asia": 40.0,     # Asia: tighter range, smaller SL
+    "london": 55.0,   # London: wider range, larger SL
+    "new_york": 50.0, # NY: moderate
+}
 PIP_SIZE = {
     "EURJPY": 0.01,
     "GBPJPY": 0.01,
@@ -663,11 +679,14 @@ def main() -> int:
                 "multiplier": template["multiplier"],
                 "max_trades_per_side": template["max_trades_per_side"],
                 "basket_tp_currency": template["basket_tp_currency"],
+                "basket_tp_pips": round(SESSION_TP_PIPS.get(session_features.get(pair, {}).get("session_name", "new_york"), 3.0), 1),
+                "basket_sl_pips": round(SESSION_SL_PIPS.get(session_features.get(pair, {}).get("session_name", "new_york"), 50.0), 1),
                 "max_gross_lots": template.get("max_gross_lots", 0.0),
                 "max_basket_drawdown_currency": template.get("max_basket_drawdown_currency", 0.0),
                 "min_step_to_spread_ratio": template.get("min_step_to_spread_ratio", 0.0),
                 "min_free_margin_percent": template.get("min_free_margin_percent", 0.0),
                 "flatten_on_strong_avoid": template["flatten_on_strong_avoid"],
+                "broker_visible_tp_sl": True,
                 "confidence": template["confidence"],
                 "reason": template["reason"],
                 "session_name": session_features.get(pair, {}).get("session_name"),

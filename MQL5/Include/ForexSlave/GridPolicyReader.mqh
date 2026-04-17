@@ -184,11 +184,14 @@ public:
       out.multiplier = ExtractDouble(block, "multiplier");
       out.maxTradesPerSide = ExtractInt(block, "max_trades_per_side");
       out.basketTpCurrency = ExtractDouble(block, "basket_tp_currency");
+      out.basketTpPips = ExtractDouble(block, "basket_tp_pips");
+      out.basketSlPips = ExtractDouble(block, "basket_sl_pips");
       out.maxGrossLots = ExtractDouble(block, "max_gross_lots");
       out.maxBasketDrawdownCurrency = ExtractDouble(block, "max_basket_drawdown_currency");
       out.minStepToSpreadRatio = ExtractDouble(block, "min_step_to_spread_ratio");
       out.minFreeMarginPercent = ExtractDouble(block, "min_free_margin_percent");
       out.flattenOnStrongAvoid = ExtractBool(block, "flatten_on_strong_avoid", true);
+      out.brokerVisibleTpSl = ExtractBool(block, "broker_visible_tp_sl", true);
       out.confidence = ExtractDouble(block, "confidence");
       out.reason = ExtractString(block, "reason");
       out.expiresAt = StringToTime(ExtractString(block, "expires_at_utc"));

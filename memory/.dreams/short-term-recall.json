@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-15T15:47:16.849Z",
+  "updatedAt": "2026-04-17T22:55:16.701Z",
   "entries": {
     "memory:memory/2026-04-15.md:1:8": {
       "key": "memory:memory/2026-04-15.md:1:8",
@@ -31,6 +31,197 @@
         "y-avoid-session",
         "avoid-session",
         "0.75"
+      ]
+    },
+    "memory:memory/2026-04-15.md:7:21": {
+      "key": "memory:memory/2026-04-15.md:7:21",
+      "path": "memory/2026-04-15.md",
+      "startLine": 7,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "- Built fresh MQL5 slave skeleton under `MQL5/` with EA shell plus `Types`, `Config`, `TelemetryLogger`, `PolicyReader`, `ExecutionGate`, and `TradeExecutor` modules. - MQL5 side now has schema-specific file-backed policy reading, fail-closed execution-gate behavior for missing/invalid/stale policy, and a real `CTrade`-based trade executor wrapper foundation. - User asked whether to convert old MQL4 EA first; recommendation was to build new MQL5 slave mostly from scratch, using MQL4 only as behavioral reference, not as a blind conversion source. - Current best next engineering step is to build `PositionRegistry` for MQL5, then later attach grid/basket management logic on top of the cleaned e",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 3,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-17T22:54:44.420Z",
+      "lastRecalledAt": "2026-04-17T22:55:16.701Z",
+      "queryHashes": [
+        "8b213bf0a2eb",
+        "46e433949d52",
+        "17cc823147dd"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "schema-specific",
+        "file-backed",
+        "fail-closed",
+        "execution-gate",
+        "missing/invalid/stale",
+        "grid/basket",
+        "built",
+        "fresh"
+      ]
+    },
+    "memory:memory/2026-04-17.md:21:37": {
+      "key": "memory:memory/2026-04-17.md:21:37",
+      "path": "memory/2026-04-17.md",
+      "startLine": 21,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "- Updated `src/massive_pipeline/build_session_range_dataset.py` and `src/massive_pipeline/build_live_session_range_features.py` to add those event-context features in both training and live inference paths. - Retrained the LightGBM session-range model and improved test metrics from MAE 44.0278 / RMSE 59.2717 to MAE 41.1044 / RMSE 55.0870. - Refreshed live session-range feature/prediction outputs and committed the work as `d5e7ed3` with message `Add event context to session range model`. - Recommended next focus remains MT5 validation: recompile `ForexSlaveEA.mq5`, then verify normalized lot handling, `GRID_SYNC_PROTECTION` logs, and broker-visible SL/TP behavior in a fresh demo run. ## Sess",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-17T22:54:47.139Z",
+      "lastRecalledAt": "2026-04-17T22:55:16.701Z",
+      "queryHashes": [
+        "46e433949d52",
+        "17cc823147dd"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "event-context",
+        "session-range",
+        "44.0278",
+        "59.2717",
+        "41.1044",
+        "55.0870",
+        "feature/prediction",
+        "forexslaveea.mq5"
+      ]
+    },
+    "memory:memory/2026-04-15.md:35:58": {
+      "key": "memory:memory/2026-04-15.md:35:58",
+      "path": "memory/2026-04-15.md",
+      "startLine": 35,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "- Updated inference spec doc to reflect ensemble model ### Model comparison summary | Model | Target | Test ROC AUC | Test PR AUC | Strong-avoid precision @0.75 | |---|---|---|---|---| | XGBoost | y_avoid_session | 0.706 | 0.418 | 91.9% | | LightGBM | y_avoid_session | 0.719 | 0.427 | — | | **Ensemble** | y_avoid_session | **0.715** | **0.426** | **93.3%** | | XGBoost | y_trend_danger | 0.562 | 0.145 | N/A | | Binary XGBoost | is_trending | 0.605 | 0.200 | N/A | ## Session 3 progress (late afternoon) - Built v2 entry intent signal (`build_entry_intent_v2.py`) - Replaces simple \"all timeframes same sign\" rule with weighted alignment scoring - Added volatility regime filter: rejects dea",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-17T22:54:47.139Z",
+      "lastRecalledAt": "2026-04-17T22:55:16.701Z",
+      "queryHashes": [
+        "46e433949d52",
+        "17cc823147dd"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "strong-avoid",
+        "0.75",
+        "y-avoid-session",
+        "0.706",
+        "0.418",
+        "91.9",
+        "0.719",
+        "0.427"
+      ]
+    },
+    "memory:memory/2026-04-15.md:18:42": {
+      "key": "memory:memory/2026-04-15.md:18:42",
+      "path": "memory/2026-04-15.md",
+      "startLine": 18,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "- **Conclusion**: Minute-level price features alone don't separate trending from ranging well enough. Regime classifier needs higher-timeframe resampling + richer indicators (ADX, ATR ratios, Hurst). De-prioritized for v1. - Built `y_trend_danger` training dataset and model from existing event-risk features - Initial run had target leakage via `y_trend_danger_right` column (join duplicate) - After fixing leakage: test ROC AUC 0.562, PR AUC 0.145 — pre-event features alone can't predict trend danger well - Trained LightGBM avoid-session model: test ROC AUC 0.719, PR AUC 0.427 (vs XGBoost 0.706 / 0.418) - Built ensemble (XGBoost + LightGBM probability average): - Test ROC AUC: 0.715 - Te",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-17T22:54:47.139Z",
+      "lastRecalledAt": "2026-04-17T22:55:16.701Z",
+      "queryHashes": [
+        "46e433949d52",
+        "17cc823147dd"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "minute-level",
+        "higher-timeframe",
+        "de-prioritized",
+        "y-trend-danger",
+        "event-risk",
+        "y-trend-danger-right",
+        "0.562",
+        "0.145"
+      ]
+    },
+    "memory:memory/2026-04-17.md:1:7": {
+      "key": "memory:memory/2026-04-17.md:1:7",
+      "path": "memory/2026-04-17.md",
+      "startLine": 1,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "- Built first-cut dynamic grid-policy optimizer in `src/massive_pipeline/build_grid_policy.py`. - Added session detection (Asia/London/New York), recent session-range estimation from historical minute bars, breakout-risk estimation from entry-intent context, and risk-budget optimization for `step_pips`, `multiplier`, `max_trades_per_side`, `initial_lot`, and `basket_tp_currency`. - Optimizer defaults currently use `ACCOUNT_EQUITY = 10000` and `RISK_MODE = medium` with 1.5% risk budget / 1.5% target-profit envelope. - `build_grid_policy.py` now depends on Polars and historical price partitions under `data/processed/massive/fx_minute_bars` to estimate recent session ranges. - GBPJPY live demo",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7367506235489727,
+      "maxScore": 0.7367506235489727,
+      "firstRecalledAt": "2026-04-17T22:54:47.139Z",
+      "lastRecalledAt": "2026-04-17T22:54:47.139Z",
+      "queryHashes": [
+        "46e433949d52"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "first-cut",
+        "grid-policy",
+        "asia/london/new",
+        "session-range",
+        "breakout-risk",
+        "entry-intent",
+        "risk-budget",
+        "step-pips"
+      ]
+    },
+    "memory:memory/2026-04-17.md:11:18": {
+      "key": "memory:memory/2026-04-17.md:11:18",
+      "path": "memory/2026-04-17.md",
+      "startLine": 11,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "- Refreshed live session-range feature/prediction outputs and committed the work as `d5e7ed3` with message `Add event context to session range model`. - Recommended next focus remains MT5 validation: recompile `ForexSlaveEA.mq5`, then verify normalized lot handling, `GRID_SYNC_PROTECTION` logs, and broker-visible SL/TP behavior in a fresh demo run. - Built first-cut dynamic grid-policy optimizer in `src/massive_pipeline/build_grid_policy.py`. - Added session detection (Asia/London/New York), recent session-range estimation from historical minute bars, breakout-risk estimation from entry-intent context, and risk-budget optimization for `step_pips`, `multiplier`, `max_trades_per_side`, `initia",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7266975664867759,
+      "maxScore": 0.7266975664867759,
+      "firstRecalledAt": "2026-04-17T22:54:47.139Z",
+      "lastRecalledAt": "2026-04-17T22:54:47.139Z",
+      "queryHashes": [
+        "46e433949d52"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "session-range",
+        "feature/prediction",
+        "forexslaveea.mq5",
+        "grid-sync-protection",
+        "broker-visible",
+        "sl/tp",
+        "first-cut",
+        "grid-policy"
       ]
     }
   }

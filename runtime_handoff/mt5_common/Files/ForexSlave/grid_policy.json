@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026.04.17 22:33:12",
+  "generated_at_utc": "2026.04.17 23:01:41",
   "version": "grid_policy_v2",
   "model": "session_risk_optimizer_v1",
   "risk_mode": "medium",
@@ -23,17 +23,20 @@
       "multiplier": 1.03,
       "max_trades_per_side": 6,
       "basket_tp_currency": 15.85,
+      "basket_tp_pips": 4.0,
+      "basket_sl_pips": 40.0,
       "max_gross_lots": 0.4,
       "max_basket_drawdown_currency": 150.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
+      "broker_visible_tp_sl": true,
       "confidence": 0.74,
       "reason": "session_opt_asia_range100.6_dd126.5_tp15.8_medium",
       "session_name": "asia",
       "predicted_range_pips": 100.62262694344435,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 22:48:12"
+      "expires_at_utc": "2026.04.17 23:16:41"
     },
     {
       "pair": "GBPJPY",
@@ -46,17 +49,20 @@
       "multiplier": 1.03,
       "max_trades_per_side": 6,
       "basket_tp_currency": 16.93,
+      "basket_tp_pips": 4.0,
+      "basket_sl_pips": 40.0,
       "max_gross_lots": 0.4,
       "max_basket_drawdown_currency": 150.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
+      "broker_visible_tp_sl": true,
       "confidence": 0.9,
       "reason": "session_opt_asia_range107.5_dd126.5_tp16.9_medium",
       "session_name": "asia",
       "predicted_range_pips": 107.51423150818142,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 22:48:12"
+      "expires_at_utc": "2026.04.17 23:16:41"
     },
     {
       "pair": "GBPUSD",
@@ -69,17 +75,20 @@
       "multiplier": 1.05,
       "max_trades_per_side": 6,
       "basket_tp_currency": 23.96,
+      "basket_tp_pips": 4.0,
+      "basket_sl_pips": 40.0,
       "max_gross_lots": 0.4,
       "max_basket_drawdown_currency": 150.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
+      "broker_visible_tp_sl": true,
       "confidence": 0.9,
       "reason": "session_opt_asia_range105.3_dd125.1_tp24.0_medium",
       "session_name": "asia",
       "predicted_range_pips": 105.30298363949622,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 22:48:12"
+      "expires_at_utc": "2026.04.17 23:16:41"
     },
     {
       "pair": "NZDUSD",
@@ -92,17 +101,20 @@
       "multiplier": 1.05,
       "max_trades_per_side": 6,
       "basket_tp_currency": 20.62,
+      "basket_tp_pips": 4.0,
+      "basket_sl_pips": 40.0,
       "max_gross_lots": 0.4,
       "max_basket_drawdown_currency": 150.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
+      "broker_visible_tp_sl": true,
       "confidence": 0.67,
       "reason": "session_opt_asia_range90.6_dd125.1_tp20.6_medium",
       "session_name": "asia",
       "predicted_range_pips": 90.64405471764127,
       "recent_avg_range_pips": null,
-      "expires_at_utc": "2026.04.17 22:48:12"
+      "expires_at_utc": "2026.04.17 23:16:41"
     }
   ]
 }

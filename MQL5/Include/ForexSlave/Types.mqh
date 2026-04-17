@@ -60,11 +60,14 @@ struct GridPolicy
    double   multiplier;
    int      maxTradesPerSide;
    double   basketTpCurrency;
+   double   basketTpPips;             // Variable TP target in pips (session-dependent)
+   double   basketSlPips;             // Variable SL in pips (session-dependent, 0=use max_dd_currency)
    double   maxGrossLots;
    double   maxBasketDrawdownCurrency;
    double   minStepToSpreadRatio;
    double   minFreeMarginPercent;
    bool     flattenOnStrongAvoid;
+   bool     brokerVisibleTpSl;        // If true, set broker-visible TP/SL on all positions every tick
    double   confidence;
    string   reason;
    datetime expiresAt;

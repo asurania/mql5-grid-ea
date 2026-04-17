@@ -1,7 +1,7 @@
 {
   "status": "ok",
-  "started_at_utc": "2026-04-17T22:33:11.251191+00:00",
-  "finished_at_utc": "2026-04-17T22:33:11.251304+00:00",
+  "started_at_utc": "2026-04-17T23:01:39.786167+00:00",
+  "finished_at_utc": "2026-04-17T23:01:39.786285+00:00",
   "source_intent": "data/live/policy/entry_intent.json",
   "published_intent": "runtime_handoff/mt5_common/Files/ForexSlave/entry_intent.json"
 }

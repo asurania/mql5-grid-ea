@@ -12,6 +12,7 @@
 #include <ForexSlave/EntrySignal.mqh>
 #include <ForexSlave/EntryIntentReader.mqh>
 #include <ForexSlave/SessionManager.mqh>
+#include <ForexSlave/TpAdjuster.mqh>
 
 CTelemetryLogger   g_logger;
 CPolicyReader      g_policyReader;
@@ -24,6 +25,7 @@ CEntrySignal       g_entrySignal;
 CGridManager       g_grid;
 CSessionManager    g_session;
 CGridPolicyReader  g_gridPolicyReader;
+CTpAdjuster        g_tpAdjuster;
 
 int OnInit()
   {
@@ -32,6 +34,7 @@ int OnInit()
    g_entrySignal.Configure(g_entryIntentReader, 0.01);
    g_grid.Configure(g_logger, g_positions, g_risk, g_entrySignal, g_tradeExecutor);
    g_session.Configure(g_logger);
+   g_tpAdjuster.Configure(g_logger, g_positions, g_tradeExecutor);
    g_logger.Info("ForexSlaveEA initialized (session-managed-close="
       + (InpSessionManagedClose ? "ON" : "OFF")
       + ", managed_close_min=" + IntegerToString(InpManagedCloseMinutesBeforeEnd)
@@ -95,6 +98,14 @@ void OnTick()
       + ", floating_pnl=" + DoubleToString(floatingPnl, 2)
       + ", session_state=" + IntegerToString((int)sessionState)
    );
+
+   // --- TP/SL adjust: recalculate weighted-average basket TP/SL every tick ---
+   // This mirrors the old EA's tp_adjust() — broker-visible TP/SL on all positions
+   GridPolicy currentGridPolicy = g_gridPolicyReader.Evaluate(_Symbol);
+   if(currentGridPolicy.valid && currentGridPolicy.brokerVisibleTpSl && openCount > 0)
+     {
+      g_tpAdjuster.AdjustBasketTpSl(_Symbol, currentGridPolicy);
+     }
 
    // --- Forced liquidation: close everything ---
    if(g_session.ShouldForceCloseAll(sessionState) && openCount > 0)
