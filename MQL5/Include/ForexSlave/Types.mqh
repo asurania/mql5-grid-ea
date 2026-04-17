@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __TYPES_MQH__
+#define __TYPES_MQH__
+
 
 enum PolicyAction
   {
@@ -58,9 +60,38 @@ struct GridPolicy
    double   multiplier;
    int      maxTradesPerSide;
    double   basketTpCurrency;
+   double   maxGrossLots;
+   double   maxBasketDrawdownCurrency;
+   double   minStepToSpreadRatio;
+   double   minFreeMarginPercent;
    bool     flattenOnStrongAvoid;
    double   confidence;
    string   reason;
    datetime expiresAt;
    bool     valid;
   };
+
+enum EntryDirection
+  {
+   ENTRY_NONE = 0,
+   ENTRY_BUY = 1,
+   ENTRY_SELL = 2
+  };
+
+enum SessionState
+  {
+   SESSION_ACTIVE = 0,          // Normal trading
+   SESSION_MANAGED_CLOSE = 1,   // No new baskets, let existing TP/expand
+   SESSION_LIQUIDATE = 2,       // Force close everything
+   SESSION_CLOSED = 3           // After NY close, no trading at all
+  };
+
+struct EntryDecision
+  {
+   bool           shouldEnter;
+   EntryDirection direction;
+   double         lots;
+   string         reason;
+  };
+
+#endif

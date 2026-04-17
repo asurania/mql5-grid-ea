@@ -39,6 +39,7 @@ Implemented:
 - GridPolicyReader wired to Python-published `grid_policy.json` for step size, lot, multiplier, and max trades
 - basket expansion logic wired to Python grid policy (step distance, multiplier, max trades)
 - basket exit hooks: pair flatten on strong avoid, close-all on basket profit target
+- hard grid-policy safety caps: max gross lots, max basket drawdown, min step vs spread, min free margin percent
 - explicit dry-run safety switch with live trading disabled by default
 
 Not implemented yet:
