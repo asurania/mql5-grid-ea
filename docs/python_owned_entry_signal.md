@@ -135,6 +135,13 @@ The v2 signal replaces the simple "all timeframes same sign" rule with:
    - If 5m return strongly opposes the direction and is >50% of 15m magnitude, skip
    - Prevents entering against an active reversal
 
+5. **Legacy MQL4 mean-reversion filter (current compatibility layer)**
+   - Apply a 21-period SMA on close, matching the old `ma_period=21`, `ma_type=MODE_SMA`, `ma_price=PRICE_CLOSE`
+   - Apply a simplified 21-period Gann HiLo style band using rolling low for buy checks and rolling high for sell checks, matching `gann_use=true`, `gann_period=21`
+   - For `buy`, require price below both the SMA and the buy-side Gann line
+   - For `sell`, require price above both the SMA and the sell-side Gann line
+   - This acts as a final mean-reversion gate after the newer directional/risk logic passes
+
 ## Slave behavior
 
 The MQL5 slave should treat entry intent as:

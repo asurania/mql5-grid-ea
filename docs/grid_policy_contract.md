@@ -59,6 +59,10 @@ It answers:
       "multiplier": 1.10,
       "max_trades_per_side": 3,
       "basket_tp_currency": 2.0,
+      "max_gross_lots": 0.20,
+      "max_basket_drawdown_currency": 150.0,
+      "min_step_to_spread_ratio": 3.0,
+      "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
       "confidence": 0.72,
       "reason": "ml_grid_policy_both_sides_conservative",
@@ -96,6 +100,10 @@ It answers:
 - `multiplier`: lot multiplier for subsequent trades on that side
 - `max_trades_per_side`: maximum ladder depth for buy side and sell side independently
 - `basket_tp_currency`: pair basket floating-profit threshold that triggers close-all
+- `max_gross_lots`: hard ceiling for total open lots on the pair basket
+- `max_basket_drawdown_currency`: hard ceiling for tolerated floating loss on the pair basket
+- `min_step_to_spread_ratio`: minimum allowed ratio of configured step size to live spread before entries/expansions are blocked
+- `min_free_margin_percent`: minimum required free-margin percent before entries/expansions are allowed
 - `flatten_on_strong_avoid`: whether to flatten the pair basket if strong-avoid policy activates
 - `confidence`: optional probability/confidence score
 - `reason`: human/debug explanation
@@ -115,6 +123,10 @@ MQL5 should reject the policy row if:
 - `multiplier < 1.0`
 - `max_trades_per_side < 1`
 - `basket_tp_currency < 0`
+- `max_gross_lots < 0`
+- `max_basket_drawdown_currency < 0`
+- `min_step_to_spread_ratio < 0`
+- `min_free_margin_percent < 0`
 - `expires_at_utc` invalid or expired
 
 Even with a valid row, MQL5 may still reject execution if:
@@ -174,8 +186,6 @@ Later versions may add:
 - `sell_step_pips`
 - `buy_multiplier`
 - `sell_multiplier`
-- `basket_tp_currency`
-- `max_gross_lots`
 - `time_stop_minutes`
 
 ---

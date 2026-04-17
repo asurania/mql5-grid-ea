@@ -1,21 +1,10 @@
-#pragma once
+#ifndef __ENTRYSIGNAL_MQH__
+#define __ENTRYSIGNAL_MQH__
 
-#include <ForexSlave/EntryIntentReader.mqh>
 
-enum EntryDirection
-  {
-   ENTRY_NONE = 0,
-   ENTRY_BUY = 1,
-   ENTRY_SELL = 2
-  };
+#include <ForexSlave/Types.mqh>
 
-struct EntryDecision
-  {
-   bool           shouldEnter;
-   EntryDirection direction;
-   double         lots;
-   string         reason;
-  };
+class CEntryIntentReader;
 
 class CEntrySignal
   {
@@ -53,3 +42,5 @@ public:
       return out;
      }
   };
+
+#endif

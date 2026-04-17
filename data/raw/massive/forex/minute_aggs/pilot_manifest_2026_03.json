@@ -1,0 +1,184 @@
+[
+  {
+    "date": "2026-03-01",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-01.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-01.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-02",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-02.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-02.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-03",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-03.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-03.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-04",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-04.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-04.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-05",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-05.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-05.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-06",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-06.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-06.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-07",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-07.csv.gz",
+    "missing": true
+  },
+  {
+    "date": "2026-03-08",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-08.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-08.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-09",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-09.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-09.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-10",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-10.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-10.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-11",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-11.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-11.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-12",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-12.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-12.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-13",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-13.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-13.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-14",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-14.csv.gz",
+    "missing": true
+  },
+  {
+    "date": "2026-03-15",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-15.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-15.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-16",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-16.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-16.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-17",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-17.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-17.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-18",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-18.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-18.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-19",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-19.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-19.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-20",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-20.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-20.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-21",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-21.csv.gz",
+    "missing": true
+  },
+  {
+    "date": "2026-03-22",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-22.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-22.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-23",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-23.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-23.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-24",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-24.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-24.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-25",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-25.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-25.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-26",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-26.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-26.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-27",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-27.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-27.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-28",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-28.csv.gz",
+    "missing": true
+  },
+  {
+    "date": "2026-03-29",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-29.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-29.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-30",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-30.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-30.csv.gz",
+    "missing": false
+  },
+  {
+    "date": "2026-03-31",
+    "key": "global_forex/minute_aggs_v1/2026/03/2026-03-31.csv.gz",
+    "out": "data/raw/massive/forex/minute_aggs/2026/03/2026-03-31.csv.gz",
+    "missing": false
+  }
+]

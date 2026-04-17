@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-15T15:47:16.849Z",
+  "entries": {
+    "memory:memory/2026-04-15.md:1:8": {
+      "key": "memory:memory/2026-04-15.md:1:8",
+      "path": "memory/2026-04-15.md",
+      "startLine": 1,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "- Built end-to-end v1 Forex event-risk pipeline from research to runtime integration. - Event-risk ML stack now includes leak-safe training dataset, pre-event price regime features, XGBoost baseline, improved price-context model, dedicated `y_avoid_session` model, and calibrated live thresholds. - Recommended live avoid-session thresholds: score >= 0.75 => avoid_session_strong, >= 0.60 => avoid_session, >= 0.45 => review_or_halt_new_entries. - Added production-style Python master runtime components: `run_live_event_risk_inference.py`, `build_pair_risk_policy.py`, `publish_pair_risk_policy.py`, and `run_event_risk_master.py`. - Documented integration contracts in `docs/forex_event_risk_infere",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-15T15:47:16.849Z",
+      "lastRecalledAt": "2026-04-15T15:47:16.849Z",
+      "queryHashes": [
+        "b7575fe9f3cc"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "end-to-end",
+        "event-risk",
+        "leak-safe",
+        "pre-event",
+        "price-context",
+        "y-avoid-session",
+        "avoid-session",
+        "0.75"
+      ]
+    }
+  }
+}

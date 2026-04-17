@@ -1,7 +1,9 @@
-#pragma once
+#ifndef __ENTRYINTENTREADER_MQH__
+#define __ENTRYINTENTREADER_MQH__
+
 
 #include <ForexSlave/Config.mqh>
-#include <ForexSlave/EntrySignal.mqh>
+#include <ForexSlave/Types.mqh>
 
 class CEntryIntentReader
   {
@@ -100,7 +102,10 @@ private:
             break;
          end++;
         }
-      return StringToDouble(StringTrim(StringSubstr(block, pos, end - pos)));
+      string value = StringSubstr(block, pos, end - pos);
+      StringTrimLeft(value);
+      StringTrimRight(value);
+      return StringToDouble(value);
      }
 
 public:
@@ -181,8 +186,10 @@ public:
       return out;
      }
 
-   string GetLastError()
+   string LastErrorText()
      {
       return m_lastError;
      }
   };
+
+#endif

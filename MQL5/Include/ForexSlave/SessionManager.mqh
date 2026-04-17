@@ -12,12 +12,15 @@ private:
    SessionState      m_lastState;
    bool              m_liquidatedThisSession;
    datetime          m_lastLogTime;
+   datetime          m_managedCloseTimeUTC;    // from Python grid policy
+   datetime          m_liquidateTimeUTC;       // from Python grid policy
+   datetime          m_sessionCloseTimeUTC;     // from Python grid policy
+   bool              m_usePythonTimings;        // true if Python provided timings
 
    datetime GetNyCloseTimeUTC()
      {
       MqlDateTime dt;
       TimeToStruct(TimeCurrent(), dt);
-      // NY close = InpNyCloseHourUTC:InpNyCloseMinuteUTC on the current day
       datetime closeTime = StringToTime(IntegerToString(dt.year) + "." +
                                         IntegerToString(dt.mon, 2) + "." +
                                         IntegerToString(dt.day, 2) + " " +
@@ -26,8 +29,35 @@ private:
       return closeTime;
      }
 
+   datetime GetEffectiveManagedCloseTime()
+     {
+      if(m_usePythonTimings && m_managedCloseTimeUTC > 0)
+         return m_managedCloseTimeUTC;
+      // Fallback: compute from config
+      datetime nyClose = GetNyCloseTimeUTC();
+      return nyClose - InpManagedCloseMinutesBeforeEnd * 60;
+     }
+
+   datetime GetEffectiveLiquidateTime()
+     {
+      if(m_usePythonTimings && m_liquidateTimeUTC > 0)
+         return m_liquidateTimeUTC;
+      // Fallback: compute from config
+      datetime nyClose = GetNyCloseTimeUTC();
+      return nyClose - InpLiquidateMinutesBeforeEnd * 60;
+     }
+
+   datetime GetEffectiveSessionCloseTime()
+     {
+      if(m_usePythonTimings && m_sessionCloseTimeUTC > 0)
+         return m_sessionCloseTimeUTC;
+      // Fallback: compute from config
+      return GetNyCloseTimeUTC();
+     }
+
 public:
-   CSessionManager() : m_logger(NULL), m_lastState(SESSION_ACTIVE), m_liquidatedThisSession(false), m_lastLogTime(0)
+   CSessionManager() : m_logger(NULL), m_lastState(SESSION_ACTIVE), m_liquidatedThisSession(false), m_lastLogTime(0),
+                       m_managedCloseTimeUTC(0), m_liquidateTimeUTC(0), m_sessionCloseTimeUTC(0), m_usePythonTimings(false)
      {
      }
 
@@ -36,40 +66,63 @@ public:
       m_logger = &logger;
      }
 
+   // Called when grid policy is refreshed with Python-provided session timings
+   void UpdatePythonTimings(datetime managedCloseUTC, datetime liquidateUTC, datetime sessionCloseUTC)
+     {
+      m_managedCloseTimeUTC = managedCloseUTC;
+      m_liquidateTimeUTC = liquidateUTC;
+      m_sessionCloseTimeUTC = sessionCloseUTC;
+      m_usePythonTimings = (managedCloseUTC > 0 && liquidateUTC > 0 && sessionCloseUTC > 0);
+      if(m_usePythonTimings)
+        {
+         ResetLiquidatedIfNeeded();
+        }
+     }
+
+   // Parse MT5 timestamp string "2026.04.17 20:30:00" to datetime
+   datetime ParseMT5Timestamp(string ts)
+     {
+      return StringToTime(ts);
+     }
+
+   void ResetLiquidatedIfNeeded()
+     {
+      // Allow re-liquidation if we've moved to a new session
+      MqlDateTime dt;
+      TimeToStruct(TimeCurrent(), dt);
+      if(dt.hour >= 0 && dt.hour < 3)  // early UTC hours = new day reset
+         m_liquidatedThisSession = false;
+     }
+
    SessionState EvaluateSessionState()
      {
       if(!InpSessionManagedClose)
          return SESSION_ACTIVE;
 
       datetime nowUTC = TimeCurrent();
-      datetime nyCloseUTC = GetNyCloseTimeUTC();
+      datetime managedCloseUTC = GetEffectiveManagedCloseTime();
+      datetime liquidateUTC = GetEffectiveLiquidateTime();
+      datetime sessionCloseUTC = GetEffectiveSessionCloseTime();
 
-      // If we're past NY close, session is closed
-      if(nowUTC >= nyCloseUTC)
+      // If we're past session close, session is closed
+      if(nowUTC >= sessionCloseUTC)
         {
-         // Reset liquidation flag for next day at midnight-ish
          MqlDateTime dt;
          TimeToStruct(nowUTC, dt);
-         // After 23:00 UTC, allow reset for next day
-         if(dt.hour >= 23)
+         // Reset liquidation flag for next day
+         if(dt.hour >= 23 || dt.hour < 3)
             m_liquidatedThisSession = false;
          return SESSION_CLOSED;
         }
 
-      int secondsUntilClose = (int)(nyCloseUTC - nowUTC);
-      int managedCloseSeconds = InpManagedCloseMinutesBeforeEnd * 60;
-      int liquidateSeconds = InpLiquidateMinutesBeforeEnd * 60;
-
       // Within liquidation window: force close everything
-      if(secondsUntilClose <= liquidateSeconds)
+      if(nowUTC >= liquidateUTC)
         {
-         if(m_liquidatedThisSession)
-            return SESSION_LIQUIDATE;  // already liquidated, stay in this state
          return SESSION_LIQUIDATE;
         }
 
       // Within managed close window: no new baskets, let existing manage
-      if(secondsUntilClose <= managedCloseSeconds)
+      if(nowUTC >= managedCloseUTC)
          return SESSION_MANAGED_CLOSE;
 
       // Normal trading
@@ -119,9 +172,12 @@ public:
          else if(m_lastState == SESSION_LIQUIDATE) oldStr = "LIQUIDATE";
          else if(m_lastState == SESSION_CLOSED) oldStr = "CLOSED";
 
+         string timingSource = m_usePythonTimings ? "python" : "config";
+
          m_logger.Info("SESSION_STATE_CHANGE: " + oldStr + " -> " + stateStr
             + " for " + pair
-            + " (managed_close_min=" + IntegerToString(InpManagedCloseMinutesBeforeEnd)
+            + " (source=" + timingSource
+            + ", managed_close_min=" + IntegerToString(InpManagedCloseMinutesBeforeEnd)
             + ", liquidate_min=" + IntegerToString(InpLiquidateMinutesBeforeEnd)
             + ", ny_close_utc=" + IntegerToString(InpNyCloseHourUTC) + ":" + IntegerToString(InpNyCloseMinuteUTC, 2) + ")");
 
@@ -131,6 +187,7 @@ public:
      }
 
    SessionState GetLastState() const { return m_lastState; }
+   bool UsesPythonTimings() const { return m_usePythonTimings; }
   };
 
 #endif

@@ -5,6 +5,10 @@ from datetime import datetime, timedelta, timezone
 import json
 import math
 
+
+def mt5_utc_timestamp(dt: datetime) -> str:
+    return dt.astimezone(timezone.utc).strftime("%Y.%m.%d %H:%M:%S")
+
 import polars as pl
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,7 +32,13 @@ MIN_TREND_STRENGTH = 0.0002   # Minimum absolute return to consider directional
 MAX_TREND_STRENGTH = 0.015     # Avoid entering in extreme moves
 MIN_ATR_FRAC = 0.0003         # Minimum volatility to avoid dead chop
 MAX_ATR_FRAC = 0.008           # Avoid entering in volatility spikes
-INTENT_EXPIRY_MINUTES = 5
+INTENT_EXPIRY_MINUTES = 15
+
+# Legacy MQL4 mean-reversion filter defaults
+LEGACY_MA_PERIOD = 21
+LEGACY_MA_PRICE = "close"
+LEGACY_GANN_USE = True
+LEGACY_GANN_PERIOD = 21
 
 
 def load_latest_price_features() -> dict[str, dict]:
@@ -50,6 +60,10 @@ def load_latest_price_features() -> dict[str, dict]:
             (pl.col("close") / pl.col("close").shift(240).over("pair") - 1.0).alias("ret_240m"),
             # ATR-like: rolling average of bar range
             ((pl.col("high") - pl.col("low")) / pl.col("close")).alias("bar_range_frac"),
+            # Legacy MQL4-style mean-reversion filters
+            pl.col(LEGACY_MA_PRICE).rolling_mean(window_size=LEGACY_MA_PERIOD, min_samples=LEGACY_MA_PERIOD).over("pair").alias("legacy_ma_21"),
+            pl.col("high").rolling_max(window_size=LEGACY_GANN_PERIOD, min_samples=LEGACY_GANN_PERIOD).over("pair").alias("gann_high_21"),
+            pl.col("low").rolling_min(window_size=LEGACY_GANN_PERIOD, min_samples=LEGACY_GANN_PERIOD).over("pair").alias("gann_low_21"),
         ]
     ).with_columns(
         [
@@ -123,8 +137,40 @@ def compute_volatility_regime(feat: dict) -> tuple[float, str]:
     return atr, "normal"
 
 
+def passes_legacy_mean_reversion_filter(direction: str, feat: dict, debug: dict) -> tuple[bool, str]:
+    close_px = float(feat.get("close") or 0.0)
+    ma_21 = float(feat.get("legacy_ma_21") or 0.0)
+    gann_high = float(feat.get("gann_high_21") or 0.0)
+    gann_low = float(feat.get("gann_low_21") or 0.0)
+    gann_value = gann_low if direction == "buy" else gann_high
+
+    debug["legacy_ma_21"] = round(ma_21, 6) if ma_21 else None
+    debug["legacy_gann_21"] = round(gann_value, 6) if gann_value else None
+
+    if ma_21 <= 0.0:
+        return False, "legacy_ma_unavailable"
+    if LEGACY_GANN_USE and gann_value <= 0.0:
+        return False, "legacy_gann_unavailable"
+
+    if direction == "buy":
+        if close_px >= ma_21:
+            return False, "legacy_meanrev_buy_requires_price_below_ma"
+        if LEGACY_GANN_USE and close_px >= gann_value:
+            return False, "legacy_meanrev_buy_requires_price_below_gann"
+        return True, "legacy_meanrev_buy_ok"
+
+    if direction == "sell":
+        if close_px <= ma_21:
+            return False, "legacy_meanrev_sell_requires_price_above_ma"
+        if LEGACY_GANN_USE and close_px <= gann_value:
+            return False, "legacy_meanrev_sell_requires_price_above_gann"
+        return True, "legacy_meanrev_sell_ok"
+
+    return False, "legacy_meanrev_invalid_direction"
+
+
 def choose_direction_v2(feat: dict | None) -> tuple[str, str, dict]:
-    """V2 direction logic: weighted alignment + volatility regime filter.
+    """V2 direction logic: weighted alignment + volatility regime filter + legacy MQL4 mean-reversion filter.
     Returns (direction, reason, debug_info).
     """
     if not feat:
@@ -138,7 +184,8 @@ def choose_direction_v2(feat: dict | None) -> tuple[str, str, dict]:
     debug["vol_regime"] = vol_regime
 
     if vol_regime == "dead_chop":
-        return "none", "vol_regime_dead_chop", debug
+        debug["dead_chop_consolidation_ok"] = True
+        return "buy", "vol_regime_dead_chop_allow_consolidation", debug
     if vol_regime == "extreme_vol":
         return "none", "vol_regime_extreme_vol", debug
 
@@ -169,7 +216,12 @@ def choose_direction_v2(feat: dict | None) -> tuple[str, str, dict]:
     if direction == "sell" and r5 > 0.0003 and abs(r5) > abs(r15) * 0.5:
         return "none", "short_term_counter_sell", debug
 
-    reason = f"v2_aligned_{direction}_str{trend_strength:.4f}_score{alignment_score:.2f}"
+    passes_meanrev, meanrev_reason = passes_legacy_mean_reversion_filter(direction, feat, debug)
+    debug["legacy_meanrev_reason"] = meanrev_reason
+    if not passes_meanrev:
+        return "none", meanrev_reason, debug
+
+    reason = f"v2_aligned_{direction}_str{trend_strength:.4f}_score{alignment_score:.2f}_legacy_meanrev"
     return direction, reason, debug
 
 
@@ -198,7 +250,7 @@ def build_pair_intent(pair: str, policy_map: dict[str, dict], feature_map: dict[
         "entry_mode": entry_mode,
         "suggested_lots": suggested_lots,
         "reason": reason,
-        "expires_at_utc": (now_utc + timedelta(minutes=INTENT_EXPIRY_MINUTES)).isoformat(),
+        "expires_at_utc": mt5_utc_timestamp(now_utc + timedelta(minutes=INTENT_EXPIRY_MINUTES)),
         "debug": debug,
     }
 
@@ -212,7 +264,7 @@ def main() -> int:
     feature_map = load_latest_price_features()
 
     payload = {
-        "generated_at_utc": now_utc.isoformat(),
+        "generated_at_utc": mt5_utc_timestamp(now_utc),
         "version": "entry_intent_v2",
         "pairs": [build_pair_intent(pair, policy_map, feature_map, now_utc) for pair in PAIRS],
     }

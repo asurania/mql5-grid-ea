@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __POSITIONREGISTRY_MQH__
+#define __POSITIONREGISTRY_MQH__
+
 
 class CPositionRegistry
   {
@@ -159,4 +161,59 @@ public:
         }
       return 0;
      }
+
+   double GetDirectionalPnlSlopePerPriceUnit(string pair)
+     {
+      double slope = 0.0;
+      for(int i = PositionsTotal() - 1; i >= 0; --i)
+        {
+         ulong ticket = PositionGetTicket(i);
+         if(ticket == 0)
+            continue;
+         if(!PositionSelectByTicket(ticket))
+            continue;
+         if(PositionGetString(POSITION_SYMBOL) != pair)
+            continue;
+
+         long posType = PositionGetInteger(POSITION_TYPE);
+         double volume = PositionGetDouble(POSITION_VOLUME);
+         double tickSize = SymbolInfoDouble(pair, SYMBOL_TRADE_TICK_SIZE);
+         double tickValue = SymbolInfoDouble(pair, SYMBOL_TRADE_TICK_VALUE);
+         if(tickSize <= 0.0)
+            continue;
+
+         double coeff = volume * (tickValue / tickSize);
+         if(posType == POSITION_TYPE_BUY)
+            slope += coeff;
+         else if(posType == POSITION_TYPE_SELL)
+            slope -= coeff;
+        }
+      return slope;
+     }
+
+   double GetWeightedOpenPrice(string pair)
+     {
+      double weighted = 0.0;
+      double totalVolume = 0.0;
+      for(int i = PositionsTotal() - 1; i >= 0; --i)
+        {
+         ulong ticket = PositionGetTicket(i);
+         if(ticket == 0)
+            continue;
+         if(!PositionSelectByTicket(ticket))
+            continue;
+         if(PositionGetString(POSITION_SYMBOL) != pair)
+            continue;
+
+         double volume = PositionGetDouble(POSITION_VOLUME);
+         double openPrice = PositionGetDouble(POSITION_PRICE_OPEN);
+         weighted += openPrice * volume;
+         totalVolume += volume;
+        }
+      if(totalVolume <= 0.0)
+         return 0.0;
+      return weighted / totalVolume;
+     }
   };
+
+#endif

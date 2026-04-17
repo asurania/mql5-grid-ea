@@ -1,0 +1,275 @@
+[
+  {
+    "window": "2023-01",
+    "request_path": "/economic-events/tradingview?from=2023-01-01&to=2023-01-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9994",
+    "result_count": 777
+  },
+  {
+    "window": "2023-02",
+    "request_path": "/economic-events/tradingview?from=2023-02-01&to=2023-02-28&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9993",
+    "result_count": 723
+  },
+  {
+    "window": "2023-03",
+    "request_path": "/economic-events/tradingview?from=2023-03-01&to=2023-03-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9992",
+    "result_count": 840
+  },
+  {
+    "window": "2023-04",
+    "request_path": "/economic-events/tradingview?from=2023-04-01&to=2023-04-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9991",
+    "result_count": 759
+  },
+  {
+    "window": "2023-05",
+    "request_path": "/economic-events/tradingview?from=2023-05-01&to=2023-05-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9990",
+    "result_count": 762
+  },
+  {
+    "window": "2023-06",
+    "request_path": "/economic-events/tradingview?from=2023-06-01&to=2023-06-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9989",
+    "result_count": 802
+  },
+  {
+    "window": "2023-07",
+    "request_path": "/economic-events/tradingview?from=2023-07-01&to=2023-07-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9988",
+    "result_count": 744
+  },
+  {
+    "window": "2023-08",
+    "request_path": "/economic-events/tradingview?from=2023-08-01&to=2023-08-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9987",
+    "result_count": 795
+  },
+  {
+    "window": "2023-09",
+    "request_path": "/economic-events/tradingview?from=2023-09-01&to=2023-09-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9986",
+    "result_count": 780
+  },
+  {
+    "window": "2023-10",
+    "request_path": "/economic-events/tradingview?from=2023-10-01&to=2023-10-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9985",
+    "result_count": 757
+  },
+  {
+    "window": "2023-11",
+    "request_path": "/economic-events/tradingview?from=2023-11-01&to=2023-11-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9984",
+    "result_count": 776
+  },
+  {
+    "window": "2023-12",
+    "request_path": "/economic-events/tradingview?from=2023-12-01&to=2023-12-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9983",
+    "result_count": 774
+  },
+  {
+    "window": "2024-01",
+    "request_path": "/economic-events/tradingview?from=2024-01-01&to=2024-01-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9982",
+    "result_count": 791
+  },
+  {
+    "window": "2024-02",
+    "request_path": "/economic-events/tradingview?from=2024-02-01&to=2024-02-29&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9981",
+    "result_count": 729
+  },
+  {
+    "window": "2024-03",
+    "request_path": "/economic-events/tradingview?from=2024-03-01&to=2024-03-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9980",
+    "result_count": 807
+  },
+  {
+    "window": "2024-04",
+    "request_path": "/economic-events/tradingview?from=2024-04-01&to=2024-04-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9979",
+    "result_count": 780
+  },
+  {
+    "window": "2024-05",
+    "request_path": "/economic-events/tradingview?from=2024-05-01&to=2024-05-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9978",
+    "result_count": 793
+  },
+  {
+    "window": "2024-06",
+    "request_path": "/economic-events/tradingview?from=2024-06-01&to=2024-06-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9977",
+    "result_count": 780
+  },
+  {
+    "window": "2024-07",
+    "request_path": "/economic-events/tradingview?from=2024-07-01&to=2024-07-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9976",
+    "result_count": 799
+  },
+  {
+    "window": "2024-08",
+    "request_path": "/economic-events/tradingview?from=2024-08-01&to=2024-08-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9975",
+    "result_count": 824
+  },
+  {
+    "window": "2024-09",
+    "request_path": "/economic-events/tradingview?from=2024-09-01&to=2024-09-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9974",
+    "result_count": 770
+  },
+  {
+    "window": "2024-10",
+    "request_path": "/economic-events/tradingview?from=2024-10-01&to=2024-10-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9973",
+    "result_count": 790
+  },
+  {
+    "window": "2024-11",
+    "request_path": "/economic-events/tradingview?from=2024-11-01&to=2024-11-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9972",
+    "result_count": 786
+  },
+  {
+    "window": "2024-12",
+    "request_path": "/economic-events/tradingview?from=2024-12-01&to=2024-12-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9971",
+    "result_count": 774
+  },
+  {
+    "window": "2025-01",
+    "request_path": "/economic-events/tradingview?from=2025-01-01&to=2025-01-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9970",
+    "result_count": 815
+  },
+  {
+    "window": "2025-02",
+    "request_path": "/economic-events/tradingview?from=2025-02-01&to=2025-02-28&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9969",
+    "result_count": 735
+  },
+  {
+    "window": "2025-03",
+    "request_path": "/economic-events/tradingview?from=2025-03-01&to=2025-03-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9968",
+    "result_count": 740
+  },
+  {
+    "window": "2025-04",
+    "request_path": "/economic-events/tradingview?from=2025-04-01&to=2025-04-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9967",
+    "result_count": 710
+  },
+  {
+    "window": "2025-05",
+    "request_path": "/economic-events/tradingview?from=2025-05-01&to=2025-05-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9966",
+    "result_count": 816
+  },
+  {
+    "window": "2025-06",
+    "request_path": "/economic-events/tradingview?from=2025-06-01&to=2025-06-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9965",
+    "result_count": 746
+  },
+  {
+    "window": "2025-07",
+    "request_path": "/economic-events/tradingview?from=2025-07-01&to=2025-07-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9964",
+    "result_count": 746
+  },
+  {
+    "window": "2025-08",
+    "request_path": "/economic-events/tradingview?from=2025-08-01&to=2025-08-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9963",
+    "result_count": 770
+  },
+  {
+    "window": "2025-09",
+    "request_path": "/economic-events/tradingview?from=2025-09-01&to=2025-09-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9962",
+    "result_count": 756
+  },
+  {
+    "window": "2025-10",
+    "request_path": "/economic-events/tradingview?from=2025-10-01&to=2025-10-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9961",
+    "result_count": 786
+  },
+  {
+    "window": "2025-11",
+    "request_path": "/economic-events/tradingview?from=2025-11-01&to=2025-11-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9960",
+    "result_count": 855
+  },
+  {
+    "window": "2025-12",
+    "request_path": "/economic-events/tradingview?from=2025-12-01&to=2025-12-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9959",
+    "result_count": 911
+  },
+  {
+    "window": "2026-01",
+    "request_path": "/economic-events/tradingview?from=2026-01-01&to=2026-01-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9958",
+    "result_count": 887
+  },
+  {
+    "window": "2026-02",
+    "request_path": "/economic-events/tradingview?from=2026-02-01&to=2026-02-28&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9957",
+    "result_count": 809
+  },
+  {
+    "window": "2026-03",
+    "request_path": "/economic-events/tradingview?from=2026-03-01&to=2026-03-31&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9956",
+    "result_count": 806
+  }
+]

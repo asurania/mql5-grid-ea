@@ -23,6 +23,7 @@ CEntryIntentReader g_entryIntentReader;
 CEntrySignal       g_entrySignal;
 CGridManager       g_grid;
 CSessionManager    g_session;
+CGridPolicyReader  g_gridPolicyReader;
 
 int OnInit()
   {
@@ -53,6 +54,19 @@ void OnTimer()
       g_logger.Warn("Policy refresh failed: " + g_policyReader.GetLastError());
    else
       g_logger.Info("Policy refresh ok");
+
+   // Read Python-provided session timings from grid policy
+   datetime managedCloseUTC = 0;
+   datetime liquidateUTC = 0;
+   datetime sessionCloseUTC = 0;
+   if(g_gridPolicyReader.ExtractSessionTimings(managedCloseUTC, liquidateUTC, sessionCloseUTC))
+     {
+      g_session.UpdatePythonTimings(managedCloseUTC, liquidateUTC, sessionCloseUTC);
+      g_logger.Info("Session timings updated from grid policy: managed_close="
+         + TimeToString(managedCloseUTC, TIME_DATE|TIME_MINUTES)
+         + ", liquidate=" + TimeToString(liquidateUTC, TIME_DATE|TIME_MINUTES)
+         + ", session_close=" + TimeToString(sessionCloseUTC, TIME_DATE|TIME_MINUTES));
+     }
   }
 
 void OnTick()

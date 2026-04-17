@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __GRIDMANAGER_MQH__
+#define __GRIDMANAGER_MQH__
+
 
 #include <ForexSlave/Types.mqh>
 #include <ForexSlave/TelemetryLogger.mqh>
@@ -17,34 +19,6 @@ private:
    CEntrySignal *m_entrySignal;
    CTradeExecutor *m_tradeExecutor;
    CGridPolicyReader m_gridPolicyReader;
-
-   bool CloseAllPositionsForPair(string pair,string reason)
-     {
-      if(m_positions == NULL || m_tradeExecutor == NULL || m_logger == NULL)
-         return false;
-
-      int total = m_positions.CountOpenPositions(pair);
-      if(total <= 0)
-         return true;
-
-      bool allOk = true;
-      for(int i = total - 1; i >= 0; --i)
-        {
-         ulong ticket = m_positions.GetTicketByIndex(pair, i);
-         if(ticket == 0)
-            continue;
-         if(!m_tradeExecutor.ClosePosition(ticket))
-           {
-            allOk = false;
-            m_logger.LogTradeDecision(pair, "GRID_CLOSE_PAIR_FAILED", reason + ", ticket=" + IntegerToString((int)ticket) + ", err=" + m_tradeExecutor.GetLastError());
-           }
-         else
-           {
-            m_logger.LogTradeDecision(pair, "GRID_CLOSE_PAIR_POSITION", reason + ", ticket=" + IntegerToString((int)ticket));
-           }
-        }
-      return allOk;
-     }
 
 public:
    CGridManager()
@@ -65,6 +39,144 @@ public:
       m_tradeExecutor = &tradeExecutor;
      }
 
+   bool CloseAllPositionsForPair(string pair,string reason)
+     {
+      if(m_positions == NULL || m_tradeExecutor == NULL || m_logger == NULL)
+         return false;
+
+      int total = m_positions.CountOpenPositions(pair);
+      if(total <= 0)
+         return true;
+
+      bool allOk = true;
+      for(int i = total - 1; i >= 0; --i)
+        {
+         ulong ticket = m_positions.GetTicketByIndex(pair, i);
+         if(ticket == 0)
+            continue;
+
+         if(!m_tradeExecutor.ClosePosition(ticket))
+           {
+            allOk = false;
+            m_logger.LogTradeDecision(pair, "GRID_CLOSE_PAIR_FAILED", reason + ", ticket=" + IntegerToString((int)ticket) + ", err=" + m_tradeExecutor.GetLastError());
+           }
+         else
+           {
+            m_logger.LogTradeDecision(pair, "GRID_CLOSE_PAIR_POSITION", reason + ", ticket=" + IntegerToString((int)ticket));
+           }
+        }
+      return allOk;
+     }
+
+   double PointsPerPip(string pair)
+     {
+      int digits = (int)SymbolInfoInteger(pair, SYMBOL_DIGITS);
+      double point = SymbolInfoDouble(pair, SYMBOL_POINT);
+      if(digits == 3 || digits == 5)
+         return point * 10.0;
+      return point;
+     }
+
+   double NextLotSize(double currentSideLots,int currentCount,double initialLot,double multiplier)
+     {
+      if(currentCount <= 0 || currentSideLots <= 0.0)
+         return initialLot;
+
+      double avgLot = currentSideLots / currentCount;
+      double nextLot = avgLot * multiplier;
+      if(nextLot < initialLot)
+         nextLot = initialLot;
+      return nextLot;
+     }
+
+   bool SyncBasketProtection(string pair,const GridPolicy &gridPolicy)
+     {
+      if(m_positions == NULL || m_tradeExecutor == NULL || m_logger == NULL)
+         return false;
+
+      double floatingPnl = m_positions.GetFloatingPnL(pair);
+      double slope = m_positions.GetDirectionalPnlSlopePerPriceUnit(pair);
+      if(MathAbs(slope) < 1e-9)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_SYNC_PROTECTION", "basket slope near zero, cannot derive shared stop/target");
+         return false;
+        }
+
+      double weightedOpen = m_positions.GetWeightedOpenPrice(pair);
+      double bid = SymbolInfoDouble(pair, SYMBOL_BID);
+      double ask = SymbolInfoDouble(pair, SYMBOL_ASK);
+      double marketPrice = (bid + ask) * 0.5;
+      int digits = (int)SymbolInfoInteger(pair, SYMBOL_DIGITS);
+      double point = SymbolInfoDouble(pair, SYMBOL_POINT);
+
+      double normalizedStop = 0.0;
+      bool haveStop = false;
+      if(gridPolicy.maxBasketDrawdownCurrency > 0.0)
+        {
+         double stopPrice = marketPrice + ((-gridPolicy.maxBasketDrawdownCurrency - floatingPnl) / slope);
+         normalizedStop = NormalizeDouble(stopPrice, digits);
+         haveStop = true;
+        }
+
+      double normalizedTarget = 0.0;
+      bool haveTarget = false;
+      if(gridPolicy.basketTpCurrency > 0.0)
+        {
+         double targetPrice = marketPrice + ((gridPolicy.basketTpCurrency - floatingPnl) / slope);
+         normalizedTarget = NormalizeDouble(targetPrice, digits);
+         haveTarget = true;
+        }
+
+      bool allOk = true;
+      int total = m_positions.CountOpenPositions(pair);
+      for(int i = total - 1; i >= 0; --i)
+        {
+         ulong ticket = m_positions.GetTicketByIndex(pair, i);
+         if(ticket == 0)
+            continue;
+         if(!PositionSelectByTicket(ticket))
+            continue;
+
+         long posType = PositionGetInteger(POSITION_TYPE);
+         double openPrice = PositionGetDouble(POSITION_PRICE_OPEN);
+         double sl = 0.0;
+         double tp = 0.0;
+
+         if(haveStop)
+           {
+            sl = normalizedStop;
+            if(posType == POSITION_TYPE_BUY && sl >= bid)
+               sl = NormalizeDouble(MathMin(openPrice, bid) - point * 10.0, digits);
+            if(posType == POSITION_TYPE_SELL && sl <= ask)
+               sl = NormalizeDouble(MathMax(openPrice, ask) + point * 10.0, digits);
+           }
+
+         if(haveTarget)
+           {
+            tp = normalizedTarget;
+            if(posType == POSITION_TYPE_BUY && tp <= ask)
+               tp = NormalizeDouble(MathMax(openPrice, ask) + point * 10.0, digits);
+            if(posType == POSITION_TYPE_SELL && tp >= bid)
+               tp = NormalizeDouble(MathMin(openPrice, bid) - point * 10.0, digits);
+           }
+
+         if(!m_tradeExecutor.ModifyPosition(ticket, sl, tp))
+           {
+            allOk = false;
+            m_logger.LogTradeDecision(pair, "GRID_SYNC_PROTECTION_FAILED", "ticket=" + IntegerToString((int)ticket) + ", err=" + m_tradeExecutor.GetLastError());
+           }
+        }
+
+      if(allOk)
+         m_logger.LogTradeDecision(pair, "GRID_SYNC_PROTECTION", "weighted_open=" + DoubleToString(weightedOpen, digits)
+            + ", floating_pnl=" + DoubleToString(floatingPnl, 2)
+            + ", basket_stop=" + DoubleToString(normalizedStop, digits)
+            + ", basket_target=" + DoubleToString(normalizedTarget, digits)
+            + ", max_basket_dd=" + DoubleToString(gridPolicy.maxBasketDrawdownCurrency, 2)
+            + ", basket_tp=" + DoubleToString(gridPolicy.basketTpCurrency, 2));
+      return allOk;
+     }
+
    void EvaluateNewEntries(string pair,const PairPolicy &policy,bool canOpenNewTrade)
      {
       if(m_logger == NULL || m_positions == NULL)
@@ -77,10 +189,25 @@ public:
          return;
         }
 
+      GridPolicy gridPolicy = m_gridPolicyReader.Evaluate(pair);
+      if(!gridPolicy.valid)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy invalid: " + gridPolicy.reason);
+         return;
+        }
+
+      if(!gridPolicy.allowNewBasket)
+        {
+         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy disallows basket: " + gridPolicy.reason);
+         return;
+        }
+
+      bool dualSeed = (gridPolicy.gridMode == GRID_MODE_BOTH_SIDES && gridPolicy.seedMode == SEED_MODE_BOTH_SIDES);
+
       if(m_risk != NULL)
         {
          string riskReason = "";
-         if(!m_risk.PassesEntryChecks(pair, riskReason))
+         if(!m_risk.PassesEntryChecks(pair, gridPolicy, riskReason))
            {
             m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "risk overlay blocked entry: " + riskReason);
             return;
@@ -100,22 +227,9 @@ public:
         }
 
       EntryDecision decision = m_entrySignal.EvaluateFirstEntry(pair);
-      if(!decision.shouldEnter)
+      if(!decision.shouldEnter && !dualSeed)
         {
          m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", decision.reason);
-         return;
-        }
-
-      GridPolicy gridPolicy = m_gridPolicyReader.Evaluate(pair);
-      if(!gridPolicy.valid)
-        {
-         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy invalid: " + gridPolicy.reason);
-         return;
-        }
-
-      if(!gridPolicy.allowNewBasket)
-        {
-         m_logger.LogTradeDecision(pair, "GRID_SKIP_NEW_ENTRY", "grid policy disallows basket: " + gridPolicy.reason);
          return;
         }
 
@@ -159,8 +273,6 @@ public:
          return;
         }
 
-      bool dualSeed = (gridPolicy.gridMode == GRID_MODE_BOTH_SIDES && gridPolicy.seedMode == SEED_MODE_BOTH_SIDES);
-
       if(!InpEnableLiveTrading)
         {
          if(dualSeed)
@@ -191,31 +303,13 @@ public:
          return;
         }
 
+      double normalizedLots = m_tradeExecutor.GetLastNormalizedLots();
       if(dualSeed)
-         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "dual_seed buy+sell, lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
+         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "dual_seed buy+sell, requested_lots=" + DoubleToString(lots, 3) + ", normalized_lots=" + DoubleToString(normalizedLots, 3) + ", policy_id=" + gridPolicy.policyId);
       else
-         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", lots=" + DoubleToString(lots, 2) + ", policy_id=" + gridPolicy.policyId);
-     }
+         m_logger.LogTradeDecision(pair, "GRID_FIRST_ENTRY_EXECUTED", "direction=" + dir + ", requested_lots=" + DoubleToString(lots, 3) + ", normalized_lots=" + DoubleToString(normalizedLots, 3) + ", policy_id=" + gridPolicy.policyId);
 
-   double PointsPerPip(string pair)
-     {
-      int digits = (int)SymbolInfoInteger(pair, SYMBOL_DIGITS);
-      double point = SymbolInfoDouble(pair, SYMBOL_POINT);
-      if(digits == 3 || digits == 5)
-         return point * 10.0;
-      return point;
-     }
-
-   double NextLotSize(double currentSideLots,int currentCount,double initialLot,double multiplier)
-     {
-      if(currentCount <= 0 || currentSideLots <= 0.0)
-         return initialLot;
-
-      double avgLot = currentSideLots / currentCount;
-      double nextLot = avgLot * multiplier;
-      if(nextLot < initialLot)
-         nextLot = initialLot;
-      return nextLot;
+      SyncBasketProtection(pair, gridPolicy);
      }
 
    void EvaluateSideExpansion(string pair,const GridPolicy &gridPolicy,ENUM_POSITION_TYPE sideType)
@@ -276,7 +370,7 @@ public:
 
       m_logger.LogTradeDecision(pair, "GRID_EXPANSION_SIGNAL", sideName
          + " side expand: count=" + IntegerToString(sideCount)
-         + ", next_lots=" + DoubleToString(nextLots, 2)
+         + ", requested_next_lots=" + DoubleToString(nextLots, 3)
          + ", policy_id=" + gridPolicy.policyId);
 
       if(!InpEnableLiveTrading)
@@ -299,9 +393,13 @@ public:
          return;
         }
 
+      double normalizedLots = m_tradeExecutor.GetLastNormalizedLots();
       m_logger.LogTradeDecision(pair, "GRID_EXPANSION_EXECUTED", sideName
-         + " side expanded: lots=" + DoubleToString(nextLots, 2)
+         + " side expanded: requested_lots=" + DoubleToString(nextLots, 3)
+         + ", normalized_lots=" + DoubleToString(normalizedLots, 3)
          + ", policy_id=" + gridPolicy.policyId);
+
+      SyncBasketProtection(pair, gridPolicy);
      }
 
    void EvaluateBasketManagement(string pair,const PairPolicy &policy)
@@ -315,16 +413,6 @@ public:
          return;
         }
 
-      if(m_risk != NULL)
-        {
-         string riskReason = "";
-         if(!m_risk.PassesEntryChecks(pair, riskReason))
-           {
-            m_logger.LogTradeDecision(pair, "GRID_SKIP_MANAGEMENT", "risk overlay blocked expansion: " + riskReason);
-            return;
-           }
-        }
-
       GridPolicy gridPolicy = m_gridPolicyReader.Evaluate(pair);
       if(!gridPolicy.valid)
         {
@@ -336,6 +424,16 @@ public:
         {
          m_logger.LogTradeDecision(pair, "GRID_SKIP_MANAGEMENT", "grid policy disallows basket expansion: " + gridPolicy.reason);
          return;
+        }
+
+      if(m_risk != NULL)
+        {
+         string riskReason = "";
+         if(!m_risk.PassesEntryChecks(pair, gridPolicy, riskReason))
+           {
+            m_logger.LogTradeDecision(pair, "GRID_SKIP_MANAGEMENT", "risk overlay blocked expansion: " + riskReason);
+            return;
+           }
         }
 
       double floatingPnL = m_positions.GetFloatingPnL(pair);
@@ -364,12 +462,22 @@ public:
          return;
         }
 
+      string gridModeText = "both_sides";
+      if(gridPolicy.gridMode == GRID_MODE_BUY_ONLY)
+         gridModeText = "buy_only";
+      else if(gridPolicy.gridMode == GRID_MODE_SELL_ONLY)
+         gridModeText = "sell_only";
+
       m_logger.LogTradeDecision(pair, "GRID_MANAGE_BASKET", "policy_id=" + gridPolicy.policyId
-         + ", grid_mode=" + (gridPolicy.gridMode == GRID_MODE_BUY_ONLY ? "buy_only" : (gridPolicy.gridMode == GRID_MODE_SELL_ONLY ? "sell_only" : "both_sides"))
+         + ", grid_mode=" + gridModeText
          + ", step_pips=" + DoubleToString(gridPolicy.stepPips, 1)
          + ", multiplier=" + DoubleToString(gridPolicy.multiplier, 2)
          + ", max_trades_per_side=" + IntegerToString(gridPolicy.maxTradesPerSide)
          + ", basket_tp_currency=" + DoubleToString(gridPolicy.basketTpCurrency, 2)
+         + ", max_gross_lots=" + DoubleToString(gridPolicy.maxGrossLots, 2)
+         + ", max_basket_dd=" + DoubleToString(gridPolicy.maxBasketDrawdownCurrency, 2)
+         + ", min_step_to_spread_ratio=" + DoubleToString(gridPolicy.minStepToSpreadRatio, 2)
+         + ", min_free_margin_percent=" + DoubleToString(gridPolicy.minFreeMarginPercent, 1)
          + ", flatten_on_strong_avoid=" + (gridPolicy.flattenOnStrongAvoid ? "true" : "false")
          + ", floating_pnl=" + DoubleToString(floatingPnL, 2));
 
@@ -380,3 +488,5 @@ public:
          EvaluateSideExpansion(pair, gridPolicy, POSITION_TYPE_SELL);
      }
   };
+
+#endif

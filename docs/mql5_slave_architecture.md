@@ -105,6 +105,11 @@ Current implementation status:
 - expansion respects `grid_mode` (`both_sides`, `buy_only`, `sell_only`)
 - current next-lot rule: average side lot × multiplier
 - dry-run logging exists for first entry and basket expansion
+- hard-cap enforcement now includes Python-published:
+  - `max_gross_lots`
+  - `max_basket_drawdown_currency`
+  - `min_step_to_spread_ratio`
+  - `min_free_margin_percent`
 - basket close / recovery / TP orchestration partially implemented:
   - close-all on pair basket floating profit >= configured currency threshold
   - flatten pair basket when strong-avoid policy becomes active

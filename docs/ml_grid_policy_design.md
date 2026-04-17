@@ -31,6 +31,31 @@ This avoids learning bad human choices or overfitting to arbitrary parameter his
 
 ## Recommended v1 approach
 
+### v1 implemented now: session-risk optimizer
+
+Current implementation adds a first-pass optimizer in `src/massive_pipeline/build_grid_policy.py` that:
+- estimates the current session type (Asia, London, New York)
+- consumes a trained next-session range prediction from `data/live/policy/session_range_predictions.json`
+- falls back to recent-session heuristics only if the model prediction file is missing
+- derives breakout risk from entry-intent trend/alignment/volatility context
+- searches candidate values for `step_pips`, `multiplier`, and `max_trades_per_side`
+- solves `initial_lot` against a fixed account risk budget
+- sets `basket_tp_currency` from a risk-mode target envelope
+
+New session-range model pipeline:
+- dataset builder: `src/massive_pipeline/build_session_range_dataset.py`
+- trainer: `src/massive_pipeline/train_session_range_model.py`
+- live feature builder: `src/massive_pipeline/build_live_session_range_features.py`
+- live inference: `src/massive_pipeline/run_live_session_range_inference.py`
+
+Current default constants are:
+- `ACCOUNT_EQUITY = 10000`
+- `RISK_MODE = medium`
+- risk budgets: low `1.0%`, medium `1.5%`, high `2.0%`
+- target profit envelopes: low `1.0%`, medium `1.5%`, high `2.0%`
+
+This is still heuristic, not trained ML, but it creates the exact optimizer surface needed for later model replacement.
+
 ### Use policy buckets, not raw regression
 
 Instead of predicting raw values like:

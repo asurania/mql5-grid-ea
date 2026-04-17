@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __RISKOVERLAY_MQH__
+#define __RISKOVERLAY_MQH__
+
 
 #include <ForexSlave/PositionRegistry.mqh>
 
@@ -9,6 +11,24 @@ private:
    double m_maxSpreadPoints;
    int    m_maxOpenPositionsPerPair;
    double m_maxGrossLotsPerPair;
+
+   double CurrentSpreadPoints(string pair)
+     {
+      double ask = SymbolInfoDouble(pair, SYMBOL_ASK);
+      double bid = SymbolInfoDouble(pair, SYMBOL_BID);
+      double point = SymbolInfoDouble(pair, SYMBOL_POINT);
+      if(point <= 0.0)
+         return 0.0;
+      return (ask - bid) / point;
+     }
+
+   double FreeMarginPercent()
+     {
+      double equity = AccountInfoDouble(ACCOUNT_EQUITY);
+      if(equity <= 0.0)
+         return 0.0;
+      return (AccountInfoDouble(ACCOUNT_FREEMARGIN) / equity) * 100.0;
+     }
 
 public:
    CRiskOverlay()
@@ -29,16 +49,12 @@ public:
 
    bool PassesSpreadCheck(string pair,string &reason)
      {
-      double ask = SymbolInfoDouble(pair, SYMBOL_ASK);
-      double bid = SymbolInfoDouble(pair, SYMBOL_BID);
-      double point = SymbolInfoDouble(pair, SYMBOL_POINT);
-      if(point <= 0.0)
+      double spreadPoints = CurrentSpreadPoints(pair);
+      if(spreadPoints <= 0.0)
         {
          reason = "invalid point size";
          return false;
         }
-
-      double spreadPoints = (ask - bid) / point;
       if(spreadPoints > m_maxSpreadPoints)
         {
          reason = "spread too high: " + DoubleToString(spreadPoints, 1) + " points";
@@ -76,7 +92,66 @@ public:
       return true;
      }
 
-   bool PassesEntryChecks(string pair,string &reason)
+   bool PassesGridPolicyHardCaps(string pair,const GridPolicy &policy,string &reason)
+     {
+      if(m_positions == NULL)
+        {
+         reason = "positions registry not configured";
+         return false;
+        }
+
+      if(policy.maxGrossLots > 0.0)
+        {
+         double grossLots = m_positions.GetGrossLots(pair);
+         if(grossLots >= policy.maxGrossLots)
+           {
+            reason = "grid policy max gross lots reached";
+            return false;
+           }
+        }
+
+      if(policy.maxBasketDrawdownCurrency > 0.0)
+        {
+         double floatingPnl = m_positions.GetFloatingPnL(pair);
+         if(floatingPnl <= -policy.maxBasketDrawdownCurrency)
+           {
+            reason = "grid policy max basket drawdown reached";
+            return false;
+           }
+        }
+
+      if(policy.minStepToSpreadRatio > 0.0)
+        {
+         double spreadPoints = CurrentSpreadPoints(pair);
+         double stepPoints = policy.stepPips * 10.0;
+         if(spreadPoints <= 0.0)
+           {
+            reason = "invalid spread for step ratio";
+            return false;
+           }
+         double ratio = stepPoints / spreadPoints;
+         if(ratio < policy.minStepToSpreadRatio)
+           {
+            reason = "step/spread ratio too low: " + DoubleToString(ratio, 2);
+            return false;
+           }
+        }
+
+      if(policy.minFreeMarginPercent > 0.0)
+        {
+         double freeMarginPct = FreeMarginPercent();
+         if(freeMarginPct < policy.minFreeMarginPercent)
+           {
+            reason = "free margin percent too low: " + DoubleToString(freeMarginPct, 1);
+            return false;
+           }
+        }
+
+      reason = "grid policy hard caps ok";
+      return true;
+     }
+
+   bool PassesEntryChecks(string pair,const GridPolicy &policy,string &reason)
      {
       string spreadReason = "";
       if(!PassesSpreadCheck(pair, spreadReason))
@@ -92,7 +167,16 @@ public:
          return false;
         }
 
+      string policyReason = "";
+      if(!PassesGridPolicyHardCaps(pair, policyReason))
+        {
+         reason = policyReason;
+         return false;
+        }
+
       reason = "risk overlay ok";
       return true;
      }
   };
+
+#endif

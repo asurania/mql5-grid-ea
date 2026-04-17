@@ -1,39 +1,39 @@
 {
-  "generated_at_utc": "2026-04-17T20:21:58.443313+00:00",
-  "session_name": "new_york",
+  "generated_at_utc": "2026-04-17T22:33:11.316316+00:00",
+  "session_name": "asia",
   "model": "lgbm_session_range_v1",
   "pairs": [
     {
       "pair": "EURJPY",
-      "session_name": "new_york",
-      "predicted_range_pips": 74.50696935949,
-      "avg_range_5": 48.062441368925306,
-      "avg_range_10": 52.99122881171284,
-      "std_range_10": 33.16468681840054
+      "session_name": "asia",
+      "predicted_range_pips": 100.62262694344435,
+      "avg_range_5": 61.2441743963484,
+      "avg_range_10": 60.103185464070066,
+      "std_range_10": 32.38956865887656
     },
     {
       "pair": "GBPJPY",
-      "session_name": "new_york",
-      "predicted_range_pips": 87.72432499843906,
-      "avg_range_5": 58.24000000000012,
-      "avg_range_10": 68.53999999999985,
-      "std_range_10": 44.675775190690324
+      "session_name": "asia",
+      "predicted_range_pips": 107.51423150818142,
+      "avg_range_5": 78.4493809725086,
+      "avg_range_10": 73.44959851010174,
+      "std_range_10": 47.9772092865623
     },
     {
       "pair": "GBPUSD",
-      "session_name": "new_york",
-      "predicted_range_pips": 58.49912936166512,
-      "avg_range_5": 56.180000000000334,
-      "avg_range_10": 79.91000000000014,
-      "std_range_10": 57.16643245821827
+      "session_name": "asia",
+      "predicted_range_pips": 105.30298363949622,
+      "avg_range_5": 53.640000000000136,
+      "avg_range_10": 67.61000000000016,
+      "std_range_10": 55.36289270701967
     },
     {
       "pair": "NZDUSD",
-      "session_name": "new_york",
-      "predicted_range_pips": 79.52875212863229,
-      "avg_range_5": 29.399999999999824,
-      "avg_range_10": 46.299999999999876,
-      "std_range_10": 31.479905407172996
+      "session_name": "asia",
+      "predicted_range_pips": 90.64405471764127,
+      "avg_range_5": 36.95999999999988,
+      "avg_range_10": 39.779999999999816,
+      "std_range_10": 25.976433764301007
     }
   ]
 }

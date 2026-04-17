@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-15T13:57:01.296210+00:00",
+  "generated_at_utc": "2026.04.17 22:33:10",
   "source_model": "xgb_y_avoid_session",
   "threshold_version": "avoid_session_v1",
   "pair_policies": [
@@ -11,7 +11,7 @@
       "trigger_event_id": null,
       "trigger_event_name": null,
       "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026-04-15T13:57:01.296210+00:00"
+      "generated_at_utc": "2026.04.17 22:33:10"
     },
     {
       "pair": "GBPJPY",
@@ -21,7 +21,7 @@
       "trigger_event_id": null,
       "trigger_event_name": null,
       "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026-04-15T13:57:01.296210+00:00"
+      "generated_at_utc": "2026.04.17 22:33:10"
     },
     {
       "pair": "GBPUSD",
@@ -31,7 +31,7 @@
       "trigger_event_id": null,
       "trigger_event_name": null,
       "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026-04-15T13:57:01.296210+00:00"
+      "generated_at_utc": "2026.04.17 22:33:10"
     },
     {
       "pair": "NZDUSD",
@@ -41,7 +41,7 @@
       "trigger_event_id": null,
       "trigger_event_name": null,
       "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026-04-15T13:57:01.296210+00:00"
+      "generated_at_utc": "2026.04.17 22:33:10"
     }
   ]
 }

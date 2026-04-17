@@ -37,6 +37,14 @@ SESSION_WINDOWS_NY = {
     "london": (3, 0, 11, 59),
     "new_york": (8, 0, 17, 0),
 }
+
+# Session close times in UTC (for liquidation timing)
+# These are the END of each trading session in UTC
+SESSION_CLOSE_UTC = {
+    "asia": (0, 59),     # Asia closes ~00:59 UTC (NY 19:59 previous day)
+    "london": (11, 59),   # London closes ~11:59 UTC (NY 07:59)
+    "new_york": (21, 0),  # NY closes ~21:00 UTC (NY 17:00 EST)
+}
 PIP_SIZE = {
     "EURJPY": 0.01,
     "GBPJPY": 0.01,
@@ -258,6 +266,37 @@ def infer_session_name(now_utc: datetime) -> str:
             if hm >= start or hm <= end:
                 return session_name
     return "new_york"
+
+
+def get_session_close_utc(now_utc: datetime, session_name: str) -> str:
+    """Get the UTC close time for the current session as an MT5 timestamp."""
+    close_h, close_m = SESSION_CLOSE_UTC.get(session_name, (21, 0))
+    # Build the close time for today or tomorrow if we're already past it
+    close_today = now_utc.replace(hour=close_h, minute=close_m, second=0, microsecond=0)
+    # If we're already past the close time, it means next day's session
+    if now_utc >= close_today:
+        close_today += timedelta(days=1)
+    return mt5_utc_timestamp(close_today)
+
+
+def get_managed_close_utc(now_utc: datetime, session_name: str, minutes_before: int = 30) -> str:
+    """Get the UTC time when managed close begins (N minutes before session close)."""
+    close_h, close_m = SESSION_CLOSE_UTC.get(session_name, (21, 0))
+    close_today = now_utc.replace(hour=close_h, minute=close_m, second=0, microsecond=0)
+    if now_utc >= close_today:
+        close_today += timedelta(days=1)
+    managed_start = close_today - timedelta(minutes=minutes_before)
+    return mt5_utc_timestamp(managed_start)
+
+
+def get_liquidate_utc(now_utc: datetime, session_name: str, minutes_before: int = 10) -> str:
+    """Get the UTC time when forced liquidation begins (N minutes before session close)."""
+    close_h, close_m = SESSION_CLOSE_UTC.get(session_name, (21, 0))
+    close_today = now_utc.replace(hour=close_h, minute=close_m, second=0, microsecond=0)
+    if now_utc >= close_today:
+        close_today += timedelta(days=1)
+    liquidate_start = close_today - timedelta(minutes=minutes_before)
+    return mt5_utc_timestamp(liquidate_start)
 
 
 def load_session_range_predictions() -> dict[str, dict]:
@@ -647,6 +686,10 @@ def main() -> int:
         "risk_budget_currency": round(args.account_equity * RISK_BUDGET_PCT[args.risk_mode], 2),
         "target_profit_currency": round(args.account_equity * TARGET_PROFIT_PCT[args.risk_mode], 2),
         "allow_gbpjpy_demo_override": args.allow_gbpjpy_demo_override,
+        "session_name": infer_session_name(now_utc),
+        "session_close_utc": get_session_close_utc(now_utc, infer_session_name(now_utc)),
+        "managed_close_utc": get_managed_close_utc(now_utc, infer_session_name(now_utc), 30),
+        "liquidate_utc": get_liquidate_utc(now_utc, infer_session_name(now_utc), 10),
         "pairs": rows,
     }
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)

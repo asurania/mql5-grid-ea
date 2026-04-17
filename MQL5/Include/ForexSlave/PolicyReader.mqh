@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __POLICYREADER_MQH__
+#define __POLICYREADER_MQH__
+
 
 #include <ForexSlave/Types.mqh>
 #include <ForexSlave/Config.mqh>
@@ -102,7 +104,9 @@ private:
             break;
          end++;
         }
-      string raw = StringTrim(StringSubstr(block, pos, end - pos));
+      string raw = StringSubstr(block, pos, end - pos);
+      StringTrimLeft(raw);
+      StringTrimRight(raw);
       return StringToDouble(raw);
      }
 
@@ -198,3 +202,5 @@ public:
       return m_lastError;
      }
   };
+
+#endif

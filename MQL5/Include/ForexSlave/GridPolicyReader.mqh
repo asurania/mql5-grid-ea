@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __GRIDPOLICYREADER_MQH__
+#define __GRIDPOLICYREADER_MQH__
+
 
 #include <ForexSlave/Types.mqh>
 
@@ -97,7 +99,10 @@ private:
             break;
          end++;
         }
-      return StringToDouble(StringTrim(StringSubstr(block, pos, end - pos)));
+      string value = StringSubstr(block, pos, end - pos);
+      StringTrimLeft(value);
+      StringTrimRight(value);
+      return StringToDouble(value);
      }
 
    int ExtractInt(string block,string field)
@@ -144,6 +149,10 @@ public:
       out.multiplier = 1.0;
       out.maxTradesPerSide = 0;
       out.basketTpCurrency = 0.0;
+      out.maxGrossLots = 0.0;
+      out.maxBasketDrawdownCurrency = 0.0;
+      out.minStepToSpreadRatio = 0.0;
+      out.minFreeMarginPercent = 0.0;
       out.flattenOnStrongAvoid = true;
       out.confidence = 0.0;
       out.reason = "grid policy unavailable";
@@ -175,6 +184,10 @@ public:
       out.multiplier = ExtractDouble(block, "multiplier");
       out.maxTradesPerSide = ExtractInt(block, "max_trades_per_side");
       out.basketTpCurrency = ExtractDouble(block, "basket_tp_currency");
+      out.maxGrossLots = ExtractDouble(block, "max_gross_lots");
+      out.maxBasketDrawdownCurrency = ExtractDouble(block, "max_basket_drawdown_currency");
+      out.minStepToSpreadRatio = ExtractDouble(block, "min_step_to_spread_ratio");
+      out.minFreeMarginPercent = ExtractDouble(block, "min_free_margin_percent");
       out.flattenOnStrongAvoid = ExtractBool(block, "flatten_on_strong_avoid", true);
       out.confidence = ExtractDouble(block, "confidence");
       out.reason = ExtractString(block, "reason");
@@ -234,6 +247,26 @@ public:
          out.reason = "invalid basket tp currency";
          return out;
         }
+      if(out.maxGrossLots < 0.0)
+        {
+         out.reason = "invalid max gross lots";
+         return out;
+        }
+      if(out.maxBasketDrawdownCurrency < 0.0)
+        {
+         out.reason = "invalid max basket drawdown currency";
+         return out;
+        }
+      if(out.minStepToSpreadRatio < 0.0)
+        {
+         out.reason = "invalid min step to spread ratio";
+         return out;
+        }
+      if(out.minFreeMarginPercent < 0.0)
+        {
+         out.reason = "invalid min free margin percent";
+         return out;
+        }
 
       out.valid = true;
       return out;
@@ -243,4 +276,45 @@ public:
      {
       return m_lastError;
      }
+
+   // Extract top-level session timing fields from grid policy JSON
+   // Returns true if all three timestamps were found and parsed
+   bool ExtractSessionTimings(datetime &managedCloseUTC, datetime &liquidateUTC, datetime &sessionCloseUTC)
+     {
+      if(m_rawJson == "")
+        {
+         if(!LoadFile())
+            return false;
+        }
+
+      string mcStr = ExtractStringTopLevel("managed_close_utc");
+      string liqStr = ExtractStringTopLevel("liquidate_utc");
+      string scStr = ExtractStringTopLevel("session_close_utc");
+
+      managedCloseUTC = StringToTime(mcStr);
+      liquidateUTC = StringToTime(liqStr);
+      sessionCloseUTC = StringToTime(scStr);
+
+      return (managedCloseUTC > 0 && liquidateUTC > 0 && sessionCloseUTC > 0);
+     }
+
+   // Extract a string value from the top-level JSON (not per-pair)
+   string ExtractStringTopLevel(string field)
+     {
+      string needle = "\"" + field + "\": ";
+      int pos = StringFind(m_rawJson, needle);
+      if(pos < 0)
+         return "";
+      pos += StringLen(needle);
+
+      if(StringSubstr(m_rawJson, pos, 1) != "\"")
+         return "";
+      pos++;
+      int end = pos;
+      while(end < StringLen(m_rawJson) && StringSubstr(m_rawJson, end, 1) != "\"")
+         end++;
+      return StringSubstr(m_rawJson, pos, end - pos);
+     }
   };
+
+#endif

@@ -4,6 +4,10 @@ from pathlib import Path
 from datetime import datetime, timezone
 import json
 
+
+def mt5_utc_timestamp(dt: datetime) -> str:
+    return dt.astimezone(timezone.utc).strftime("%Y.%m.%d %H:%M:%S")
+
 ACTIONS_FILE = Path("data/live/event_risk/event_risk_actions.json")
 OUT_DIR = Path("data/live/policy")
 PAIR_ORDER = ["EURJPY", "GBPJPY", "GBPUSD", "NZDUSD"]
@@ -34,7 +38,7 @@ def main() -> None:
                     "trigger_event_id": None,
                     "trigger_event_name": None,
                     "trigger_event_timestamp_utc": None,
-                    "generated_at_utc": now_utc.isoformat(),
+                    "generated_at_utc": mt5_utc_timestamp(now_utc),
                 }
             )
             continue
@@ -66,12 +70,12 @@ def main() -> None:
                 "trigger_event_id": best.get("event_id"),
                 "trigger_event_name": best.get("event_name"),
                 "trigger_event_timestamp_utc": best.get("event_timestamp_utc"),
-                "generated_at_utc": now_utc.isoformat(),
+                "generated_at_utc": mt5_utc_timestamp(now_utc),
             }
         )
 
     out = {
-        "generated_at_utc": now_utc.isoformat(),
+        "generated_at_utc": mt5_utc_timestamp(now_utc),
         "source_model": payload.get("model", "xgb_y_avoid_session"),
         "threshold_version": payload.get("threshold_version", "avoid_session_v1"),
         "pair_policies": pair_policies,

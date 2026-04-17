@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __TELEMETRYLOGGER_MQH__
+#define __TELEMETRYLOGGER_MQH__
+
 
 class CTelemetryLogger
   {
@@ -28,3 +30,5 @@ public:
       Print("[DECISION] ", pair, " :: ", action, " :: ", reason);
      }
   };
+
+#endif

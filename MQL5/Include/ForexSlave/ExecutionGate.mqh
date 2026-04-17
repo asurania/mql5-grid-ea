@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __EXECUTIONGATE_MQH__
+#define __EXECUTIONGATE_MQH__
+
 
 #include <ForexSlave/Types.mqh>
 #include <ForexSlave/Config.mqh>
@@ -87,3 +89,5 @@ public:
       return "unknown";
      }
   };
+
+#endif
