@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026.04.18 01:20:39",
+  "generated_at_utc": "2026.04.18 01:27:21",
   "version": "entry_intent_v2",
   "pairs": [
     {
@@ -9,7 +9,7 @@
       "entry_mode": "initial",
       "suggested_lots": 0.01,
       "reason": "meanrev_sell_legacy_meanrev_price_above_ma_sell",
-      "expires_at_utc": "2026.04.18 01:35:39",
+      "expires_at_utc": "2026.04.18 01:42:21",
       "debug": {
         "atr_frac_60": 0.000431,
         "vol_regime": "normal",
@@ -29,7 +29,7 @@
       "entry_mode": "initial",
       "suggested_lots": 0.01,
       "reason": "dead_chop_consolidation_legacy_meanrev_price_above_ma_sell",
-      "expires_at_utc": "2026.04.18 01:35:39",
+      "expires_at_utc": "2026.04.18 01:42:21",
       "debug": {
         "atr_frac_60": 0.00029,
         "vol_regime": "dead_chop",
@@ -45,7 +45,7 @@
       "entry_mode": "initial",
       "suggested_lots": 0.01,
       "reason": "dead_chop_consolidation_legacy_meanrev_price_above_ma_sell",
-      "expires_at_utc": "2026.04.18 01:35:39",
+      "expires_at_utc": "2026.04.18 01:42:21",
       "debug": {
         "atr_frac_60": 0.000202,
         "vol_regime": "dead_chop",
@@ -61,7 +61,7 @@
       "entry_mode": "initial",
       "suggested_lots": 0.01,
       "reason": "meanrev_sell_legacy_meanrev_price_above_ma_sell",
-      "expires_at_utc": "2026.04.18 01:35:39",
+      "expires_at_utc": "2026.04.18 01:42:21",
       "debug": {
         "atr_frac_60": 0.000677,
         "vol_regime": "normal",

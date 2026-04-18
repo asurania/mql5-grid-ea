@@ -10,10 +10,15 @@ Runs on localhost:8081 by default.
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pathlib import Path
 
 from routes.config import router as config_router
 from routes.status import router as status_router
 from routes.actions import router as actions_router
+
+FRONTEND_DIST = Path(__file__).resolve().parents[1] / "frontend" / "dist"
 
 app = FastAPI(
     title="ForexSlave Dashboard",
@@ -37,3 +42,8 @@ app.include_router(actions_router, prefix="/api/actions", tags=["actions"])
 @app.get("/api/health")
 async def health():
     return {"status": "ok"}
+
+
+# Serve React frontend from built dist
+if FRONTEND_DIST.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST), html=True), name="frontend")
