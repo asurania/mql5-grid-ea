@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { apiGet, type StatusSummary } from '@/lib/api'
+import { apiGet, apiPost, type StatusSummary } from '@/lib/api'
 
 export default function LiveStatus() {
   const [status, setStatus] = useState<StatusSummary | null>(null)
   const [error, setError] = useState('')
+  const [actionLog, setActionLog] = useState<string[]>([])
 
-  const refresh = async () => {
+  const refresh = useCallback(async () => {
     try {
       const data = await apiGet<StatusSummary>('/status/summary')
       setStatus(data)
@@ -15,15 +16,27 @@ export default function LiveStatus() {
     } catch (e: any) {
       setError(e.message)
     }
-  }
+  }, [])
 
   useEffect(() => {
     refresh()
     const interval = setInterval(refresh, 10000)
     return () => clearInterval(interval)
-  }, [])
+  }, [refresh])
 
-  if (error) return <div className="text-red-400">Error: {error}</div>
+  const runAction = async (name: string, path: string, body?: any) => {
+    setActionLog(prev => [`${new Date().toLocaleTimeString()}: ${name}...`, ...prev.slice(0, 9)])
+    try {
+      const result = await apiPost(path, body)
+      const status = result.status || result.bridge_log?.status || 'done'
+      setActionLog(prev => [`${new Date().toLocaleTimeString()}: ${name} → ${status}`, ...prev.slice(0, 9)])
+      await refresh()
+    } catch (e: any) {
+      setActionLog(prev => [`${new Date().toLocaleTimeString()}: ${name} → FAILED: ${e.message}`, ...prev.slice(0, 9)])
+    }
+  }
+
+  if (error && !status) return <div className="text-red-400">Error: {error}</div>
   if (!status) return <div className="text-zinc-400">Loading...</div>
 
   const sessionName = status.session?.name || '—'
@@ -53,15 +66,57 @@ export default function LiveStatus() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader className="pb-2"><CardTitle className="text-sm text-zinc-400">Bridge</CardTitle></CardHeader>
           <CardContent>
-            <Badge variant={status.bridge?.status === 'running' ? 'secondary' : 'outline'}>
+            <Badge variant={status.bridge?.status === 'ok' ? 'secondary' : 'outline'}>
               {status.bridge?.status || 'offline'}
             </Badge>
             {status.bridge?.last_run_utc && (
-              <div className="text-xs text-zinc-500 mt-1">Last: {new Date(status.bridge.last_run_utc).toLocaleTimeString()}</div>
+              <div className="text-xs text-zinc-500 mt-1">
+                Last: {new Date(status.bridge.last_run_utc).toLocaleTimeString()}
+              </div>
             )}
           </CardContent>
         </Card>
       </div>
+
+      {/* Actions */}
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2"><CardTitle className="text-sm">Actions</CardTitle></CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => runAction('🔄 Bridge Refresh + Copy', '/actions/bridge/refresh')}
+              className="px-3 py-1.5 rounded bg-blue-600 text-white hover:bg-blue-500 text-sm font-medium"
+            >
+              🔄 Bridge Refresh + Copy
+            </button>
+            <button
+              onClick={() => runAction('📋 Copy to MT5', '/actions/copy-to-mt5')}
+              className="px-3 py-1.5 rounded bg-green-700 text-green-100 hover:bg-green-600 text-sm"
+            >
+              📋 Copy to MT5
+            </button>
+            <button
+              onClick={() => runAction('⚡ Refresh Policy', '/actions/refresh-policy')}
+              className="px-3 py-1.5 rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 text-sm"
+            >
+              ⚡ Refresh Policy
+            </button>
+            <button
+              onClick={() => runAction('✅ Validate Config', '/actions/validate-config')}
+              className="px-3 py-1.5 rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 text-sm"
+            >
+              ✅ Validate
+            </button>
+          </div>
+          {actionLog.length > 0 && (
+            <div className="mt-3 text-xs text-zinc-500 space-y-0.5">
+              {actionLog.map((line, i) => (
+                <div key={i} className={line.includes('FAILED') ? 'text-red-400' : ''}>{line}</div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Pair status */}
       <Card className="bg-zinc-900 border-zinc-800">
@@ -89,7 +144,7 @@ export default function LiveStatus() {
               </div>
             ))}
             {status.pairs.length === 0 && (
-              <div className="text-zinc-500 text-sm">No pairs — bridge not running yet</div>
+              <div className="text-zinc-500 text-sm">No pairs — run "Bridge Refresh + Copy" to generate policy</div>
             )}
           </div>
         </CardContent>

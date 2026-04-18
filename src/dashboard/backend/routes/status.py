@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from datetime import datetime, timezone
 
-ROOT = Path(__file__).resolve().parents[3]  # workspace root
+ROOT = Path(__file__).resolve().parents[4]  # workspace root
 
 router = APIRouter()
 
