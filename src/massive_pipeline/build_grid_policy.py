@@ -7,6 +7,10 @@ import json
 
 import polars as pl
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from massive_pipeline.trading_config import load_config
+
 
 def mt5_utc_timestamp(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).strftime("%Y.%m.%d %H:%M:%S")
@@ -17,109 +21,60 @@ ENTRY_INTENT_FILE = ROOT / "data" / "live" / "policy" / "entry_intent.json"
 OUT_FILE = ROOT / "data" / "live" / "policy" / "grid_policy.json"
 SESSION_RANGE_PREDICTIONS_FILE = ROOT / "data" / "live" / "policy" / "session_range_predictions.json"
 PRICE_DIR = ROOT / "data" / "processed" / "massive" / "fx_minute_bars"
-PAIRS = ["EURJPY", "GBPJPY", "GBPUSD", "NZDUSD"]
-EXPIRY_MINUTES = 15
 
-DEFAULT_ACCOUNT_EQUITY = 10_000.0
-DEFAULT_RISK_MODE = "medium"
-RISK_BUDGET_PCT = {
-    "low": 0.01,
-    "medium": 0.015,
-    "high": 0.02,
-}
-TARGET_PROFIT_PCT = {
-    "low": 0.01,
-    "medium": 0.015,
-    "high": 0.02,
-}
-SESSION_WINDOWS_NY = {
-    "asia": (18, 0, 22, 0),       # 6:00 PM – 10:00 PM NY time (4:00 PM – 8:00 PM Calgary MDT)
-    "london": (22, 0, 6, 0),       # 10:00 PM – 6:00 AM NY time (9:00 PM – 3:00 AM Calgary MDT)
-    "new_york": (8, 0, 17, 0),     # 8:00 AM – 5:00 PM NY time (standard)
-}
+# --- Config-driven constants (loaded from config/trading_config.json) ---
+_cfg = load_config()
+PAIRS = _cfg["pairs"]
+EXPIRY_MINUTES = _cfg["bridge"]["policy_expiry_minutes"]
 
-# Session close times in UTC (for managed close, NOT forced liquidation)
-# Managed close = stop new baskets, let existing manage to TP
-SESSION_CLOSE_UTC = {
-    "asia": (3, 0),       # 9:00 PM Calgary = 03:00 UTC (Asia managed close)
-    "london": (10, 0),    # 4:00 AM Calgary = 10:00 UTC (London managed close)
-    "new_york": (21, 0),  # 5:00 PM NY = 21:00 UTC (standard close)
-}
+DEFAULT_ACCOUNT_EQUITY = _cfg["account"]["equity"]
+DEFAULT_RISK_MODE = _cfg["account"]["risk_mode"]
+RISK_BUDGET_PCT = _cfg["risk"]["budget_pct"]
+TARGET_PROFIT_PCT = _cfg["risk"]["target_profit_pct"]
 
-# Daily forced liquidation of ALL positions across all sessions
-# This fires once per day, 10 min before the forex market closes
-# 1:50 PM Calgary MDT = 20:50 UTC = 2:50 PM NY time (10 min before 3 PM Calgary close)
-DAILY_LIQUIDATE_UTC = (20, 50)  # 1:50 PM Calgary = 20:50 UTC
+# Session windows (start/end in NY time, derived from config)
+_sessions = _cfg["sessions"]
+SESSION_WINDOWS_NY = {}
+SESSION_CLOSE_UTC = {}
+MANAGED_CLOSE_MINUTES = {}
+SESSION_TP_PIPS = {}
+SESSION_SL_PIPS = {}
+for _sname, _sconf in _sessions.items():
+    if not _sconf.get("enabled", True):
+        continue
+    _start = tuple(_sconf["start_ny_time"])
+    _close = tuple(_sconf.get("managed_close_ny_time", _sconf["close_utc"]))
+    SESSION_WINDOWS_NY[_sname] = (_start[0], _start[1], _close[0], _close[1])
+    SESSION_CLOSE_UTC[_sname] = tuple(_sconf["close_utc"])
+    MANAGED_CLOSE_MINUTES[_sname] = _sconf.get("managed_close_minutes_before", 0)
+    SESSION_TP_PIPS[_sname] = _sconf.get("tp_pips", 3.0)
+    SESSION_SL_PIPS[_sname] = _sconf.get("sl_pips", 50.0)
 
-# Custom managed close minutes before session close
-# Asia/London: no forced liquidation at session close, just managed close
-# The only forced liquidation is the daily one at 1:50 PM Calgary
-MANAGED_CLOSE_MINUTES = {
-    "asia": 0,        # Managed close exactly at 9 PM Calgary (session close = managed close)
-    "london": 0,      # Managed close exactly at 4 AM Calgary (session close = managed close)
-    "new_york": 30,   # Standard 30 min before NY close
-}
+DAILY_LIQUIDATE_UTC = tuple(_cfg["daily_liquidation_utc"])
 
-# No per-session liquidation — only the daily one at 1:50 PM Calgary
-LIQUIDATE_MINUTES = {
-    "asia": 0,         # No forced liquidation at Asia close (just managed close)
-    "london": 0,       # No forced liquidation at London close (just managed close)
-    "new_york": 10,    # Liquidate 10 min before NY close (= daily liquidation)
-}
-# Old EA: Asia = 4 pips, London/NY = 3 pips
-SESSION_TP_PIPS = {
-    "asia": 4.0,
-    "london": 3.0,
-    "new_york": 3.0,
-}
+PIP_SIZE = _cfg["pip_config"]["pip_size"]
+PIP_VALUE_PER_001_LOT = _cfg["pip_config"]["pip_value_per_001_lot"]
+ASSUMED_SPREAD_PIPS = _cfg["pip_config"]["assumed_spread_pips"]
 
-# Session SL in pips (derived from max_dd budget per side, approximate)
-# These are fallback SL values when max_basket_drawdown_currency is not directly usable
-SESSION_SL_PIPS = {
-    "asia": 40.0,     # Asia: tighter range, smaller SL
-    "london": 55.0,   # London: wider range, larger SL
-    "new_york": 50.0, # NY: moderate
-}
-PIP_SIZE = {
-    "EURJPY": 0.01,
-    "GBPJPY": 0.01,
-    "GBPUSD": 0.0001,
-    "NZDUSD": 0.0001,
-}
-PIP_VALUE_PER_001_LOT = {
-    "EURJPY": 0.09,
-    "GBPJPY": 0.09,
-    "GBPUSD": 0.13,
-    "NZDUSD": 0.13,
-}
-SEARCH_STEP_PIPS = [6, 8, 10, 12, 15, 18, 22]
-SEARCH_MULTIPLIERS = [1.03, 1.05, 1.08, 1.10, 1.12, 1.15, 1.20]
-SEARCH_LEVELS = [2, 3, 4, 5, 6]
-MIN_INITIAL_LOT = 0.01
-MAX_INITIAL_LOT = 5.00
-LOT_STEP = 0.01
-MAX_BASKET_DD_PCT = {
-    "low": 0.01,
-    "medium": 0.015,
-    "high": 0.02,
-}
-MAX_GROSS_LOTS_PCT_OF_EQUITY = 0.00004
-MIN_STEP_TO_SPREAD_RATIO = {
-    "low": 4.0,
-    "medium": 3.0,
-    "high": 2.5,
-}
-MIN_FREE_MARGIN_PERCENT = {
-    "low": 85.0,
-    "medium": 75.0,
-    "high": 65.0,
-}
-ASSUMED_SPREAD_PIPS = {
-    "EURJPY": 1.2,
-    "GBPJPY": 1.8,
-    "GBPUSD": 1.0,
-    "NZDUSD": 1.4,
-}
+_gopt = _cfg["grid_optimizer"]
+SEARCH_STEP_PIPS = _gopt["search_step_pips"]
+SEARCH_MULTIPLIERS = _gopt["search_multipliers"]
+SEARCH_LEVELS = _gopt["search_levels"]
+MIN_INITIAL_LOT = _gopt["min_initial_lot"]
+MAX_INITIAL_LOT = _gopt["max_initial_lot"]
+LOT_STEP = _gopt["lot_step"]
+MAX_GROSS_LOTS_PCT_OF_EQUITY = _gopt["max_gross_lots_pct_of_equity"]
+
+MAX_BASKET_DD_PCT = _cfg["risk"]["max_basket_dd_pct"]
+MIN_STEP_TO_SPREAD_RATIO = _cfg["risk"]["min_step_to_spread_ratio"]
+MIN_FREE_MARGIN_PERCENT = _cfg["risk"]["min_free_margin_percent"]
+
+GRID_TEMPLATES = _cfg.get("grid_templates", {})
+
+# Liquidate minutes per session (for JSON output)
+LIQUIDATE_MINUTES = {}
+for _sname, _sconf in _sessions.items():
+    LIQUIDATE_MINUTES[_sname] = _sconf.get("liquidate_minutes_before", 0)
 
 
 def parse_args() -> argparse.Namespace:
@@ -129,163 +84,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--allow-gbpjpy-demo-override", action="store_true", help="Keep current GBPJPY fixed demo override active")
     return parser.parse_args()
 
-# Static template library for v1.
-# Later this will be selected by ML.
-GRID_TEMPLATES = {
-    "no_trade": {
-        "allow_new_basket": False,
-        "grid_mode": "both_sides",
-        "seed_mode": "single_side",
-        "step_pips": 0,
-        "initial_lot": 0.0,
-        "multiplier": 1.0,
-        "max_trades_per_side": 0,
-        "basket_tp_currency": 0.0,
-        "max_gross_lots": 0.0,
-        "max_basket_drawdown_currency": 0.0,
-        "min_step_to_spread_ratio": 0.0,
-        "min_free_margin_percent": 0.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 1.0,
-        "reason": "no_trade_template",
-    },
-    "both_sides_conservative": {
-        "allow_new_basket": True,
-        "grid_mode": "both_sides",
-        "seed_mode": "single_side",
-        "step_pips": 18,
-        "initial_lot": 0.01,
-        "multiplier": 1.10,
-        "max_trades_per_side": 3,
-        "basket_tp_currency": 2.00,
-        "max_gross_lots": 0.20,
-        "max_basket_drawdown_currency": 100.0,
-        "min_step_to_spread_ratio": 3.0,
-        "min_free_margin_percent": 75.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.65,
-        "reason": "static_both_sides_conservative",
-    },
-    "both_sides_normal": {
-        "allow_new_basket": True,
-        "grid_mode": "both_sides",
-        "seed_mode": "single_side",
-        "step_pips": 12,
-        "initial_lot": 0.01,
-        "multiplier": 1.20,
-        "max_trades_per_side": 5,
-        "basket_tp_currency": 3.00,
-        "max_gross_lots": 0.25,
-        "max_basket_drawdown_currency": 150.0,
-        "min_step_to_spread_ratio": 3.0,
-        "min_free_margin_percent": 75.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.65,
-        "reason": "static_both_sides_normal",
-    },
-    "both_sides_wide_light": {
-        "allow_new_basket": True,
-        "grid_mode": "both_sides",
-        "seed_mode": "both_sides",
-        "step_pips": 22,
-        "initial_lot": 0.01,
-        "multiplier": 1.05,
-        "max_trades_per_side": 4,
-        "basket_tp_currency": 2.00,
-        "max_gross_lots": 0.20,
-        "max_basket_drawdown_currency": 120.0,
-        "min_step_to_spread_ratio": 3.5,
-        "min_free_margin_percent": 80.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.60,
-        "reason": "static_both_sides_wide_light",
-    },
-    "classic_consolidation_light": {
-        "allow_new_basket": True,
-        "grid_mode": "both_sides",
-        "seed_mode": "both_sides",
-        "step_pips": 14,
-        "initial_lot": 0.01,
-        "multiplier": 1.10,
-        "max_trades_per_side": 5,
-        "basket_tp_currency": 2.50,
-        "max_gross_lots": 0.20,
-        "max_basket_drawdown_currency": 120.0,
-        "min_step_to_spread_ratio": 3.0,
-        "min_free_margin_percent": 75.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.68,
-        "reason": "classic_consolidation_light",
-    },
-    "classic_consolidation_normal": {
-        "allow_new_basket": True,
-        "grid_mode": "both_sides",
-        "seed_mode": "both_sides",
-        "step_pips": 10,
-        "initial_lot": 0.01,
-        "multiplier": 1.20,
-        "max_trades_per_side": 6,
-        "basket_tp_currency": 3.00,
-        "max_gross_lots": 0.25,
-        "max_basket_drawdown_currency": 150.0,
-        "min_step_to_spread_ratio": 3.0,
-        "min_free_margin_percent": 75.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.70,
-        "reason": "classic_consolidation_normal",
-    },
-    "classic_consolidation_dense": {
-        "allow_new_basket": True,
-        "grid_mode": "both_sides",
-        "seed_mode": "both_sides",
-        "step_pips": 8,
-        "initial_lot": 0.01,
-        "multiplier": 1.25,
-        "max_trades_per_side": 7,
-        "basket_tp_currency": 3.50,
-        "max_gross_lots": 0.30,
-        "max_basket_drawdown_currency": 180.0,
-        "min_step_to_spread_ratio": 2.5,
-        "min_free_margin_percent": 70.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.62,
-        "reason": "classic_consolidation_dense",
-    },
-    "buy_only_conservative": {
-        "allow_new_basket": True,
-        "grid_mode": "buy_only",
-        "seed_mode": "single_side",
-        "step_pips": 15,
-        "initial_lot": 0.01,
-        "multiplier": 1.15,
-        "max_trades_per_side": 4,
-        "basket_tp_currency": 2.50,
-        "max_gross_lots": 0.20,
-        "max_basket_drawdown_currency": 120.0,
-        "min_step_to_spread_ratio": 3.0,
-        "min_free_margin_percent": 75.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.60,
-        "reason": "static_buy_only_conservative",
-    },
-    "sell_only_conservative": {
-        "allow_new_basket": True,
-        "grid_mode": "sell_only",
-        "seed_mode": "single_side",
-        "step_pips": 15,
-        "initial_lot": 0.01,
-        "multiplier": 1.15,
-        "max_trades_per_side": 4,
-        "basket_tp_currency": 2.50,
-        "max_gross_lots": 0.20,
-        "max_basket_drawdown_currency": 120.0,
-        "min_step_to_spread_ratio": 3.0,
-        "min_free_margin_percent": 75.0,
-        "flatten_on_strong_avoid": True,
-        "confidence": 0.60,
-        "reason": "static_sell_only_conservative",
-    },
-}
+# Grid templates loaded from config (see config/trading_config.json)
+# The GRID_TEMPLATES dict is already populated from config above.
 
 
 def infer_session_name(now_utc: datetime) -> str:

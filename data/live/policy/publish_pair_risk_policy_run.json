@@ -1,7 +1,7 @@
 {
   "status": "ok",
-  "started_at_utc": "2026-04-17T23:55:47.971083+00:00",
-  "finished_at_utc": "2026-04-17T23:55:47.971240+00:00",
+  "started_at_utc": "2026-04-18T00:01:56.549573+00:00",
+  "finished_at_utc": "2026-04-18T00:01:56.549732+00:00",
   "source_policy": "data/live/policy/pair_risk_policy.json",
   "published_policy": "runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json"
 }
