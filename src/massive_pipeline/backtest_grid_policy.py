@@ -81,6 +81,14 @@ class Policy:
 
 
 @dataclass(frozen=True)
+class PolicyOverrides:
+    step_pips: float | None = None
+    max_trades_per_side: int | None = None
+    basket_tp_currency: float | None = None
+    basket_tp_pips: float | None = None
+
+
+@dataclass(frozen=True)
 class SessionSpec:
     pair: str
     session_name: SessionName
@@ -221,6 +229,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--policy-id", help="Template policy id from config.grid_templates.")
     parser.add_argument("--risk-mode", help="Override account risk mode.")
     parser.add_argument("--account-equity", type=float, help="Override account equity.")
+    parser.add_argument("--override-step-pips", type=float, help="Override policy step size in pips for all pairs.")
+    parser.add_argument("--override-max-trades-per-side", type=int, help="Override policy max trades per side for all pairs.")
+    parser.add_argument("--override-basket-tp-currency", type=float, help="Override policy basket TP currency threshold for all pairs.")
+    parser.add_argument("--override-basket-tp-pips", type=float, help="Override policy basket TP in pips for all pairs.")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--max-sessions", type=int, help="Limit number of simulated sessions for smoke tests.")
     parser.add_argument("--use-live-policy", dest="use_live_policy", action="store_true", help="Prefer pair-specific policies from the live policy file.")
@@ -260,6 +272,15 @@ def resolve_account_settings(config: dict[str, Any], risk_mode: str | None, acco
     return resolved_risk_mode, resolved_equity
 
 
+def resolve_policy_overrides(args: argparse.Namespace) -> PolicyOverrides:
+    return PolicyOverrides(
+        step_pips=args.override_step_pips,
+        max_trades_per_side=args.override_max_trades_per_side,
+        basket_tp_currency=args.override_basket_tp_currency,
+        basket_tp_pips=args.override_basket_tp_pips,
+    )
+
+
 def build_policy(
     *,
     pair: str,
@@ -271,6 +292,7 @@ def build_policy(
     risk_mode: str,
     account_equity: float,
     use_live_policy: bool,
+    overrides: PolicyOverrides,
 ) -> Policy:
     templates = config.get("grid_templates", {})
     if policy_id_override:
@@ -291,20 +313,32 @@ def build_policy(
 
     basket_tp_pips = float(base.get("basket_tp_pips", session_cfg.get("tp_pips", 3.0)))
     basket_sl_pips = float(base.get("basket_sl_pips", session_cfg.get("sl_pips", 50.0)))
+    step_pips = overrides.step_pips if overrides.step_pips is not None else float(base.get("step_pips", 0.0))
+    max_trades_per_side = (
+        overrides.max_trades_per_side
+        if overrides.max_trades_per_side is not None
+        else int(base.get("max_trades_per_side", 0))
+    )
+    resolved_basket_tp_pips = overrides.basket_tp_pips if overrides.basket_tp_pips is not None else basket_tp_pips
+    resolved_basket_tp_currency = (
+        overrides.basket_tp_currency
+        if overrides.basket_tp_currency is not None
+        else optional_positive_float(base.get("basket_tp_currency"))
+    )
 
     return Policy(
         pair=pair,
         policy_id=resolved_policy_id,
         grid_mode=str(base.get("grid_mode", "both_sides")),
         seed_mode=str(base.get("seed_mode", "both_sides")),
-        step_pips=float(base.get("step_pips", 0.0)),
+        step_pips=step_pips,
         initial_lot=float(base.get("initial_lot", 0.0)),
         multiplier=float(base.get("multiplier", 1.0)),
-        max_trades_per_side=int(base.get("max_trades_per_side", 0)),
+        max_trades_per_side=max_trades_per_side,
         max_gross_lots=float(base.get("max_gross_lots", 0.0)),
-        basket_tp_pips=basket_tp_pips,
+        basket_tp_pips=resolved_basket_tp_pips,
         basket_sl_pips=basket_sl_pips,
-        basket_tp_currency=optional_positive_float(base.get("basket_tp_currency")),
+        basket_tp_currency=resolved_basket_tp_currency,
         max_basket_drawdown_currency=optional_positive_float(base.get("max_basket_drawdown_currency")),
         allow_new_basket=bool(base.get("allow_new_basket", True)),
         risk_mode=risk_mode,
@@ -344,6 +378,7 @@ def build_session_specs(
     risk_mode: str,
     account_equity: float,
     use_live_policy: bool,
+    overrides: PolicyOverrides,
 ) -> list[SessionSpec]:
     sessions_cfg: dict[str, dict[str, Any]] = config.get("sessions", {})
     daily_liq = tuple(config.get("daily_liquidation_utc", [20, 50]))
@@ -382,6 +417,7 @@ def build_session_specs(
                             risk_mode=risk_mode,
                             account_equity=account_equity,
                             use_live_policy=use_live_policy,
+                            overrides=overrides,
                         ),
                     )
                 )
@@ -1063,6 +1099,7 @@ def main() -> None:
     config = load_json(args.config) if args.config != DEFAULT_CONFIG else load_config()
     pairs = normalize_pairs(args.pair)
     risk_mode, account_equity = resolve_account_settings(config, args.risk_mode, args.account_equity)
+    overrides = resolve_policy_overrides(args)
     start_date, end_date = determine_date_bounds(args.start_date, args.end_date, PRICE_DIR)
     live_pair_policies = load_live_pair_policies(args.grid_policy) if args.use_live_policy else {}
 
@@ -1077,6 +1114,7 @@ def main() -> None:
         risk_mode=risk_mode,
         account_equity=account_equity,
         use_live_policy=args.use_live_policy,
+        overrides=overrides,
     )
     if args.max_sessions is not None:
         session_specs = session_specs[: args.max_sessions]
@@ -1133,6 +1171,12 @@ def main() -> None:
         "use_entry_intent_gating": args.use_entry_intent_gating,
         "live_policy_path": str(args.grid_policy),
         "config_path": str(args.config),
+        "policy_overrides": {
+            "step_pips": overrides.step_pips,
+            "max_trades_per_side": overrides.max_trades_per_side,
+            "basket_tp_currency": overrides.basket_tp_currency,
+            "basket_tp_pips": overrides.basket_tp_pips,
+        },
         "managed_close_minutes_before_by_session": {
             name: int(payload.get("managed_close_minutes_before", 0))
             for name, payload in config.get("sessions", {}).items()
