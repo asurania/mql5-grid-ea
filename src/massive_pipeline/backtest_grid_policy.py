@@ -84,6 +84,7 @@ class Policy:
 class PolicyOverrides:
     step_pips: float | None = None
     max_trades_per_side: int | None = None
+    initial_lot: float | None = None
     basket_tp_currency: float | None = None
     basket_tp_pips: float | None = None
 
@@ -231,6 +232,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--account-equity", type=float, help="Override account equity.")
     parser.add_argument("--override-step-pips", type=float, help="Override policy step size in pips for all pairs.")
     parser.add_argument("--override-max-trades-per-side", type=int, help="Override policy max trades per side for all pairs.")
+    parser.add_argument("--override-initial-lot", type=float, help="Override policy initial lot for all pairs.")
     parser.add_argument("--override-basket-tp-currency", type=float, help="Override policy basket TP currency threshold for all pairs.")
     parser.add_argument("--override-basket-tp-pips", type=float, help="Override policy basket TP in pips for all pairs.")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
@@ -276,6 +278,7 @@ def resolve_policy_overrides(args: argparse.Namespace) -> PolicyOverrides:
     return PolicyOverrides(
         step_pips=args.override_step_pips,
         max_trades_per_side=args.override_max_trades_per_side,
+        initial_lot=args.override_initial_lot,
         basket_tp_currency=args.override_basket_tp_currency,
         basket_tp_pips=args.override_basket_tp_pips,
     )
@@ -319,6 +322,7 @@ def build_policy(
         if overrides.max_trades_per_side is not None
         else int(base.get("max_trades_per_side", 0))
     )
+    initial_lot = overrides.initial_lot if overrides.initial_lot is not None else float(base.get("initial_lot", 0.0))
     resolved_basket_tp_pips = overrides.basket_tp_pips if overrides.basket_tp_pips is not None else basket_tp_pips
     resolved_basket_tp_currency = (
         overrides.basket_tp_currency
@@ -332,7 +336,7 @@ def build_policy(
         grid_mode=str(base.get("grid_mode", "both_sides")),
         seed_mode=str(base.get("seed_mode", "both_sides")),
         step_pips=step_pips,
-        initial_lot=float(base.get("initial_lot", 0.0)),
+        initial_lot=initial_lot,
         multiplier=float(base.get("multiplier", 1.0)),
         max_trades_per_side=max_trades_per_side,
         max_gross_lots=float(base.get("max_gross_lots", 0.0)),
@@ -1174,6 +1178,7 @@ def main() -> None:
         "policy_overrides": {
             "step_pips": overrides.step_pips,
             "max_trades_per_side": overrides.max_trades_per_side,
+            "initial_lot": overrides.initial_lot,
             "basket_tp_currency": overrides.basket_tp_currency,
             "basket_tp_pips": overrides.basket_tp_pips,
         },
