@@ -86,6 +86,7 @@ class SessionSpec:
     session_name: SessionName
     session_start_utc: datetime
     session_end_utc: datetime
+    managed_close_start_utc: datetime
     daily_liquidation_utc: datetime | None
     policy: Policy
 
@@ -190,6 +191,7 @@ class SimulationResult:
     session_name: str
     session_start_utc: datetime
     session_end_utc: datetime
+    managed_close_start_utc: datetime
     policy_id: str
     policy_source: str
     risk_mode: str
@@ -202,6 +204,7 @@ class SimulationResult:
     max_open_legs: int
     exit_reason: str
     bars_processed: int
+    entered_managed_close: bool
     gated_by_event_risk: bool
     gated_by_entry_intent: bool
     derived_entry_direction: str | None
@@ -359,6 +362,7 @@ def build_session_specs(
                 if not session_cfg or not session_cfg.get("enabled", True):
                     continue
                 start_utc, end_utc = session_bounds_for_date(current, session_cfg)
+                managed_close_start_utc = managed_close_start_for_session(end_utc, session_cfg)
                 daily_liq_utc = daily_liquidation_within_window(start_utc, end_utc, daily_liq)
                 specs.append(
                     SessionSpec(
@@ -366,6 +370,7 @@ def build_session_specs(
                         session_name=session_name,  # type: ignore[arg-type]
                         session_start_utc=start_utc,
                         session_end_utc=end_utc,
+                        managed_close_start_utc=managed_close_start_utc,
                         daily_liquidation_utc=daily_liq_utc,
                         policy=build_policy(
                             pair=pair,
@@ -394,6 +399,11 @@ def session_bounds_for_date(anchor_date: date, session_cfg: dict[str, Any]) -> t
     if end_utc <= start_utc:
         end_utc += timedelta(days=1)
     return start_utc, end_utc
+
+
+def managed_close_start_for_session(session_end_utc: datetime, session_cfg: dict[str, Any]) -> datetime:
+    minutes_before = int(session_cfg.get("managed_close_minutes_before", 0))
+    return session_end_utc - timedelta(minutes=minutes_before)
 
 
 def daily_liquidation_within_window(start_utc: datetime, end_utc: datetime, daily_liq_hm: tuple[int, int]) -> datetime | None:
@@ -695,6 +705,7 @@ def build_gated_result(
         session_name=spec.session_name,
         session_start_utc=spec.session_start_utc,
         session_end_utc=spec.session_end_utc,
+        managed_close_start_utc=spec.managed_close_start_utc,
         policy_id=spec.policy.policy_id,
         policy_source=spec.policy.source,
         risk_mode=spec.policy.risk_mode,
@@ -707,6 +718,7 @@ def build_gated_result(
         max_open_legs=0,
         exit_reason=exit_reason,
         bars_processed=bars_processed,
+        entered_managed_close=False,
         gated_by_event_risk=gated_by_event_risk,
         gated_by_entry_intent=gated_by_entry_intent,
         derived_entry_direction=derived_entry_direction,
@@ -726,6 +738,7 @@ def simulate_session(
     basket = Basket()
     policy = spec.policy
     derived_entry_direction: str | None = None
+    entered_managed_close = False
 
     if not policy.allow_new_basket or policy.initial_lot <= 0 or policy.max_trades_per_side <= 0 or policy.max_gross_lots <= 0:
         return build_gated_result(spec, exit_reason="policy_disabled", bars_processed=0)
@@ -764,6 +777,15 @@ def simulate_session(
 
     rows = session_bars.iter_rows(named=True)
     first_row = next(rows)
+    first_bar_ts = first_row["timestamp_utc"]
+    if first_bar_ts >= spec.managed_close_start_utc:
+        return build_gated_result(
+            spec,
+            exit_reason="managed_close_gated",
+            bars_processed=1,
+            derived_entry_direction=derived_entry_direction,
+        )
+
     entry_price = float(first_row["open"])
     for side in seed_sides(policy, derived_entry_direction if use_entry_intent_gating else None):
         basket.add_leg(Leg(side=side, entry_price=entry_price, lot=policy.initial_lot))
@@ -771,6 +793,7 @@ def simulate_session(
     last_close = float(first_row["close"])
     bars_processed = 1
     exit_reason = "session_close"
+    entered_managed_close = first_bar_ts >= spec.managed_close_start_utc
 
     first_floating_min, _ = floating_extremes(basket, float(first_row["low"]), float(first_row["high"]), last_close, pip_size, pip_value_per_001_lot)
     basket.update_drawdown(first_floating_min)
@@ -792,7 +815,17 @@ def simulate_session(
         if cutoff_ts is not None and ts >= cutoff_ts:
             basket.close(bar_open, pip_size, pip_value_per_001_lot)
             exit_reason = cutoff_reason
-            return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
+            return build_result(
+                spec,
+                basket,
+                exit_reason,
+                bars_processed,
+                derived_entry_direction=derived_entry_direction,
+                entered_managed_close=entered_managed_close,
+            )
+
+        if ts >= spec.managed_close_start_utc:
+            entered_managed_close = True
 
         for side in expansion_sides(policy, derived_entry_direction if use_entry_intent_gating else None):
             maybe_expand_side(
@@ -816,14 +849,28 @@ def simulate_session(
         if exit_hit is not None:
             exit_reason, exit_price = exit_hit
             basket.close(exit_price, pip_size, pip_value_per_001_lot)
-            return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
+            return build_result(
+                spec,
+                basket,
+                exit_reason,
+                bars_processed,
+                derived_entry_direction=derived_entry_direction,
+                entered_managed_close=entered_managed_close,
+            )
 
         floating_min, _ = floating_extremes(basket, bar_low, bar_high, bar_close, pip_size, pip_value_per_001_lot)
         basket.update_drawdown(floating_min)
         last_close = bar_close
 
     basket.close(last_close, pip_size, pip_value_per_001_lot)
-    return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
+    return build_result(
+        spec,
+        basket,
+        exit_reason,
+        bars_processed,
+        derived_entry_direction=derived_entry_direction,
+        entered_managed_close=entered_managed_close,
+    )
 
 
 def active_cutoff(spec: SessionSpec) -> tuple[str, datetime | None]:
@@ -839,12 +886,14 @@ def build_result(
     bars_processed: int,
     *,
     derived_entry_direction: str | None = None,
+    entered_managed_close: bool = False,
 ) -> SimulationResult:
     return SimulationResult(
         pair=spec.pair,
         session_name=spec.session_name,
         session_start_utc=spec.session_start_utc,
         session_end_utc=spec.session_end_utc,
+        managed_close_start_utc=spec.managed_close_start_utc,
         policy_id=spec.policy.policy_id,
         policy_source=spec.policy.source,
         risk_mode=spec.policy.risk_mode,
@@ -857,6 +906,7 @@ def build_result(
         max_open_legs=basket.max_open_legs,
         exit_reason=exit_reason,
         bars_processed=bars_processed,
+        entered_managed_close=entered_managed_close,
         gated_by_event_risk=False,
         gated_by_entry_intent=False,
         derived_entry_direction=derived_entry_direction,
@@ -871,6 +921,7 @@ def results_to_frame(results: list[SimulationResult]) -> pl.DataFrame:
                 "session_name": row.session_name,
                 "session_start_utc": row.session_start_utc,
                 "session_end_utc": row.session_end_utc,
+                "managed_close_start_utc": row.managed_close_start_utc,
                 "policy_id": row.policy_id,
                 "policy_source": row.policy_source,
                 "risk_mode": row.risk_mode,
@@ -883,6 +934,7 @@ def results_to_frame(results: list[SimulationResult]) -> pl.DataFrame:
                 "max_open_legs": row.max_open_legs,
                 "exit_reason": row.exit_reason,
                 "bars_processed": row.bars_processed,
+                "entered_managed_close": row.entered_managed_close,
                 "gated_by_event_risk": row.gated_by_event_risk,
                 "gated_by_entry_intent": row.gated_by_entry_intent,
                 "derived_entry_direction": row.derived_entry_direction,
@@ -905,12 +957,22 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
                 "median_pnl": pl.Float64,
                 "worst_drawdown": pl.Float64,
                 "avg_trade_count": pl.Float64,
+                "entered_managed_close_sessions": pl.UInt32,
                 "event_risk_gated_sessions": pl.UInt32,
                 "entry_intent_gated_sessions": pl.UInt32,
             }
         )
         empty_policy = empty_pair.rename({"pair": "policy_id"})
-        return empty_pair, empty_policy, {"sessions": 0, "total_pnl": 0.0}
+        return (
+            empty_pair,
+            empty_policy,
+            {
+                "sessions": 0,
+                "total_pnl": 0.0,
+                "entered_managed_close_sessions": 0,
+                "managed_close_gated_sessions": 0,
+            },
+        )
 
     with_win = results_df.with_columns((pl.col("realized_pnl") > 0).cast(pl.Int64).alias("is_win"))
     summary_by_pair = (
@@ -924,6 +986,7 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
                 pl.col("realized_pnl").median().alias("median_pnl"),
                 pl.col("max_drawdown").max().alias("worst_drawdown"),
                 pl.col("trade_count").mean().alias("avg_trade_count"),
+                pl.col("entered_managed_close").sum().alias("entered_managed_close_sessions"),
                 pl.col("gated_by_event_risk").sum().alias("event_risk_gated_sessions"),
                 pl.col("gated_by_entry_intent").sum().alias("entry_intent_gated_sessions"),
             ]
@@ -942,6 +1005,7 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
                 pl.col("realized_pnl").median().alias("median_pnl"),
                 pl.col("max_drawdown").max().alias("worst_drawdown"),
                 pl.col("trade_count").mean().alias("avg_trade_count"),
+                pl.col("entered_managed_close").sum().alias("entered_managed_close_sessions"),
                 pl.col("gated_by_event_risk").sum().alias("event_risk_gated_sessions"),
                 pl.col("gated_by_entry_intent").sum().alias("entry_intent_gated_sessions"),
             ]
@@ -964,6 +1028,8 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
         "avg_gross_lots": float(results_df["gross_lots"].mean()),
         "winning_sessions": int((results_df["realized_pnl"] > 0).sum()),
         "non_positive_sessions": int((results_df["realized_pnl"] <= 0).sum()),
+        "entered_managed_close_sessions": int(results_df["entered_managed_close"].sum()),
+        "managed_close_gated_sessions": int((results_df["exit_reason"] == "managed_close_gated").sum()),
         "event_risk_gated_sessions": int(results_df["gated_by_event_risk"].sum()),
         "entry_intent_gated_sessions": int(results_df["gated_by_entry_intent"].sum()),
         "exit_reason_counts": group_count_dict(results_df["exit_reason"].to_list()),
@@ -1067,6 +1133,10 @@ def main() -> None:
         "use_entry_intent_gating": args.use_entry_intent_gating,
         "live_policy_path": str(args.grid_policy),
         "config_path": str(args.config),
+        "managed_close_minutes_before_by_session": {
+            name: int(payload.get("managed_close_minutes_before", 0))
+            for name, payload in config.get("sessions", {}).items()
+        },
         "overall": overall,
     }
     (args.output_dir / "overall_summary.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
