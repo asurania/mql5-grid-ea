@@ -1,46 +1,72 @@
 {
-  "_description": "ForexSlave trading system configuration. The Python bridge reads this on every cycle. The web dashboard writes to it.",
-
   "account": {
     "equity": 10000.0,
     "risk_mode": "medium",
     "currency": "USD"
   },
-
-  "pairs": ["EURJPY", "GBPJPY", "GBPUSD", "NZDUSD"],
-
+  "pairs": [
+    "EURJPY",
+    "GBPJPY",
+    "GBPUSD",
+    "NZDUSD"
+  ],
   "sessions": {
     "asia": {
       "enabled": true,
-      "start_ny_time": [18, 0],
-      "managed_close_ny_time": [22, 0],
-      "close_utc": [3, 0],
+      "start_ny_time": [
+        18,
+        0
+      ],
+      "managed_close_ny_time": [
+        22,
+        0
+      ],
+      "close_utc": [
+        3,
+        0
+      ],
       "managed_close_minutes_before": 0,
       "tp_pips": 4.0,
       "sl_pips": 40.0
     },
     "london": {
       "enabled": true,
-      "start_ny_time": [22, 0],
-      "managed_close_ny_time": [6, 0],
-      "close_utc": [10, 0],
+      "start_ny_time": [
+        22,
+        0
+      ],
+      "managed_close_ny_time": [
+        6,
+        0
+      ],
+      "close_utc": [
+        10,
+        0
+      ],
       "managed_close_minutes_before": 0,
       "tp_pips": 3.0,
       "sl_pips": 55.0
     },
     "new_york": {
       "enabled": true,
-      "start_ny_time": [8, 0],
-      "close_utc": [21, 0],
+      "start_ny_time": [
+        8,
+        0
+      ],
+      "close_utc": [
+        21,
+        0
+      ],
       "managed_close_minutes_before": 30,
       "liquidate_minutes_before": 10,
       "tp_pips": 3.0,
       "sl_pips": 50.0
     }
   },
-
-  "daily_liquidation_utc": [20, 50],
-
+  "daily_liquidation_utc": [
+    20,
+    50
+  ],
   "risk": {
     "budget_pct": {
       "low": 0.01,
@@ -68,17 +94,37 @@
       "high": 65.0
     }
   },
-
   "grid_optimizer": {
-    "search_step_pips": [6, 8, 10, 12, 15, 18, 22],
-    "search_multipliers": [1.03, 1.05, 1.08, 1.10, 1.12, 1.15, 1.20],
-    "search_levels": [2, 3, 4, 5, 6],
+    "search_step_pips": [
+      6,
+      8,
+      10,
+      12,
+      15,
+      18,
+      22
+    ],
+    "search_multipliers": [
+      1.03,
+      1.05,
+      1.08,
+      1.1,
+      1.12,
+      1.15,
+      1.2
+    ],
+    "search_levels": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
     "min_initial_lot": 0.01,
-    "max_initial_lot": 5.00,
+    "max_initial_lot": 5.0,
     "lot_step": 0.01,
-    "max_gross_lots_pct_of_equity": 0.00004
+    "max_gross_lots_pct_of_equity": 4e-05
   },
-
   "entry_intent": {
     "min_alignment_score": 0.5,
     "min_trend_strength": 0.0002,
@@ -91,7 +137,6 @@
     "legacy_gann_use": true,
     "legacy_gann_period": 21
   },
-
   "pip_config": {
     "pip_size": {
       "EURJPY": 0.01,
@@ -112,7 +157,6 @@
       "NZDUSD": 1.4
     }
   },
-
   "bridge": {
     "refresh_interval_seconds": 30,
     "policy_expiry_minutes": 15,
@@ -122,7 +166,6 @@
     ],
     "allow_gbpjpy_demo_override": false
   },
-
   "grid_templates": {
     "no_trade": {
       "allow_new_basket": false,
@@ -147,10 +190,10 @@
       "seed_mode": "single_side",
       "step_pips": 18,
       "initial_lot": 0.01,
-      "multiplier": 1.10,
+      "multiplier": 1.1,
       "max_trades_per_side": 3,
       "basket_tp_currency": 2.0,
-      "max_gross_lots": 0.20,
+      "max_gross_lots": 0.2,
       "max_basket_drawdown_currency": 150.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
@@ -164,15 +207,15 @@
       "seed_mode": "both_sides",
       "step_pips": 12,
       "initial_lot": 0.01,
-      "multiplier": 1.20,
+      "multiplier": 1.2,
       "max_trades_per_side": 5,
       "basket_tp_currency": 2.0,
-      "max_gross_lots": 0.30,
+      "max_gross_lots": 0.3,
       "max_basket_drawdown_currency": 150.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
-      "confidence": 0.70,
+      "confidence": 0.7,
       "reason": "classic_consolidation_normal"
     },
     "both_sides_dense": {
@@ -184,7 +227,7 @@
       "multiplier": 1.25,
       "max_trades_per_side": 7,
       "basket_tp_currency": 3.5,
-      "max_gross_lots": 0.30,
+      "max_gross_lots": 0.3,
       "max_basket_drawdown_currency": 180.0,
       "min_step_to_spread_ratio": 2.5,
       "min_free_margin_percent": 70.0,
@@ -201,12 +244,12 @@
       "multiplier": 1.15,
       "max_trades_per_side": 4,
       "basket_tp_currency": 2.5,
-      "max_gross_lots": 0.20,
+      "max_gross_lots": 0.2,
       "max_basket_drawdown_currency": 120.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
-      "confidence": 0.60,
+      "confidence": 0.6,
       "reason": "static_buy_only_conservative"
     },
     "sell_only_conservative": {
@@ -218,12 +261,12 @@
       "multiplier": 1.15,
       "max_trades_per_side": 4,
       "basket_tp_currency": 2.5,
-      "max_gross_lots": 0.20,
+      "max_gross_lots": 0.2,
       "max_basket_drawdown_currency": 120.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
-      "confidence": 0.60,
+      "confidence": 0.6,
       "reason": "static_sell_only_conservative"
     },
     "both_sides_wide_light": {
@@ -235,12 +278,12 @@
       "multiplier": 1.05,
       "max_trades_per_side": 4,
       "basket_tp_currency": 2.0,
-      "max_gross_lots": 0.20,
+      "max_gross_lots": 0.2,
       "max_basket_drawdown_currency": 120.0,
       "min_step_to_spread_ratio": 3.5,
       "min_free_margin_percent": 80.0,
       "flatten_on_strong_avoid": true,
-      "confidence": 0.60,
+      "confidence": 0.6,
       "reason": "static_both_sides_wide_light"
     },
     "classic_consolidation_light": {
@@ -249,10 +292,10 @@
       "seed_mode": "both_sides",
       "step_pips": 14,
       "initial_lot": 0.01,
-      "multiplier": 1.10,
+      "multiplier": 1.1,
       "max_trades_per_side": 5,
       "basket_tp_currency": 2.5,
-      "max_gross_lots": 0.20,
+      "max_gross_lots": 0.2,
       "max_basket_drawdown_currency": 120.0,
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
@@ -266,7 +309,7 @@
       "seed_mode": "both_sides",
       "step_pips": 10,
       "initial_lot": 0.01,
-      "multiplier": 1.20,
+      "multiplier": 1.2,
       "max_trades_per_side": 6,
       "basket_tp_currency": 3.0,
       "max_gross_lots": 0.25,
@@ -274,7 +317,7 @@
       "min_step_to_spread_ratio": 3.0,
       "min_free_margin_percent": 75.0,
       "flatten_on_strong_avoid": true,
-      "confidence": 0.70,
+      "confidence": 0.7,
       "reason": "classic_consolidation_normal"
     },
     "classic_consolidation_dense": {
@@ -286,7 +329,7 @@
       "multiplier": 1.25,
       "max_trades_per_side": 7,
       "basket_tp_currency": 3.5,
-      "max_gross_lots": 0.30,
+      "max_gross_lots": 0.3,
       "max_basket_drawdown_currency": 180.0,
       "min_step_to_spread_ratio": 2.5,
       "min_free_margin_percent": 70.0,
@@ -294,5 +337,6 @@
       "confidence": 0.62,
       "reason": "classic_consolidation_dense"
     }
-  }
+  },
+  "_description": "ForexSlave trading system configuration. The Python bridge reads this on every cycle. The web dashboard writes to it."
 }
