@@ -39,6 +39,7 @@ from massive_pipeline.trading_config import load_config
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG = ROOT / "config" / "trading_config.json"
 DEFAULT_GRID_POLICY = ROOT / "data" / "live" / "policy" / "grid_policy.json"
+DEFAULT_EVENT_GATING_PATH = ROOT / "data" / "processed" / "economic_calendar" / "session_avoidance_events.parquet"
 PRICE_DIR = ROOT / "data" / "processed" / "massive" / "fx_minute_bars"
 DEFAULT_OUTPUT_DIR = ROOT / "data" / "backtest" / "grid_policy"
 NY_TZ = ZoneInfo("America/New_York")
@@ -49,6 +50,13 @@ SIDE_SELL = "sell"
 SessionName = Literal["asia", "london", "new_york"]
 SESSION_ALL = "all"
 NEAR_FLAT_LOT_RATIO = 0.10
+ENTRY_INTENT_LOOKBACK_BARS = 21
+EVENT_AVOID_COLUMN_BY_PAIR = {
+    "EURJPY": "avoid_session_eurjpy",
+    "GBPJPY": "avoid_session_gbpjpy",
+    "GBPUSD": "avoid_session_gbpusd",
+    "NZDUSD": "avoid_session_nzdusd",
+}
 
 
 @dataclass(frozen=True)
@@ -194,6 +202,9 @@ class SimulationResult:
     max_open_legs: int
     exit_reason: str
     bars_processed: int
+    gated_by_event_risk: bool
+    gated_by_entry_intent: bool
+    derived_entry_direction: str | None
 
 
 def parse_args() -> argparse.Namespace:
@@ -211,7 +222,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-sessions", type=int, help="Limit number of simulated sessions for smoke tests.")
     parser.add_argument("--use-live-policy", dest="use_live_policy", action="store_true", help="Prefer pair-specific policies from the live policy file.")
     parser.add_argument("--no-use-live-policy", dest="use_live_policy", action="store_false", help="Ignore the live policy file and use config templates only.")
-    parser.set_defaults(use_live_policy=True)
+    parser.add_argument("--use-event-risk-gating", dest="use_event_risk_gating", action="store_true", help="Skip simulated sessions flagged by historical event-risk avoidance data.")
+    parser.add_argument("--no-use-event-risk-gating", dest="use_event_risk_gating", action="store_false", help="Disable historical event-risk session gating.")
+    parser.add_argument("--use-entry-intent-gating", dest="use_entry_intent_gating", action="store_true", help="Apply deterministic historical entry-intent gating and single-side seeding.")
+    parser.add_argument("--no-use-entry-intent-gating", dest="use_entry_intent_gating", action="store_false", help="Disable historical entry-intent gating.")
+    parser.set_defaults(use_live_policy=True, use_event_risk_gating=False, use_entry_intent_gating=False)
     return parser.parse_args()
 
 
@@ -452,7 +467,7 @@ def load_bars(
             }
         )
 
-    min_ts = min(spec.session_start_utc for spec in session_specs)
+    min_ts = min(spec.session_start_utc for spec in session_specs) - timedelta(minutes=ENTRY_INTENT_LOOKBACK_BARS)
     max_ts = max(spec.session_end_utc for spec in session_specs)
     paths = month_partition_paths(price_root, min_ts, max_ts)
     if not paths:
@@ -471,7 +486,7 @@ def load_bars(
     return scan.collect()
 
 
-def seed_sides(policy: Policy) -> list[str]:
+def seed_sides(policy: Policy, derived_entry_direction: str | None = None) -> list[str]:
     if policy.grid_mode == "buy_only":
         return [SIDE_BUY]
     if policy.grid_mode == "sell_only":
@@ -479,12 +494,14 @@ def seed_sides(policy: Policy) -> list[str]:
     if policy.grid_mode == "both_sides" and policy.seed_mode == "both_sides":
         return [SIDE_BUY, SIDE_SELL]
     if policy.grid_mode == "both_sides" and policy.seed_mode == "single_side":
+        if derived_entry_direction in (SIDE_BUY, SIDE_SELL):
+            return [derived_entry_direction]
         return [SIDE_BUY]
     raise ValueError(f"Unsupported grid/seed mode combination: {policy.grid_mode}/{policy.seed_mode}")
 
 
-def expansion_sides(policy: Policy) -> list[str]:
-    return seed_sides(policy)
+def expansion_sides(policy: Policy, derived_entry_direction: str | None = None) -> list[str]:
+    return seed_sides(policy, derived_entry_direction)
 
 
 def next_lot(policy: Policy, current_count: int) -> float:
@@ -582,59 +599,173 @@ def evaluate_exit(
     return None
 
 
+def load_historical_event_gates(
+    *,
+    event_path: Path,
+    session_specs: list[SessionSpec],
+) -> set[tuple[str, str, date]]:
+    if not session_specs or not event_path.exists():
+        return set()
+
+    start_day = min(spec.session_start_utc.date() for spec in session_specs)
+    end_day = max(spec.session_end_utc.date() for spec in session_specs)
+    pairs = sorted({spec.pair for spec in session_specs if spec.pair in EVENT_AVOID_COLUMN_BY_PAIR})
+    if not pairs:
+        return set()
+
+    avoid_exprs = [pl.col(EVENT_AVOID_COLUMN_BY_PAIR[pair]).is_not_null() & (pl.col(EVENT_AVOID_COLUMN_BY_PAIR[pair]) != "none") for pair in pairs]
+    scan = (
+        pl.scan_parquet(str(event_path))
+        .filter(
+            (pl.col("event_date_utc") >= pl.lit(start_day))
+            & (pl.col("event_date_utc") <= pl.lit(end_day))
+            & pl.any_horizontal(avoid_exprs)
+        )
+        .select(
+            [
+                "event_timestamp_utc",
+                "event_date_utc",
+                "event_session",
+                *[EVENT_AVOID_COLUMN_BY_PAIR[pair] for pair in pairs],
+            ]
+        )
+    )
+    events = list(scan.collect().iter_rows(named=True))
+
+    gated: set[tuple[str, str, date]] = set()
+    for spec in session_specs:
+        avoid_column = EVENT_AVOID_COLUMN_BY_PAIR.get(spec.pair)
+        if avoid_column is None:
+            continue
+        session_day = spec.session_start_utc.date()
+        for row in events:
+            event_day = row["event_date_utc"]
+            if event_day != session_day:
+                continue
+            event_ts = row["event_timestamp_utc"]
+            if event_ts is not None and event_ts > spec.session_end_utc:
+                continue
+            avoid_session = (row.get(avoid_column) or "none").lower()
+            event_session = str(row.get("event_session") or "none").lower()
+            if avoid_session not in {spec.session_name, "both"}:
+                continue
+            if event_session not in {spec.session_name, "both", "none"}:
+                continue
+            gated.add((spec.pair, spec.session_name, session_day))
+            break
+    return gated
+
+
+def derive_entry_direction(pair_bars: pl.DataFrame, session_bars: pl.DataFrame) -> str | None:
+    if session_bars.height == 0:
+        return None
+
+    first_row = session_bars.row(0, named=True)
+    first_ts = first_row["timestamp_utc"]
+    close_window = (
+        pair_bars.filter(pl.col("timestamp_utc") <= pl.lit(first_ts))
+        .select("close")
+        .tail(ENTRY_INTENT_LOOKBACK_BARS)
+        .get_column("close")
+        .to_list()
+    )
+    if len(close_window) < ENTRY_INTENT_LOOKBACK_BARS:
+        return "no_trade"
+
+    first_close = float(first_row["close"])
+    rolling_mean = sum(float(value) for value in close_window) / ENTRY_INTENT_LOOKBACK_BARS
+    if first_close > rolling_mean:
+        return SIDE_SELL
+    if first_close < rolling_mean:
+        return SIDE_BUY
+    return "no_trade"
+
+
+def build_gated_result(
+    spec: SessionSpec,
+    *,
+    exit_reason: str,
+    bars_processed: int,
+    gated_by_event_risk: bool = False,
+    gated_by_entry_intent: bool = False,
+    derived_entry_direction: str | None = None,
+) -> SimulationResult:
+    return SimulationResult(
+        pair=spec.pair,
+        session_name=spec.session_name,
+        session_start_utc=spec.session_start_utc,
+        session_end_utc=spec.session_end_utc,
+        policy_id=spec.policy.policy_id,
+        policy_source=spec.policy.source,
+        risk_mode=spec.policy.risk_mode,
+        account_equity=spec.policy.account_equity,
+        trade_count=0,
+        gross_lots=0.0,
+        realized_pnl=0.0,
+        max_drawdown=0.0,
+        max_adverse_excursion=0.0,
+        max_open_legs=0,
+        exit_reason=exit_reason,
+        bars_processed=bars_processed,
+        gated_by_event_risk=gated_by_event_risk,
+        gated_by_entry_intent=gated_by_entry_intent,
+        derived_entry_direction=derived_entry_direction,
+    )
+
+
 def simulate_session(
     spec: SessionSpec,
+    pair_bars: pl.DataFrame,
     session_bars: pl.DataFrame,
     pip_size: float,
     pip_value_per_001_lot: float,
+    use_event_risk_gating: bool,
+    use_entry_intent_gating: bool,
+    event_risk_gated_sessions: set[tuple[str, str, date]],
 ) -> SimulationResult:
     basket = Basket()
     policy = spec.policy
+    derived_entry_direction: str | None = None
 
     if not policy.allow_new_basket or policy.initial_lot <= 0 or policy.max_trades_per_side <= 0 or policy.max_gross_lots <= 0:
-        return SimulationResult(
-            pair=spec.pair,
-            session_name=spec.session_name,
-            session_start_utc=spec.session_start_utc,
-            session_end_utc=spec.session_end_utc,
-            policy_id=policy.policy_id,
-            policy_source=policy.source,
-            risk_mode=policy.risk_mode,
-            account_equity=policy.account_equity,
-            trade_count=0,
-            gross_lots=0.0,
-            realized_pnl=0.0,
-            max_drawdown=0.0,
-            max_adverse_excursion=0.0,
-            max_open_legs=0,
-            exit_reason="policy_disabled",
-            bars_processed=0,
-        )
+        return build_gated_result(spec, exit_reason="policy_disabled", bars_processed=0)
 
     if session_bars.height == 0:
-        return SimulationResult(
-            pair=spec.pair,
-            session_name=spec.session_name,
-            session_start_utc=spec.session_start_utc,
-            session_end_utc=spec.session_end_utc,
-            policy_id=policy.policy_id,
-            policy_source=policy.source,
-            risk_mode=policy.risk_mode,
-            account_equity=policy.account_equity,
-            trade_count=0,
-            gross_lots=0.0,
-            realized_pnl=0.0,
-            max_drawdown=0.0,
-            max_adverse_excursion=0.0,
-            max_open_legs=0,
-            exit_reason="no_bars",
+        return build_gated_result(spec, exit_reason="no_bars", bars_processed=0)
+
+    if use_event_risk_gating and (spec.pair, spec.session_name, spec.session_start_utc.date()) in event_risk_gated_sessions:
+        return build_gated_result(
+            spec,
+            exit_reason="event_risk_gated",
             bars_processed=0,
+            gated_by_event_risk=True,
         )
+
+    if use_entry_intent_gating:
+        derived_entry_direction = derive_entry_direction(pair_bars, session_bars)
+        if policy.grid_mode in {"buy_only", "sell_only"}:
+            allowed_side = SIDE_BUY if policy.grid_mode == "buy_only" else SIDE_SELL
+            if derived_entry_direction != allowed_side:
+                return build_gated_result(
+                    spec,
+                    exit_reason="entry_intent_gated",
+                    bars_processed=0,
+                    gated_by_entry_intent=True,
+                    derived_entry_direction=derived_entry_direction,
+                )
+        elif policy.grid_mode == "both_sides" and policy.seed_mode == "single_side" and derived_entry_direction not in {SIDE_BUY, SIDE_SELL}:
+            return build_gated_result(
+                spec,
+                exit_reason="entry_intent_gated",
+                bars_processed=0,
+                gated_by_entry_intent=True,
+                derived_entry_direction=derived_entry_direction,
+            )
 
     rows = session_bars.iter_rows(named=True)
     first_row = next(rows)
     entry_price = float(first_row["open"])
-    for side in seed_sides(policy):
+    for side in seed_sides(policy, derived_entry_direction if use_entry_intent_gating else None):
         basket.add_leg(Leg(side=side, entry_price=entry_price, lot=policy.initial_lot))
 
     last_close = float(first_row["close"])
@@ -648,7 +779,7 @@ def simulate_session(
     if cutoff_ts is not None and spec.session_start_utc >= cutoff_ts:
         basket.close(entry_price, pip_size, pip_value_per_001_lot)
         exit_reason = cutoff_reason
-        return build_result(spec, basket, exit_reason, bars_processed)
+        return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
 
     for row in rows:
         ts = row["timestamp_utc"]
@@ -661,9 +792,9 @@ def simulate_session(
         if cutoff_ts is not None and ts >= cutoff_ts:
             basket.close(bar_open, pip_size, pip_value_per_001_lot)
             exit_reason = cutoff_reason
-            return build_result(spec, basket, exit_reason, bars_processed)
+            return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
 
-        for side in expansion_sides(policy):
+        for side in expansion_sides(policy, derived_entry_direction if use_entry_intent_gating else None):
             maybe_expand_side(
                 basket=basket,
                 policy=policy,
@@ -685,14 +816,14 @@ def simulate_session(
         if exit_hit is not None:
             exit_reason, exit_price = exit_hit
             basket.close(exit_price, pip_size, pip_value_per_001_lot)
-            return build_result(spec, basket, exit_reason, bars_processed)
+            return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
 
         floating_min, _ = floating_extremes(basket, bar_low, bar_high, bar_close, pip_size, pip_value_per_001_lot)
         basket.update_drawdown(floating_min)
         last_close = bar_close
 
     basket.close(last_close, pip_size, pip_value_per_001_lot)
-    return build_result(spec, basket, exit_reason, bars_processed)
+    return build_result(spec, basket, exit_reason, bars_processed, derived_entry_direction=derived_entry_direction)
 
 
 def active_cutoff(spec: SessionSpec) -> tuple[str, datetime | None]:
@@ -701,7 +832,14 @@ def active_cutoff(spec: SessionSpec) -> tuple[str, datetime | None]:
     return "session_close", spec.session_end_utc
 
 
-def build_result(spec: SessionSpec, basket: Basket, exit_reason: str, bars_processed: int) -> SimulationResult:
+def build_result(
+    spec: SessionSpec,
+    basket: Basket,
+    exit_reason: str,
+    bars_processed: int,
+    *,
+    derived_entry_direction: str | None = None,
+) -> SimulationResult:
     return SimulationResult(
         pair=spec.pair,
         session_name=spec.session_name,
@@ -719,6 +857,9 @@ def build_result(spec: SessionSpec, basket: Basket, exit_reason: str, bars_proce
         max_open_legs=basket.max_open_legs,
         exit_reason=exit_reason,
         bars_processed=bars_processed,
+        gated_by_event_risk=False,
+        gated_by_entry_intent=False,
+        derived_entry_direction=derived_entry_direction,
     )
 
 
@@ -742,6 +883,9 @@ def results_to_frame(results: list[SimulationResult]) -> pl.DataFrame:
                 "max_open_legs": row.max_open_legs,
                 "exit_reason": row.exit_reason,
                 "bars_processed": row.bars_processed,
+                "gated_by_event_risk": row.gated_by_event_risk,
+                "gated_by_entry_intent": row.gated_by_entry_intent,
+                "derived_entry_direction": row.derived_entry_direction,
             }
             for row in results
         ]
@@ -761,6 +905,8 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
                 "median_pnl": pl.Float64,
                 "worst_drawdown": pl.Float64,
                 "avg_trade_count": pl.Float64,
+                "event_risk_gated_sessions": pl.UInt32,
+                "entry_intent_gated_sessions": pl.UInt32,
             }
         )
         empty_policy = empty_pair.rename({"pair": "policy_id"})
@@ -778,6 +924,8 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
                 pl.col("realized_pnl").median().alias("median_pnl"),
                 pl.col("max_drawdown").max().alias("worst_drawdown"),
                 pl.col("trade_count").mean().alias("avg_trade_count"),
+                pl.col("gated_by_event_risk").sum().alias("event_risk_gated_sessions"),
+                pl.col("gated_by_entry_intent").sum().alias("entry_intent_gated_sessions"),
             ]
         )
         .with_columns((pl.col("winning_sessions") / pl.col("sessions")).alias("win_rate"))
@@ -794,6 +942,8 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
                 pl.col("realized_pnl").median().alias("median_pnl"),
                 pl.col("max_drawdown").max().alias("worst_drawdown"),
                 pl.col("trade_count").mean().alias("avg_trade_count"),
+                pl.col("gated_by_event_risk").sum().alias("event_risk_gated_sessions"),
+                pl.col("gated_by_entry_intent").sum().alias("entry_intent_gated_sessions"),
             ]
         )
         .with_columns((pl.col("winning_sessions") / pl.col("sessions")).alias("win_rate"))
@@ -814,14 +964,18 @@ def summarize_results(results_df: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFr
         "avg_gross_lots": float(results_df["gross_lots"].mean()),
         "winning_sessions": int((results_df["realized_pnl"] > 0).sum()),
         "non_positive_sessions": int((results_df["realized_pnl"] <= 0).sum()),
+        "event_risk_gated_sessions": int(results_df["gated_by_event_risk"].sum()),
+        "entry_intent_gated_sessions": int(results_df["gated_by_entry_intent"].sum()),
         "exit_reason_counts": group_count_dict(results_df["exit_reason"].to_list()),
     }
     return summary_by_pair, summary_by_policy, overall
 
 
-def group_count_dict(values: list[str]) -> dict[str, int]:
+def group_count_dict(values: list[str | None]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for value in values:
+        if value is None:
+            continue
         counts[value] = counts.get(value, 0) + 1
     return dict(sorted(counts.items()))
 
@@ -832,6 +986,10 @@ def bars_for_spec(bars_df: pl.DataFrame, spec: SessionSpec) -> pl.DataFrame:
         & (pl.col("timestamp_utc") >= pl.lit(spec.session_start_utc))
         & (pl.col("timestamp_utc") < pl.lit(spec.session_end_utc))
     )
+
+
+def bars_for_pair(bars_df: pl.DataFrame, pair: str) -> pl.DataFrame:
+    return bars_df.filter(pl.col("pair") == pair)
 
 
 def main() -> None:
@@ -858,6 +1016,12 @@ def main() -> None:
         session_specs = session_specs[: args.max_sessions]
 
     bars_df = load_bars(price_root=PRICE_DIR, pairs=pairs, session_specs=session_specs)
+    pair_bars_map = {pair: bars_for_pair(bars_df, pair) for pair in pairs}
+    event_risk_gated_sessions = (
+        load_historical_event_gates(event_path=DEFAULT_EVENT_GATING_PATH, session_specs=session_specs)
+        if args.use_event_risk_gating
+        else set()
+    )
     pip_cfg = config.get("pip_config", {})
     pip_size_map: dict[str, float] = pip_cfg.get("pip_size", {})
     pip_value_map: dict[str, float] = pip_cfg.get("pip_value_per_001_lot", {})
@@ -869,9 +1033,13 @@ def main() -> None:
         results.append(
             simulate_session(
                 spec=spec,
+                pair_bars=pair_bars_map[spec.pair],
                 session_bars=bars_for_spec(bars_df, spec),
                 pip_size=pip_size,
                 pip_value_per_001_lot=pip_value_per_001_lot,
+                use_event_risk_gating=args.use_event_risk_gating,
+                use_entry_intent_gating=args.use_entry_intent_gating,
+                event_risk_gated_sessions=event_risk_gated_sessions,
             )
         )
 
@@ -895,6 +1063,8 @@ def main() -> None:
         "risk_mode": risk_mode,
         "account_equity": account_equity,
         "max_sessions": args.max_sessions,
+        "use_event_risk_gating": args.use_event_risk_gating,
+        "use_entry_intent_gating": args.use_entry_intent_gating,
         "live_policy_path": str(args.grid_policy),
         "config_path": str(args.config),
         "overall": overall,
