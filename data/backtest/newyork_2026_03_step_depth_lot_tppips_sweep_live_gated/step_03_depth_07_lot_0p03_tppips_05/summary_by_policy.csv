@@ -1,0 +1,5 @@
+policy_id,sessions,winning_sessions,total_pnl,avg_pnl,median_pnl,worst_drawdown,avg_trade_count,entered_managed_close_sessions,event_risk_gated_sessions,entry_intent_gated_sessions,win_rate
+session_optimizer_asia_eurjpy_medium,31,22,141.086793,4.551186870967742,5.542828,64.03963,4.064516129032258,0,0,0,0.7096774193548387
+session_optimizer_asia_gbpjpy_medium,31,22,142.62241,4.600722903225806,3.943213,54.040619,4.129032258064516,0,0,0,0.7096774193548387
+session_optimizer_asia_gbpusd_medium,31,18,-176.44995100000003,-5.691933903225808,5.85486,103.05906,4.709677419354839,0,0,0,0.5806451612903226
+session_optimizer_asia_nzdusd_medium,31,22,88.691395,2.861012741935484,1.95,17.471774,1.3870967741935485,0,0,0,0.7096774193548387

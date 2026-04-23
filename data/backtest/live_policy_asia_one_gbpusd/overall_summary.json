@@ -1,0 +1,56 @@
+{
+  "generated_at_utc": "2026-04-22T18:51:09.164150+00:00",
+  "pairs": [
+    "GBPUSD"
+  ],
+  "session_filter": "asia",
+  "start_date": "2023-01-01",
+  "end_date": "2026-04-30",
+  "use_live_policy": true,
+  "policy_id_override": null,
+  "risk_mode": "medium",
+  "account_equity": 10000.0,
+  "max_sessions": 1,
+  "use_event_risk_gating": false,
+  "use_entry_intent_gating": false,
+  "live_policy_path": "/home/asurani/.openclaw/workspace/data/live/policy/grid_policy.json",
+  "config_path": "/home/asurani/.openclaw/workspace/config/trading_config.json",
+  "policy_overrides": {
+    "step_pips": null,
+    "max_trades_per_side": null,
+    "initial_lot": null,
+    "basket_tp_currency": null,
+    "basket_tp_pips": null
+  },
+  "managed_close_minutes_before_by_session": {
+    "asia": 0,
+    "london": 0,
+    "new_york": 30
+  },
+  "overall": {
+    "sessions": 1,
+    "pairs": [
+      "GBPUSD"
+    ],
+    "policies": [
+      "session_optimizer_new_york_gbpusd_medium"
+    ],
+    "total_pnl": 12.250983,
+    "avg_pnl": 12.250983,
+    "median_pnl": 12.250983,
+    "best_session_pnl": 12.250983,
+    "worst_session_pnl": 12.250983,
+    "worst_drawdown": 4.095,
+    "avg_trade_count": 4.0,
+    "avg_gross_lots": 0.207625,
+    "winning_sessions": 1,
+    "non_positive_sessions": 0,
+    "entered_managed_close_sessions": 0,
+    "managed_close_gated_sessions": 0,
+    "event_risk_gated_sessions": 0,
+    "entry_intent_gated_sessions": 0,
+    "exit_reason_counts": {
+      "basket_tp_pips": 1
+    }
+  }
+}

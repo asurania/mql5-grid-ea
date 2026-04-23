@@ -1,47 +1,30 @@
 {
-  "generated_at_utc": "2026.04.18 02:00:50",
-  "source_model": "xgb_y_avoid_session",
-  "threshold_version": "avoid_session_v1",
-  "pair_policies": [
+  "generated_at_utc": "2026.04.23 00:03:11",
+  "version": "pair_risk_policy_v1",
+  "pairs": [
     {
-      "pair": "EURJPY",
+      "pair": "NZDUSD",
+      "enabled": true,
+      "allow_new_entries": true,
       "policy_action": "allow_trading",
-      "policy_band": "no_active_event_risk",
-      "max_score_avoid_session": 0.0,
-      "trigger_event_id": null,
-      "trigger_event_name": null,
-      "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026.04.18 02:00:50"
+      "reason": "core_v1.1_guarded_nzdusd_new_york",
+      "expires_at_utc": "2026.04.23 00:18:11"
     },
     {
       "pair": "GBPJPY",
+      "enabled": true,
+      "allow_new_entries": true,
       "policy_action": "allow_trading",
-      "policy_band": "no_active_event_risk",
-      "max_score_avoid_session": 0.0,
-      "trigger_event_id": null,
-      "trigger_event_name": null,
-      "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026.04.18 02:00:50"
+      "reason": "core_v1.1_guarded_gbpjpy_london",
+      "expires_at_utc": "2026.04.23 00:18:11"
     },
     {
       "pair": "GBPUSD",
+      "enabled": true,
+      "allow_new_entries": true,
       "policy_action": "allow_trading",
-      "policy_band": "no_active_event_risk",
-      "max_score_avoid_session": 0.0,
-      "trigger_event_id": null,
-      "trigger_event_name": null,
-      "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026.04.18 02:00:50"
-    },
-    {
-      "pair": "NZDUSD",
-      "policy_action": "allow_trading",
-      "policy_band": "no_active_event_risk",
-      "max_score_avoid_session": 0.0,
-      "trigger_event_id": null,
-      "trigger_event_name": null,
-      "trigger_event_timestamp_utc": null,
-      "generated_at_utc": "2026.04.18 02:00:50"
+      "reason": "core_v1.1_guarded_gbpusd_new_york",
+      "expires_at_utc": "2026.04.23 00:18:11"
     }
   ]
 }

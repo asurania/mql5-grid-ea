@@ -1,0 +1,25 @@
+{
+  "status": "ok",
+  "started_at_utc": "2026-04-22T23:55:09.286488+00:00",
+  "files": [
+    {
+      "file": "core_portfolio_policy.json",
+      "source": "data/live/policy/core_portfolio_policy.json",
+      "runtime_dest": "runtime_handoff/mt5_common/Files/ForexSlave/core_portfolio_policy.json",
+      "mt5_common_dest": "/home/asurani/.wine-mt5/drive_c/users/asurani/AppData/Roaming/MetaQuotes/Terminal/Common/Files/ForexSlave/core_portfolio_policy.json"
+    },
+    {
+      "file": "entry_intent.json",
+      "source": "data/live/policy/entry_intent.json",
+      "runtime_dest": "runtime_handoff/mt5_common/Files/ForexSlave/entry_intent.json",
+      "mt5_common_dest": "/home/asurani/.wine-mt5/drive_c/users/asurani/AppData/Roaming/MetaQuotes/Terminal/Common/Files/ForexSlave/entry_intent.json"
+    },
+    {
+      "file": "pair_risk_policy.json",
+      "source": "data/live/policy/pair_risk_policy.json",
+      "runtime_dest": "runtime_handoff/mt5_common/Files/ForexSlave/pair_risk_policy.json",
+      "mt5_common_dest": "/home/asurani/.wine-mt5/drive_c/users/asurani/AppData/Roaming/MetaQuotes/Terminal/Common/Files/ForexSlave/pair_risk_policy.json"
+    }
+  ],
+  "finished_at_utc": "2026-04-22T23:55:09.412239+00:00"
+}

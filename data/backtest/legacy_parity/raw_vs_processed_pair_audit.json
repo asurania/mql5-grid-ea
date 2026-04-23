@@ -1,0 +1,1445 @@
+{
+  "generated_at_utc": "2026-04-21T20:51:41.025007+00:00",
+  "monthly": [
+    {
+      "year": 2023,
+      "month": 1,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 27174,
+          "processed_rows": 27174,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29222,
+          "processed_rows": 29222,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 25280,
+          "processed_rows": 25280,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 28434,
+          "processed_rows": 28434,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29111,
+          "processed_rows": 29111,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 27609,
+          "processed_rows": 27609,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 33265,
+          "processed_rows": 33265,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 34236,
+          "processed_rows": 34236,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32841,
+          "processed_rows": 32841,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 29042,
+          "processed_rows": 29042,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30242,
+          "processed_rows": 30242,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28758,
+          "processed_rows": 28758,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 32886,
+          "processed_rows": 32886,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 33373,
+          "processed_rows": 33373,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32004,
+          "processed_rows": 32004,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31402,
+          "processed_rows": 31402,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32643,
+          "processed_rows": 32643,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31209,
+          "processed_rows": 31209,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30090,
+          "processed_rows": 30090,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 31250,
+          "processed_rows": 31250,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 29841,
+          "processed_rows": 29841,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 32813,
+          "processed_rows": 32813,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 33948,
+          "processed_rows": 33948,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32639,
+          "processed_rows": 32639,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 29069,
+          "processed_rows": 29069,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30317,
+          "processed_rows": 30317,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28889,
+          "processed_rows": 28889,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31999,
+          "processed_rows": 31999,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32893,
+          "processed_rows": 32893,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31649,
+          "processed_rows": 31649,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31859,
+          "processed_rows": 31859,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32638,
+          "processed_rows": 32638,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31544,
+          "processed_rows": 31544,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 29970,
+          "processed_rows": 29970,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30760,
+          "processed_rows": 30760,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 29753,
+          "processed_rows": 29753,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31818,
+          "processed_rows": 31818,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32891,
+          "processed_rows": 32891,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31931,
+          "processed_rows": 31931,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 29186,
+          "processed_rows": 29186,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29065,
+          "processed_rows": 29065,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 29070,
+          "processed_rows": 29070,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30113,
+          "processed_rows": 30113,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30214,
+          "processed_rows": 30214,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30064,
+          "processed_rows": 30064,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31339,
+          "processed_rows": 31339,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 31516,
+          "processed_rows": 31516,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31295,
+          "processed_rows": 31295,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 32260,
+          "processed_rows": 32260,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32117,
+          "processed_rows": 32117,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32171,
+          "processed_rows": 32171,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 28924,
+          "processed_rows": 28924,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 28758,
+          "processed_rows": 28758,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28886,
+          "processed_rows": 28886,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 32576,
+          "processed_rows": 32576,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32433,
+          "processed_rows": 32433,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32558,
+          "processed_rows": 32558,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31391,
+          "processed_rows": 31391,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 31247,
+          "processed_rows": 31247,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31272,
+          "processed_rows": 31272,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30374,
+          "processed_rows": 30374,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30148,
+          "processed_rows": 30148,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30157,
+          "processed_rows": 30157,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 32326,
+          "processed_rows": 32326,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32242,
+          "processed_rows": 32242,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32242,
+          "processed_rows": 32242,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 29073,
+          "processed_rows": 29073,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 28709,
+          "processed_rows": 28709,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28969,
+          "processed_rows": 28969,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30280,
+          "processed_rows": 30280,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29819,
+          "processed_rows": 29819,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30349,
+          "processed_rows": 30349,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31670,
+          "processed_rows": 31670,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29322,
+          "processed_rows": 29322,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30958,
+          "processed_rows": 30958,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 28774,
+          "processed_rows": 28774,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 26627,
+          "processed_rows": 26627,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28569,
+          "processed_rows": 28569,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30379,
+          "processed_rows": 30379,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29446,
+          "processed_rows": 29446,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30130,
+          "processed_rows": 30130,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30098,
+          "processed_rows": 30098,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29743,
+          "processed_rows": 29743,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 29943,
+          "processed_rows": 29943,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31321,
+          "processed_rows": 31321,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 31187,
+          "processed_rows": 31187,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31199,
+          "processed_rows": 31199,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30175,
+          "processed_rows": 30175,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29925,
+          "processed_rows": 29925,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 29991,
+          "processed_rows": 29991,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 33083,
+          "processed_rows": 33083,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32941,
+          "processed_rows": 32941,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32892,
+          "processed_rows": 32892,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30215,
+          "processed_rows": 30215,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30044,
+          "processed_rows": 30044,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 29955,
+          "processed_rows": 29955,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31603,
+          "processed_rows": 31603,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 31481,
+          "processed_rows": 31481,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31414,
+          "processed_rows": 31414,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 32928,
+          "processed_rows": 32928,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 32738,
+          "processed_rows": 32738,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 32721,
+          "processed_rows": 32721,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 28910,
+          "processed_rows": 28910,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 28379,
+          "processed_rows": 28379,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28663,
+          "processed_rows": 28663,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31087,
+          "processed_rows": 31087,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 30937,
+          "processed_rows": 30937,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30884,
+          "processed_rows": 30884,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 1,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 30200,
+          "processed_rows": 30200,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 29944,
+          "processed_rows": 29944,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 30012,
+          "processed_rows": 30012,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 2,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 28658,
+          "processed_rows": 28658,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 26823,
+          "processed_rows": 26823,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 28447,
+          "processed_rows": 28447,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 31841,
+          "processed_rows": 31841,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 31584,
+          "processed_rows": 31584,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 31611,
+          "processed_rows": 31611,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 4,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 20155,
+          "processed_rows": 20155,
+          "status": "ok"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 20145,
+          "processed_rows": 20145,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 17707,
+          "processed_rows": 17707,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 20079,
+          "processed_rows": 20079,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 5,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 6,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 7,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 8,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 10,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 11,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 12,
+      "pairs": [
+        {
+          "pair": "AUDNZD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "NZDUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPJPY",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        },
+        {
+          "pair": "GBPUSD",
+          "raw_rows": 0,
+          "processed_rows": 0,
+          "status": "missing_in_both"
+        }
+      ]
+    }
+  ]
+}

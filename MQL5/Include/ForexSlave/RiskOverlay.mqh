@@ -27,7 +27,7 @@ private:
       double equity = AccountInfoDouble(ACCOUNT_EQUITY);
       if(equity <= 0.0)
          return 0.0;
-      return (AccountInfoDouble(ACCOUNT_FREEMARGIN) / equity) * 100.0;
+      return (AccountInfoDouble(ACCOUNT_MARGIN_FREE) / equity) * 100.0;
      }
 
 public:
@@ -168,7 +168,7 @@ public:
         }
 
       string policyReason = "";
-      if(!PassesGridPolicyHardCaps(pair, policyReason))
+      if(!PassesGridPolicyHardCaps(pair, policy, policyReason))
         {
          reason = policyReason;
          return false;

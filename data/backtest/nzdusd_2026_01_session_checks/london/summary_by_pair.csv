@@ -1,0 +1,2 @@
+pair,sessions,winning_sessions,total_pnl,avg_pnl,median_pnl,worst_drawdown,avg_trade_count,entered_managed_close_sessions,event_risk_gated_sessions,entry_intent_gated_sessions,win_rate
+NZDUSD,31,13,-70.11911400000001,-2.261906903225807,0.0,156.328133,1.967741935483871,0,0,0,0.41935483870967744

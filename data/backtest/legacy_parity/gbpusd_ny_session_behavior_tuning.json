@@ -1,0 +1,95 @@
+{
+  "generated_at_utc": "2026-04-21T23:56:05.697194+00:00",
+  "best": [
+    {
+      "managed_close_minutes": 75,
+      "min_segment_rows": 30,
+      "total_pnl": 20696.785971499343,
+      "forced_close_count": 247,
+      "segments": 740,
+      "worst_segment_pnl": -24.438556755587747,
+      "score": 15732.347414743756
+    },
+    {
+      "managed_close_minutes": 75,
+      "min_segment_rows": 60,
+      "total_pnl": 20696.785971499343,
+      "forced_close_count": 247,
+      "segments": 740,
+      "worst_segment_pnl": -24.438556755587747,
+      "score": 15732.347414743756
+    },
+    {
+      "managed_close_minutes": 75,
+      "min_segment_rows": 90,
+      "total_pnl": 20696.785971499343,
+      "forced_close_count": 247,
+      "segments": 740,
+      "worst_segment_pnl": -24.438556755587747,
+      "score": 15732.347414743756
+    },
+    {
+      "managed_close_minutes": 90,
+      "min_segment_rows": 30,
+      "total_pnl": 20141.25166723904,
+      "forced_close_count": 222,
+      "segments": 740,
+      "worst_segment_pnl": -24.700562746595473,
+      "score": 15676.551104492446
+    },
+    {
+      "managed_close_minutes": 90,
+      "min_segment_rows": 60,
+      "total_pnl": 20141.25166723904,
+      "forced_close_count": 222,
+      "segments": 740,
+      "worst_segment_pnl": -24.700562746595473,
+      "score": 15676.551104492446
+    },
+    {
+      "managed_close_minutes": 90,
+      "min_segment_rows": 90,
+      "total_pnl": 20141.25166723904,
+      "forced_close_count": 222,
+      "segments": 740,
+      "worst_segment_pnl": -24.700562746595473,
+      "score": 15676.551104492446
+    },
+    {
+      "managed_close_minutes": 60,
+      "min_segment_rows": 30,
+      "total_pnl": 21175.378059460618,
+      "forced_close_count": 281,
+      "segments": 740,
+      "worst_segment_pnl": -24.438556755587747,
+      "score": 15530.93950270503
+    },
+    {
+      "managed_close_minutes": 60,
+      "min_segment_rows": 60,
+      "total_pnl": 21175.378059460618,
+      "forced_close_count": 281,
+      "segments": 740,
+      "worst_segment_pnl": -24.438556755587747,
+      "score": 15530.93950270503
+    },
+    {
+      "managed_close_minutes": 60,
+      "min_segment_rows": 90,
+      "total_pnl": 21175.378059460618,
+      "forced_close_count": 281,
+      "segments": 740,
+      "worst_segment_pnl": -24.438556755587747,
+      "score": 15530.93950270503
+    },
+    {
+      "managed_close_minutes": 45,
+      "min_segment_rows": 30,
+      "total_pnl": 21714.677985381495,
+      "forced_close_count": 329,
+      "segments": 740,
+      "worst_segment_pnl": -23.90496274659511,
+      "score": 15110.7730226349
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-04-22T22:10:47.841209+00:00",
+  "pairs": [
+    "GBPJPY"
+  ],
+  "sessions": [
+    "asia"
+  ],
+  "start_date": "2025-01-01",
+  "end_date": "2025-03-31",
+  "lookback_days": 28,
+  "forward_days": 7,
+  "candidate_config": "config/walkforward_candidate_space_v1.json",
+  "status": "training_selection_wired_forward_run_pending"
+}

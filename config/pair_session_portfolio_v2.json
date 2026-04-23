@@ -1,0 +1,70 @@
+{
+  "timezone": "America/Edmonton",
+  "sessions": {
+    "asia": {"start": "16:00", "end": "21:00"},
+    "london": {"start": "21:00", "end": "04:00"},
+    "new_york": {"start": "04:00", "end": "12:00"}
+  },
+  "portfolio": [
+    {
+      "pair": "NZDUSD",
+      "session": "new_york",
+      "enabled": true,
+      "grid_levels": 6,
+      "multiplier": 1.1,
+      "initial_lot": 0.01,
+      "tp_pips": 2.8,
+      "sl_pips": 40.0,
+      "drawdown_limit_currency": 140.0,
+      "step_mode": "fixed",
+      "step_pips": 6.4,
+      "variable_step_schedule": [],
+      "variable_tp_schedule": []
+    },
+    {
+      "pair": "GBPJPY",
+      "session": "london",
+      "enabled": true,
+      "grid_levels": 8,
+      "multiplier": 1.12,
+      "initial_lot": 0.01,
+      "tp_pips": 4.0,
+      "sl_pips": 70.0,
+      "drawdown_limit_currency": 180.0,
+      "step_mode": "fixed",
+      "step_pips": 8.2,
+      "variable_step_schedule": [],
+      "variable_tp_schedule": []
+    },
+    {
+      "pair": "GBPUSD",
+      "session": "new_york",
+      "enabled": true,
+      "grid_levels": 4,
+      "multiplier": 1.08,
+      "initial_lot": 0.01,
+      "tp_pips": 2.8,
+      "sl_pips": 40.0,
+      "drawdown_limit_currency": 130.0,
+      "step_mode": "fixed",
+      "step_pips": 7.3,
+      "variable_step_schedule": [],
+      "variable_tp_schedule": []
+    },
+    {
+      "pair": "AUDNZD",
+      "session": "london",
+      "enabled": true,
+      "grid_levels": 5,
+      "multiplier": 1.11,
+      "initial_lot": 0.01,
+      "tp_pips": 4.02,
+      "sl_pips": 45.0,
+      "drawdown_limit_currency": 140.0,
+      "step_mode": "fixed",
+      "step_pips": 8.05,
+      "variable_step_schedule": [],
+      "variable_tp_schedule": []
+    }
+  ]
+}

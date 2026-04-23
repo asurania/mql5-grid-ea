@@ -7,10 +7,34 @@ import polars as pl
 RAW_DIR = Path("data/raw/massive/forex/minute_aggs")
 OUT_DIR = Path("data/processed/massive/fx_minute_bars")
 PAIR_MAP = {
-    "C:EUR-JPY": "EURJPY",
-    "C:GBP-JPY": "GBPJPY",
+    "C:EUR-USD": "EURUSD",
+    "C:USD-JPY": "USDJPY",
     "C:GBP-USD": "GBPUSD",
+    "C:USD-CHF": "USDCHF",
+    "C:AUD-USD": "AUDUSD",
+    "C:USD-CAD": "USDCAD",
     "C:NZD-USD": "NZDUSD",
+    "C:EUR-GBP": "EURGBP",
+    "C:EUR-JPY": "EURJPY",
+    "C:EUR-CHF": "EURCHF",
+    "C:EUR-AUD": "EURAUD",
+    "C:EUR-CAD": "EURCAD",
+    "C:EUR-NZD": "EURNZD",
+    "C:GBP-JPY": "GBPJPY",
+    "C:GBP-CHF": "GBPCHF",
+    "C:GBP-AUD": "GBPAUD",
+    "C:GBP-CAD": "GBPCAD",
+    "C:GBP-NZD": "GBPNZD",
+    "C:AUD-JPY": "AUDJPY",
+    "C:AUD-CHF": "AUDCHF",
+    "C:AUD-CAD": "AUDCAD",
+    "C:AUD-NZD": "AUDNZD",
+    "C:CAD-JPY": "CADJPY",
+    "C:CAD-CHF": "CADCHF",
+    "C:CHF-JPY": "CHFJPY",
+    "C:NZD-JPY": "NZDJPY",
+    "C:NZD-CHF": "NZDCHF",
+    "C:NZD-CAD": "NZDCAD",
 }
 
 
@@ -26,7 +50,10 @@ def session_label_expr() -> pl.Expr:
 
 
 def month_paths() -> list[Path]:
-    return sorted(RAW_DIR.glob("20[0-9][0-9]/[0-1][0-9]"))
+    return sorted(
+        p for p in RAW_DIR.glob("20[0-9][0-9]/[0-1][0-9]")
+        if p.is_dir()
+    )
 
 
 def normalize_month(month_dir: Path) -> tuple[int, int, int]:
@@ -49,6 +76,7 @@ def normalize_month(month_dir: Path) -> tuple[int, int, int]:
         dfs.append(pl.read_csv(path, schema_overrides=schema_overrides))
 
     df = pl.concat(dfs)
+    df = df.filter(pl.col("ticker").is_in(list(PAIR_MAP.keys())))
     df = df.with_columns(
         [
             pl.col("ticker").replace(PAIR_MAP).alias("pair"),
@@ -66,6 +94,9 @@ def normalize_month(month_dir: Path) -> tuple[int, int, int]:
             session_label_expr(),
         ]
     )
+    if df.height == 0:
+        return (0, 0, 0)
+
     df = df.select(
         [
             "pair",

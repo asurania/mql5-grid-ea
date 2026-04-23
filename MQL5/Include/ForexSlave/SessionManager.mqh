@@ -79,12 +79,6 @@ public:
         }
      }
 
-   // Legacy 2-arg version for backward compat (no daily liquidation)
-   void UpdatePythonTimings(datetime managedCloseUTC, datetime liquidateUTC, datetime sessionCloseUTC)
-     {
-      UpdatePythonTimings(managedCloseUTC, sessionCloseUTC, liquidateUTC);
-     }
-
    // Parse MT5 timestamp string "2026.04.17 20:30:00" to datetime
    datetime ParseMT5Timestamp(string ts)
      {

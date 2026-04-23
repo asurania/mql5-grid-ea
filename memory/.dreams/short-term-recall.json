@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T22:55:16.701Z",
+  "updatedAt": "2026-04-22T04:11:41.690Z",
   "entries": {
     "memory:memory/2026-04-15.md:1:8": {
       "key": "memory:memory/2026-04-15.md:1:8",
@@ -222,6 +222,192 @@
         "sl/tp",
         "first-cut",
         "grid-policy"
+      ]
+    },
+    "memory:memory/2026-04-14.md:1:8": {
+      "key": "memory:memory/2026-04-14.md:1:8",
+      "path": "memory/2026-04-14.md",
+      "startLine": 1,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "- Set up workspace ML environment `.venv-forex` and validated ROCm PyTorch on Radeon 8060S Graphics, with Torch 2.11.0 + HIP 7.2 working and core data/ML packages installed. - Evaluated OpenBB for economic calendar use and found SDK packaging/version regressions; switched to testing alternative macro calendar sources instead of relying on OpenBB SDK. - Validated RapidAPI `ultimate-economic-calendar` as usable for v1 research. Backfilled and normalized economic calendar data for 2023, 2024, 2025, and 2026 Jan-Mar for US/GB/JP/NZ/DE into parquet. - Built calendar pipeline files under `src/calendar_pipeline/`: `fetch_calendar.py`, `normalize_calendar.py`, `profile_calendar.py`, `tag_risk_prior.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T04:11:41.690Z",
+      "lastRecalledAt": "2026-04-22T04:11:41.690Z",
+      "queryHashes": [
+        "27c19340af9a"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "venv-forex",
+        "2.11.0",
+        "7.2",
+        "data/ml",
+        "packaging/version",
+        "ultimate-economic-calendar",
+        "jan-mar",
+        "us/gb/jp/nz/de"
+      ]
+    },
+    "memory:memory/2026-04-17.md:17:23": {
+      "key": "memory:memory/2026-04-17.md:17:23",
+      "path": "memory/2026-04-17.md",
+      "startLine": 17,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "- GBPJPY live demo override was intentionally kept in place so current dual-seed validation flow is not broken while dynamic optimizer v1 is introduced for other pairs. - Smoke test succeeded conceptually: grid policy output format was advanced toward `grid_policy_v2` / dynamic session optimizer behavior, but implementation still needs cleanup and verification because the file currently has partial refactor state and likely needs a follow-up pass before production use. - User wants next evolution to include configurable account size / risk mode and eventually ML-driven recommendation of session profit target bands (low/medium/high risk modes tied to target-profit envelopes). - Extended the s",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T04:11:41.690Z",
+      "lastRecalledAt": "2026-04-22T04:11:41.690Z",
+      "queryHashes": [
+        "27c19340af9a"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "dual-seed",
+        "grid-policy-v2",
+        "follow-up",
+        "ml-driven",
+        "low/medium/high",
+        "target-profit",
+        "gbpjpy",
+        "live"
+      ]
+    },
+    "memory:memory/2026-04-17.md:54:60": {
+      "key": "memory:memory/2026-04-17.md:54:60",
+      "path": "memory/2026-04-17.md",
+      "startLine": 54,
+      "endLine": 60,
+      "source": "memory",
+      "snippet": "- GBPJPY live demo override was intentionally kept in place so current dual-seed validation flow is not broken while dynamic optimizer v1 is introduced for other pairs. - Smoke test succeeded conceptually: grid policy output format was advanced toward `grid_policy_v2` / dynamic session optimizer behavior, but implementation still needs cleanup and verification because the file currently has partial refactor state and likely needs a follow-up pass before production use. - User wants next evolution to include configurable account size / risk mode and eventually ML-driven recommendation of session profit target bands (low/medium/high risk modes tied to target-profit envelopes). - Extended the s",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T04:11:41.690Z",
+      "lastRecalledAt": "2026-04-22T04:11:41.690Z",
+      "queryHashes": [
+        "27c19340af9a"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "dual-seed",
+        "grid-policy-v2",
+        "follow-up",
+        "ml-driven",
+        "low/medium/high",
+        "target-profit",
+        "gbpjpy",
+        "live"
+      ]
+    },
+    "memory:memory/2026-04-17.md:6:13": {
+      "key": "memory:memory/2026-04-17.md:6:13",
+      "path": "memory/2026-04-17.md",
+      "startLine": 6,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "- Smoke test succeeded conceptually: grid policy output format was advanced toward `grid_policy_v2` / dynamic session optimizer behavior, but implementation still needs cleanup and verification because the file currently has partial refactor state and likely needs a follow-up pass before production use. - User wants next evolution to include configurable account size / risk mode and eventually ML-driven recommendation of session profit target bands (low/medium/high risk modes tied to target-profit envelopes). - Extended the session-range model with calendar/event context features derived from economic calendar artifacts, including event counts, major/noisy macro counts, importance aggregates",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T04:11:41.690Z",
+      "lastRecalledAt": "2026-04-22T04:11:41.690Z",
+      "queryHashes": [
+        "27c19340af9a"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "grid-policy-v2",
+        "follow-up",
+        "ml-driven",
+        "low/medium/high",
+        "target-profit",
+        "session-range",
+        "calendar/event",
+        "major/noisy"
+      ]
+    },
+    "memory:memory/2026-04-18.md:1:8": {
+      "key": "memory:memory/2026-04-18.md:1:8",
+      "path": "memory/2026-04-18.md",
+      "startLine": 1,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "- Forex trading bot research progress: added CLI override support to `src/massive_pipeline/backtest_grid_policy.py` for `step_pips`, `max_trades_per_side`, `basket_tp_currency`, `basket_tp_pips`, and later `initial_lot` so parameter sweeps can be run cleanly on live/classic policies without editing JSON files. - Committed simulator override work: `0c605cb` (`Add policy override support to grid backtest`) and `06ae289` (`Add initial lot override to grid backtest`). - Asia Jan-Mar 2026 live gated step sweep (steps 2..14, default live depths) showed pair-specific preferences: EURJPY favored wide 12-14, GBPJPY favored around 9-10, GBPUSD favored 13-14, NZDUSD favored tight 2-6; overall best shar",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T04:11:41.690Z",
+      "lastRecalledAt": "2026-04-22T04:11:41.690Z",
+      "queryHashes": [
+        "27c19340af9a"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "step-pips",
+        "max-trades-per-side",
+        "basket-tp-currency",
+        "basket-tp-pips",
+        "initial-lot",
+        "live/classic",
+        "jan-mar",
+        "pair-specific"
+      ]
+    },
+    "memory:memory/2026-04-14.md:7:12": {
+      "key": "memory:memory/2026-04-14.md:7:12",
+      "path": "memory/2026-04-14.md",
+      "startLine": 7,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "- Verified Massive flat-file S3 access with bucket `flatfiles` and identified forex historical sources: `global_forex/minute_aggs_v1`, `day_aggs_v1`, and `quotes_v1`. - Built Massive price pipeline under `src/massive_pipeline/`: `fetch_minute_aggs_pilot.py`, `normalize_minute_aggs_pilot.py`, `fetch_minute_aggs_backfill.py`, and `normalize_minute_aggs_backfill.py`. - Completed pilot pull for March 2026 for EURJPY, GBPJPY, GBPUSD, NZDUSD, then full historical backfill and normalization for 2023-01 through 2026-03. - Produced partitioned price parquet at `data/processed/massive/fx_minute_bars/year=YYYY/month=MM/data.parquet` with 39 monthly partitions and about 4.79 million rows. - Current next",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T04:11:41.690Z",
+      "lastRecalledAt": "2026-04-22T04:11:41.690Z",
+      "queryHashes": [
+        "27c19340af9a"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "flat-file",
+        "global-forex/minute-aggs-v1",
+        "day-aggs-v1",
+        "quotes-v1",
+        "src/massive-pipeline",
+        "fetch-minute-aggs-pilot.py",
+        "normalize-minute-aggs-pilot.py",
+        "fetch-minute-aggs-backfill.py"
       ]
     }
   }

@@ -1,0 +1,2 @@
+policy_id,sessions,winning_sessions,total_pnl,avg_pnl,median_pnl,worst_drawdown,avg_trade_count,entered_managed_close_sessions,event_risk_gated_sessions,entry_intent_gated_sessions,win_rate
+session_optimizer_asia_eurjpy_medium,365,217,93.56050000000016,0.2563301369863018,6.226426,95.857683,3.1534246575342464,0,1,0,0.5945205479452055

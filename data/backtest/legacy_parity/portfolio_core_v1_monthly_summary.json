@@ -1,0 +1,1165 @@
+{
+  "generated_at_utc": "2026-04-21T21:09:54.879678+00:00",
+  "monthly": [
+    {
+      "year": 2023,
+      "month": 1,
+      "portfolio_total_pnl": 3255.92492843553,
+      "portfolio_forced_close_count": 7,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1535.2389201216183,
+          "forced_close_count": 3,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 930.1591279833,
+          "forced_close_count": 0,
+          "segments": 20
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 790.5268803306119,
+          "forced_close_count": 4,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "portfolio_total_pnl": 2597.418449124889,
+      "portfolio_forced_close_count": 11,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1242.3990271448927,
+          "forced_close_count": 5,
+          "segments": 16
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 620.1043139979924,
+          "forced_close_count": 3,
+          "segments": 18
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 734.9151079820035,
+          "forced_close_count": 3,
+          "segments": 16
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "portfolio_total_pnl": 2961.397972263734,
+      "portfolio_forced_close_count": 17,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1370.462159086756,
+          "forced_close_count": 8,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 784.297048397922,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 806.6387647790559,
+          "forced_close_count": 6,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "portfolio_total_pnl": 2115.3680693589545,
+      "portfolio_forced_close_count": 20,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 887.566483045963,
+          "forced_close_count": 8,
+          "segments": 17
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 685.9128775304958,
+          "forced_close_count": 5,
+          "segments": 19
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 541.8887087824957,
+          "forced_close_count": 7,
+          "segments": 17
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "portfolio_total_pnl": 2566.7529931891613,
+      "portfolio_forced_close_count": 25,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1170.8259765901926,
+          "forced_close_count": 9,
+          "segments": 21
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 791.3574044014221,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 604.5696121975466,
+          "forced_close_count": 13,
+          "segments": 21
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "portfolio_total_pnl": 2967.58692586189,
+      "portfolio_forced_close_count": 14,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1275.736126614258,
+          "forced_close_count": 7,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 919.7775364136268,
+          "forced_close_count": 1,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 772.073262834005,
+          "forced_close_count": 6,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "portfolio_total_pnl": 2648.928573727838,
+      "portfolio_forced_close_count": 19,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1232.1134536872273,
+          "forced_close_count": 5,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 855.1623347362844,
+          "forced_close_count": 3,
+          "segments": 20
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 561.652785304326,
+          "forced_close_count": 11,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "portfolio_total_pnl": 2725.607253344763,
+      "portfolio_forced_close_count": 25,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1394.5589351241003,
+          "forced_close_count": 6,
+          "segments": 21
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 732.9113859650746,
+          "forced_close_count": 6,
+          "segments": 23
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 598.1369322555882,
+          "forced_close_count": 13,
+          "segments": 21
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "portfolio_total_pnl": 2524.6915671805737,
+      "portfolio_forced_close_count": 21,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1294.687675517073,
+          "forced_close_count": 6,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 613.2716403409747,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 616.7322513225258,
+          "forced_close_count": 12,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "portfolio_total_pnl": 2598.597548172917,
+      "portfolio_forced_close_count": 18,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1331.823313437541,
+          "forced_close_count": 4,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 690.1581399192203,
+          "forced_close_count": 6,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 576.6160948161557,
+          "forced_close_count": 8,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "portfolio_total_pnl": 2409.146356466265,
+      "portfolio_forced_close_count": 19,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1312.4932677086313,
+          "forced_close_count": 4,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 453.3079293262842,
+          "forced_close_count": 5,
+          "segments": 20
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 643.3451594313494,
+          "forced_close_count": 10,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "portfolio_total_pnl": 2781.382023270008,
+      "portfolio_forced_close_count": 17,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1276.1407123420681,
+          "forced_close_count": 5,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 818.8072709553916,
+          "forced_close_count": 4,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 686.4340399725484,
+          "forced_close_count": 8,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "portfolio_total_pnl": 2795.8530612857917,
+      "portfolio_forced_close_count": 15,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1275.1580169656656,
+          "forced_close_count": 7,
+          "segments": 21
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 918.8777285474088,
+          "forced_close_count": 1,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 601.8173157727174,
+          "forced_close_count": 7,
+          "segments": 21
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "portfolio_total_pnl": 2098.3455102528915,
+      "portfolio_forced_close_count": 16,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1059.993586862059,
+          "forced_close_count": 1,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 631.3748880399944,
+          "forced_close_count": 3,
+          "segments": 20
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 406.97703535083804,
+          "forced_close_count": 12,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "portfolio_total_pnl": 1838.8453815999878,
+      "portfolio_forced_close_count": 29,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1037.656927458152,
+          "forced_close_count": 11,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 556.5944350774505,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 244.59401906438535,
+          "forced_close_count": 15,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "portfolio_total_pnl": 2322.949074849008,
+      "portfolio_forced_close_count": 26,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1242.6421086158143,
+          "forced_close_count": 9,
+          "segments": 20
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 662.4641308255167,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 417.8428354076769,
+          "forced_close_count": 14,
+          "segments": 20
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "portfolio_total_pnl": 2292.085304688886,
+      "portfolio_forced_close_count": 26,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1196.6147637458134,
+          "forced_close_count": 7,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 793.3690236720579,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 302.1015172710145,
+          "forced_close_count": 16,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "portfolio_total_pnl": 2170.3899497410525,
+      "portfolio_forced_close_count": 16,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1079.7743855031495,
+          "forced_close_count": 6,
+          "segments": 17
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 624.2314779890622,
+          "forced_close_count": 2,
+          "segments": 19
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 466.38408624884096,
+          "forced_close_count": 8,
+          "segments": 17
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "portfolio_total_pnl": 2825.998116315024,
+      "portfolio_forced_close_count": 19,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1324.4568753508136,
+          "forced_close_count": 7,
+          "segments": 21
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 1037.283468868973,
+          "forced_close_count": 0,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 464.25777209523784,
+          "forced_close_count": 12,
+          "segments": 21
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "portfolio_total_pnl": 2762.474023034907,
+      "portfolio_forced_close_count": 20,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1207.4867421398749,
+          "forced_close_count": 5,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 1063.4996598131434,
+          "forced_close_count": 2,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 491.48762108188896,
+          "forced_close_count": 13,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "portfolio_total_pnl": 2240.0416927864917,
+      "portfolio_forced_close_count": 20,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1015.3151949728399,
+          "forced_close_count": 7,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 768.0620618739873,
+          "forced_close_count": 0,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 456.6644359396646,
+          "forced_close_count": 13,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "portfolio_total_pnl": 2917.0743218582566,
+      "portfolio_forced_close_count": 24,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1278.6344894862834,
+          "forced_close_count": 7,
+          "segments": 21
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 1070.5866056854327,
+          "forced_close_count": 2,
+          "segments": 23
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 567.8532266865406,
+          "forced_close_count": 15,
+          "segments": 21
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "portfolio_total_pnl": 2356.1308009062664,
+      "portfolio_forced_close_count": 19,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 965.5062170223716,
+          "forced_close_count": 9,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 904.4720289175866,
+          "forced_close_count": 0,
+          "segments": 20
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 486.152554966308,
+          "forced_close_count": 10,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "portfolio_total_pnl": 2510.0574467408233,
+      "portfolio_forced_close_count": 15,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1015.2264858511187,
+          "forced_close_count": 6,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 972.8834768470035,
+          "forced_close_count": 2,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 521.9474840427008,
+          "forced_close_count": 7,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "portfolio_total_pnl": 2409.3964215137903,
+      "portfolio_forced_close_count": 17,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1027.9872446654917,
+          "forced_close_count": 6,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 655.2203514391066,
+          "forced_close_count": 2,
+          "segments": 19
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 726.1888254091918,
+          "forced_close_count": 9,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "portfolio_total_pnl": 2197.226148582183,
+      "portfolio_forced_close_count": 16,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 932.8068044933037,
+          "forced_close_count": 6,
+          "segments": 17
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 777.8775100896358,
+          "forced_close_count": 2,
+          "segments": 19
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 486.54183399924375,
+          "forced_close_count": 8,
+          "segments": 17
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "portfolio_total_pnl": 2215.1769046682143,
+      "portfolio_forced_close_count": 17,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 919.6492567356456,
+          "forced_close_count": 10,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 730.338952408864,
+          "forced_close_count": 2,
+          "segments": 20
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 565.1886955237047,
+          "forced_close_count": 5,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "portfolio_total_pnl": 3309.5174133001105,
+      "portfolio_forced_close_count": 7,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1217.1496994942552,
+          "forced_close_count": 2,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 1166.6849786333923,
+          "forced_close_count": 1,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 925.6827351724628,
+          "forced_close_count": 4,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "portfolio_total_pnl": 1983.5949081116582,
+      "portfolio_forced_close_count": 27,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 967.5248377458075,
+          "forced_close_count": 11,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 509.4229221973454,
+          "forced_close_count": 5,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 506.64714816850517,
+          "forced_close_count": 11,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "portfolio_total_pnl": 1934.82044931589,
+      "portfolio_forced_close_count": 17,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 995.390843565652,
+          "forced_close_count": 6,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 483.3838571239721,
+          "forced_close_count": 4,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 456.0457486262659,
+          "forced_close_count": 7,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "portfolio_total_pnl": 2406.3080539789507,
+      "portfolio_forced_close_count": 22,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1027.3899876175315,
+          "forced_close_count": 9,
+          "segments": 21
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 816.6925949950996,
+          "forced_close_count": 5,
+          "segments": 23
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 562.2254713663194,
+          "forced_close_count": 8,
+          "segments": 21
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "portfolio_total_pnl": 2017.0297729889733,
+      "portfolio_forced_close_count": 21,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 948.8892893959609,
+          "forced_close_count": 8,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 603.903044215349,
+          "forced_close_count": 3,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 464.2374393776634,
+          "forced_close_count": 10,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "portfolio_total_pnl": 2020.712126825536,
+      "portfolio_forced_close_count": 23,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 908.2910830175175,
+          "forced_close_count": 10,
+          "segments": 20
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 664.6900431037652,
+          "forced_close_count": 4,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 447.73100070425346,
+          "forced_close_count": 9,
+          "segments": 20
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "portfolio_total_pnl": 1670.8380611509292,
+      "portfolio_forced_close_count": 29,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 888.6585242803336,
+          "forced_close_count": 10,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 411.88459188414464,
+          "forced_close_count": 7,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 370.2949449864508,
+          "forced_close_count": 12,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "portfolio_total_pnl": 2006.7774047660093,
+      "portfolio_forced_close_count": 23,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 952.822841713461,
+          "forced_close_count": 8,
+          "segments": 17
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 665.9153382817167,
+          "forced_close_count": 5,
+          "segments": 19
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 388.0392247708316,
+          "forced_close_count": 10,
+          "segments": 17
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "portfolio_total_pnl": 2433.7783830379294,
+      "portfolio_forced_close_count": 26,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1329.0794308187783,
+          "forced_close_count": 9,
+          "segments": 20
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 766.4251113633055,
+          "forced_close_count": 4,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 338.27384085584555,
+          "forced_close_count": 13,
+          "segments": 20
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 1,
+      "portfolio_total_pnl": 2568.2140754547886,
+      "portfolio_forced_close_count": 15,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1225.3010790515918,
+          "forced_close_count": 5,
+          "segments": 18
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 760.5568515804655,
+          "forced_close_count": 4,
+          "segments": 21
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 582.3561448227313,
+          "forced_close_count": 6,
+          "segments": 18
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 2,
+      "portfolio_total_pnl": 2402.418711118882,
+      "portfolio_forced_close_count": 13,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1161.1139167184656,
+          "forced_close_count": 5,
+          "segments": 17
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 636.7948305162755,
+          "forced_close_count": 1,
+          "segments": 19
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 604.5099638841409,
+          "forced_close_count": 7,
+          "segments": 17
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "portfolio_total_pnl": 2882.057120333442,
+      "portfolio_forced_close_count": 13,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 1290.842113216131,
+          "forced_close_count": 4,
+          "segments": 19
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 547.0241126063916,
+          "forced_close_count": 5,
+          "segments": 22
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 1044.1908945109192,
+          "forced_close_count": 4,
+          "segments": 19
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 4,
+      "portfolio_total_pnl": 1403.7603886947393,
+      "portfolio_forced_close_count": 11,
+      "components": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "total_pnl": 790.6031416968933,
+          "forced_close_count": 4,
+          "segments": 11
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "total_pnl": 299.32635101907925,
+          "forced_close_count": 1,
+          "segments": 10
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "total_pnl": 313.8308959787666,
+          "forced_close_count": 6,
+          "segments": 11
+        }
+      ]
+    }
+  ]
+}

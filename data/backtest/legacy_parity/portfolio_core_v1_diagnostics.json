@@ -1,0 +1,263 @@
+{
+  "generated_at_utc": "2026-04-21T21:23:56.169605+00:00",
+  "slot_diagnostics": {
+    "NZDUSD:new_york": {
+      "months": 40,
+      "segments": 741,
+      "total_pnl": 45606.0119386211,
+      "avg_monthly_pnl": 1140.1502984655276,
+      "worst_month_pnl": 790.6031416968933,
+      "best_month_pnl": 1535.2389201216183,
+      "worst_segment_pnl": -26.77526463624936,
+      "best_segment_pnl": 121.85028375000272,
+      "forced_close_count": 265,
+      "forced_close_rate": 0.3576248313090418
+    },
+    "GBPJPY:london": {
+      "months": 40,
+      "segments": 822,
+      "total_pnl": 29395.067437583515,
+      "avg_monthly_pnl": 734.8766859395879,
+      "worst_month_pnl": 299.32635101907925,
+      "best_month_pnl": 1166.6849786333923,
+      "worst_segment_pnl": -111.24442338784485,
+      "best_segment_pnl": 129.5686498178053,
+      "forced_close_count": 118,
+      "forced_close_rate": 0.1435523114355231
+    },
+    "GBPUSD:new_york": {
+      "months": 40,
+      "segments": 740,
+      "total_pnl": 22143.594312093323,
+      "avg_monthly_pnl": 553.5898578023331,
+      "worst_month_pnl": 244.59401906438535,
+      "best_month_pnl": 1044.1908945109192,
+      "worst_segment_pnl": -23.377756755587264,
+      "best_segment_pnl": 114.83425200005208,
+      "forced_close_count": 372,
+      "forced_close_rate": 0.5027027027027027
+    }
+  },
+  "weakest_months": [
+    {
+      "year": 2026,
+      "month": 4,
+      "total_pnl": 1403.7603886947393,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 790.6031416968933,
+          "forced": 4
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 299.32635101907925,
+          "forced": 1
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 313.8308959787666,
+          "forced": 6
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "total_pnl": 1670.8380611509292,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 888.6585242803336,
+          "forced": 10
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 411.88459188414464,
+          "forced": 7
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 370.2949449864508,
+          "forced": 12
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "total_pnl": 1838.8453815999878,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 1037.656927458152,
+          "forced": 11
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 556.5944350774505,
+          "forced": 3
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 244.59401906438535,
+          "forced": 15
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "total_pnl": 1934.82044931589,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 995.390843565652,
+          "forced": 6
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 483.3838571239721,
+          "forced": 4
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 456.0457486262659,
+          "forced": 7
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "total_pnl": 1983.5949081116582,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 967.5248377458075,
+          "forced": 11
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 509.4229221973454,
+          "forced": 5
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 506.64714816850517,
+          "forced": 11
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "total_pnl": 2006.7774047660093,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 952.822841713461,
+          "forced": 8
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 665.9153382817167,
+          "forced": 5
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 388.0392247708316,
+          "forced": 10
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "total_pnl": 2017.0297729889733,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 948.8892893959609,
+          "forced": 8
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 603.903044215349,
+          "forced": 3
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 464.2374393776634,
+          "forced": 10
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "total_pnl": 2020.712126825536,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 908.2910830175175,
+          "forced": 10
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 664.6900431037652,
+          "forced": 4
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 447.73100070425346,
+          "forced": 9
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "total_pnl": 2098.3455102528915,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 1059.993586862059,
+          "forced": 1
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 631.3748880399944,
+          "forced": 3
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 406.97703535083804,
+          "forced": 12
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "total_pnl": 2115.3680693589545,
+      "components": [
+        {
+          "slot": "NZDUSD:new_york",
+          "pnl": 887.566483045963,
+          "forced": 8
+        },
+        {
+          "slot": "GBPJPY:london",
+          "pnl": 685.9128775304958,
+          "forced": 5
+        },
+        {
+          "slot": "GBPUSD:new_york",
+          "pnl": 541.8887087824957,
+          "forced": 7
+        }
+      ]
+    }
+  ]
+}

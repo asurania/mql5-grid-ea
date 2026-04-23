@@ -15,6 +15,7 @@ RUN_LOG_JSON = ROOT / "data" / "live" / "policy" / "event_risk_master_run.json"
 
 BASE_STEPS = [
     ROOT / "src" / "massive_pipeline" / "run_live_event_risk_inference.py",
+    ROOT / "src" / "massive_pipeline" / "run_live_event_impact_inference.py",
     ROOT / "src" / "massive_pipeline" / "build_pair_risk_policy.py",
     ROOT / "src" / "massive_pipeline" / "publish_pair_risk_policy.py",
     ROOT / "src" / "massive_pipeline" / "build_entry_intent_v2.py",
@@ -67,7 +68,7 @@ def main() -> int:
     grid_args = ["--account-equity", str(args.account_equity), "--risk-mode", args.risk_mode]
     if args.allow_gbpjpy_demo_override:
         grid_args.append("--allow-gbpjpy-demo-override")
-    steps.insert(7, (GRID_POLICY_SCRIPT, grid_args))
+    steps.insert(8, (GRID_POLICY_SCRIPT, grid_args))
 
     for step, extra_args in steps:
         result = run_step(step, extra_args)

@@ -1,0 +1,180 @@
+{
+  "timezone": "America/Edmonton",
+  "sessions": {
+    "asia": {"start": "16:00", "end": "21:00"},
+    "london": {"start": "21:00", "end": "04:00"},
+    "new_york": {"start": "04:00", "end": "12:00"}
+  },
+  "pairs": {
+    "AUDNZD": {
+      "asia": {
+        "enabled": true,
+        "grid_levels": 7,
+        "multiplier": 1.1,
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "sl_pips": 45.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "variable",
+        "step_pips": 6.0,
+        "variable_step_schedule": [
+          {"start": "16:00", "end": "18:30", "value": 4.0},
+          {"start": "18:30", "end": "21:00", "value": 5.0}
+        ],
+        "variable_tp_schedule": [
+          {"start": "16:00", "end": "21:00", "value": 4.0}
+        ]
+      },
+      "london": {
+        "enabled": true,
+        "grid_levels": 6,
+        "multiplier": 1.08,
+        "initial_lot": 0.01,
+        "tp_pips": 3.5,
+        "sl_pips": 45.0,
+        "drawdown_limit_currency": 140.0,
+        "step_mode": "fixed",
+        "step_pips": 7.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "new_york": {"enabled": false}
+    },
+    "GBPJPY": {
+      "asia": {
+        "enabled": true,
+        "grid_levels": 7,
+        "multiplier": 1.12,
+        "initial_lot": 0.01,
+        "tp_pips": 5.0,
+        "sl_pips": 65.0,
+        "drawdown_limit_currency": 170.0,
+        "step_mode": "variable",
+        "step_pips": 8.0,
+        "variable_step_schedule": [
+          {"start": "16:00", "end": "18:30", "value": 5.0},
+          {"start": "18:30", "end": "21:00", "value": 6.0}
+        ],
+        "variable_tp_schedule": [
+          {"start": "16:00", "end": "21:00", "value": 4.5}
+        ]
+      },
+      "london": {
+        "enabled": true,
+        "grid_levels": 8,
+        "multiplier": 1.15,
+        "initial_lot": 0.01,
+        "tp_pips": 4.5,
+        "sl_pips": 70.0,
+        "drawdown_limit_currency": 180.0,
+        "step_mode": "variable",
+        "step_pips": 9.0,
+        "variable_step_schedule": [
+          {"start": "21:00", "end": "00:30", "value": 6.0},
+          {"start": "00:30", "end": "04:00", "value": 7.0}
+        ],
+        "variable_tp_schedule": [
+          {"start": "21:00", "end": "04:00", "value": 3.5}
+        ]
+      },
+      "new_york": {"enabled": false}
+    },
+    "GBPUSD": {
+      "asia": {"enabled": false},
+      "london": {
+        "enabled": true,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot": 0.01,
+        "tp_pips": 3.5,
+        "sl_pips": 45.0,
+        "drawdown_limit_currency": 145.0,
+        "step_mode": "fixed",
+        "step_pips": 7.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "new_york": {
+        "enabled": true,
+        "grid_levels": 5,
+        "multiplier": 1.08,
+        "initial_lot": 0.01,
+        "tp_pips": 3.0,
+        "sl_pips": 40.0,
+        "drawdown_limit_currency": 130.0,
+        "step_mode": "fixed",
+        "step_pips": 8.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    "NZDUSD": {
+      "asia": {
+        "enabled": true,
+        "grid_levels": 7,
+        "multiplier": 1.1,
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "sl_pips": 45.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 6.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "london": {"enabled": false},
+      "new_york": {
+        "enabled": true,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot": 0.01,
+        "tp_pips": 3.0,
+        "sl_pips": 40.0,
+        "drawdown_limit_currency": 140.0,
+        "step_mode": "fixed",
+        "step_pips": 7.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    "AUDUSD": {
+      "asia": {"enabled": false},
+      "london": {"enabled": false},
+      "new_york": {
+        "enabled": true,
+        "grid_levels": 4,
+        "multiplier": 1.05,
+        "initial_lot": 0.01,
+        "tp_pips": 3.0,
+        "sl_pips": 35.0,
+        "drawdown_limit_currency": 110.0,
+        "step_mode": "fixed",
+        "step_pips": 9.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    "USDJPY": {
+      "asia": {"enabled": false},
+      "london": {"enabled": false},
+      "new_york": {
+        "enabled": true,
+        "grid_levels": 4,
+        "multiplier": 1.05,
+        "initial_lot": 0.01,
+        "tp_pips": 3.5,
+        "sl_pips": 45.0,
+        "drawdown_limit_currency": 110.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    "AUDJPY": {
+      "asia": {"enabled": false},
+      "london": {"enabled": false},
+      "new_york": {"enabled": false}
+    }
+  }
+}

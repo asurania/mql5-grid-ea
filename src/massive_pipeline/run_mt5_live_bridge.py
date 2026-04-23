@@ -13,15 +13,20 @@ import traceback
 ROOT = Path(__file__).resolve().parents[2]
 PYTHON = ROOT / ".venv-forex" / "bin" / "python"
 MASTER_SCRIPT = ROOT / "src" / "massive_pipeline" / "run_event_risk_master.py"
+EXPORT_SCRIPT = ROOT / "src" / "massive_pipeline" / "export_all_mt5_policies.py"
+POLICY_DIR = ROOT / "data" / "live" / "policy"
+EVENT_RISK_DIR = ROOT / "data" / "live" / "event_risk"
 SOURCE_DIR = ROOT / "runtime_handoff" / "mt5_common" / "Files" / "ForexSlave"
 DEFAULT_DESTINATIONS = [
     Path("/home/asurani/.wine-mt5/drive_c/Program Files/MetaTrader 5/MQL5/Files/ForexSlave"),
     Path("/home/asurani/.wine-mt5/drive_c/users/asurani/AppData/Roaming/MetaQuotes/Terminal/Common/Files/ForexSlave"),
 ]
 FILES_TO_COPY = [
+    "core_portfolio_policy.json",
     "pair_risk_policy.json",
     "entry_intent.json",
     "grid_policy.json",
+    "event_impact_actions.json",
 ]
 RUN_LOG = ROOT / "data" / "live" / "policy" / "mt5_live_bridge_run.json"
 
@@ -85,6 +90,39 @@ def run_master(account_equity: float, risk_mode: str, allow_gbpjpy_demo_override
     }
 
 
+def run_export() -> dict:
+    started = utc_now_iso()
+    command = [str(PYTHON), str(EXPORT_SCRIPT)]
+    proc = subprocess.run(command, cwd=str(ROOT), capture_output=True, text=True, check=False)
+    finished = utc_now_iso()
+    return {
+        "started_at_utc": started,
+        "finished_at_utc": finished,
+        "command": [str(x) for x in command],
+        "returncode": proc.returncode,
+        "stdout": proc.stdout,
+        "stderr": proc.stderr,
+    }
+
+
+def copy_policy_to_source() -> list[str]:
+    POLICY_DIR.mkdir(parents=True, exist_ok=True)
+    EVENT_RISK_DIR.mkdir(parents=True, exist_ok=True)
+    SOURCE_DIR.mkdir(parents=True, exist_ok=True)
+    copied = []
+    for name in FILES_TO_COPY:
+        # Try policy dir first, then event risk dir
+        src = POLICY_DIR / name
+        if not src.exists():
+            src = EVENT_RISK_DIR / name
+        if not src.exists():
+            print(f"[WARN] missing policy file: {name}")
+            continue
+        shutil.copy2(src, SOURCE_DIR / name)
+        copied.append(name)
+    return copied
+
+
 def copy_handoff_files(destinations: list[Path]) -> list[dict]:
     copy_results: list[dict] = []
     for dest in destinations:
@@ -130,6 +168,9 @@ def run_cycle(
         write_run_log(payload)
         return payload
 
+    export_result = run_export()
+    copy_policy_to_source()
+
     copy_results = copy_handoff_files(destinations)
     payload = {
         "status": "ok",
@@ -137,6 +178,7 @@ def run_cycle(
         "started_at_utc": cycle_started,
         "finished_at_utc": utc_now_iso(),
         "master": master,
+        "export": export_result,
         "copy": copy_results,
         "source_dir": str(SOURCE_DIR),
         "grid_optimizer": {

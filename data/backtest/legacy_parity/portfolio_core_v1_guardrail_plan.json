@@ -1,0 +1,75 @@
+{
+  "generated_at_utc": "2026-04-21T22:23:56.375212+00:00",
+  "global_guardrails": {
+    "max_active_slots": 2,
+    "max_total_initial_lots": 0.03,
+    "max_total_drawdown_currency": 300.0,
+    "daily_loss_cap_currency": 180.0,
+    "session_loss_cap_currency": 120.0,
+    "flatten_on_account_breach": true,
+    "block_new_entries_after_daily_cap": true,
+    "slot_overrides": {
+      "GBPJPY:london": {
+        "max_grid_levels": 8,
+        "max_slot_drawdown_currency": 160.0,
+        "tail_loss_guard_currency": 90.0
+      },
+      "GBPUSD:new_york": {
+        "max_grid_levels": 4,
+        "max_slot_drawdown_currency": 110.0,
+        "forced_close_rate_warn": 0.45
+      },
+      "NZDUSD:new_york": {
+        "max_grid_levels": 6,
+        "max_slot_drawdown_currency": 130.0
+      }
+    }
+  },
+  "slot_recommendations": [
+    {
+      "slot": "NZDUSD:new_york",
+      "forced_close_rate": 0.3576248313090418,
+      "worst_segment_pnl": -26.77526463624936,
+      "override": {
+        "max_grid_levels": 6,
+        "max_slot_drawdown_currency": 130.0
+      },
+      "notes": [
+        "guardrail_override_present"
+      ]
+    },
+    {
+      "slot": "GBPJPY:london",
+      "forced_close_rate": 0.1435523114355231,
+      "worst_segment_pnl": -111.24442338784485,
+      "override": {
+        "max_grid_levels": 8,
+        "max_slot_drawdown_currency": 160.0,
+        "tail_loss_guard_currency": 90.0
+      },
+      "notes": [
+        "fat_tail_segment_loss",
+        "guardrail_override_present"
+      ]
+    },
+    {
+      "slot": "GBPUSD:new_york",
+      "forced_close_rate": 0.5027027027027027,
+      "worst_segment_pnl": -23.377756755587264,
+      "override": {
+        "max_grid_levels": 4,
+        "max_slot_drawdown_currency": 110.0,
+        "forced_close_rate_warn": 0.45
+      },
+      "notes": [
+        "high_forced_close_rate",
+        "guardrail_override_present"
+      ]
+    }
+  ],
+  "next_actions": [
+    "apply slot-level caps in execution bridge and future portfolio simulators",
+    "block new entries after daily loss cap breach",
+    "limit simultaneous active slots to reduce correlated stress"
+  ]
+}

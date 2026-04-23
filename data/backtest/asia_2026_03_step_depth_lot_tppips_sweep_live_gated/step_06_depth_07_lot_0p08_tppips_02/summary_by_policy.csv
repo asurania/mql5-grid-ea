@@ -1,0 +1,5 @@
+policy_id,sessions,winning_sessions,total_pnl,avg_pnl,median_pnl,worst_drawdown,avg_trade_count,entered_managed_close_sessions,event_risk_gated_sessions,entry_intent_gated_sessions,win_rate
+both_sides_normal,31,17,-25.063847999999997,-0.8085112258064515,4.084364,40.7808,2.032258064516129,0,2,0,0.5483870967741935
+session_optimizer_new_york_gbpjpy_medium,31,18,49.14057,1.5851796774193547,3.675121,68.127826,2.3225806451612905,0,4,0,0.5806451612903226
+session_optimizer_new_york_gbpusd_medium,31,19,-4.446794999999987,-0.1434449999999996,5.380098,104.60268,2.225806451612903,0,2,0,0.6129032258064516
+session_optimizer_new_york_nzdusd_medium,31,23,76.78346,2.4768858064516133,2.08,81.735888,1.1612903225806452,0,0,0,0.7419354838709677

@@ -152,7 +152,7 @@ def build_event_pair_rows(events: pl.DataFrame) -> pl.DataFrame:
             } else "other"
             rows.append(
                 {
-                    "event_id": event["event_id"],
+                    "event_id": event.get("event_id") or event.get("id") or "",
                     "pair": pair,
                     "event_timestamp_utc": event["event_timestamp_utc"],
                     "event_name": event["event_name"],
@@ -212,6 +212,11 @@ def main() -> None:
         (OUT_DIR / "event_risk_actions.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
         print(json.dumps(out, indent=2))
         return
+
+    # Cast event_timestamp_utc to nanoseconds to match price data
+    event_rows = event_rows.with_columns(
+        pl.col("event_timestamp_utc").dt.cast_time_unit("ns").alias("event_timestamp_utc")
+    )
 
     prices = load_latest_prices().select(
         [

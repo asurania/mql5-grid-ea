@@ -1,0 +1,304 @@
+{
+  "generated_at_utc": "2026-04-21T18:11:29.210669+00:00",
+  "diagnostics": [
+    {
+      "pair": "AUDNZD",
+      "missing_data": false,
+      "enabled_sessions": [
+        "asia",
+        "london"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": true,
+          "grid_levels": 7,
+          "multiplier": 1.1,
+          "initial_lot": 0.01,
+          "tp_pips": 4.0,
+          "drawdown_limit_currency": 150.0,
+          "step_mode": "variable",
+          "step_pips": 6.0,
+          "variable_step_schedule": [
+            {
+              "start": "16:00",
+              "end": "18:30",
+              "value": 4.0
+            },
+            {
+              "start": "18:30",
+              "end": "21:00",
+              "value": 5.0
+            }
+          ],
+          "variable_tp_schedule": [
+            {
+              "start": "16:00",
+              "end": "21:00",
+              "value": 4.0
+            }
+          ]
+        },
+        "london": {
+          "enabled": true
+        },
+        "new_york": {
+          "enabled": false
+        }
+      },
+      "segments": 14,
+      "total_buy_realized_pnl": 694.8547287499777,
+      "total_sell_realized_pnl": 1506.6281912497968,
+      "total_realized_pnl": 2201.4829199997744,
+      "side_bias": "sell",
+      "forced_close_count": 0,
+      "sample_segment_count": 10
+    },
+    {
+      "pair": "AUDUSD",
+      "missing_data": false,
+      "enabled_sessions": [
+        "asia",
+        "new_york"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": true
+        },
+        "london": {
+          "enabled": false
+        },
+        "new_york": {
+          "enabled": true
+        }
+      },
+      "segments": 13,
+      "total_buy_realized_pnl": 170.299722913118,
+      "total_sell_realized_pnl": 34.69806533520597,
+      "total_realized_pnl": 204.99778824832396,
+      "side_bias": "buy",
+      "forced_close_count": 4,
+      "sample_segment_count": 10
+    },
+    {
+      "pair": "GBPJPY",
+      "missing_data": false,
+      "enabled_sessions": [
+        "asia",
+        "london"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": true
+        },
+        "london": {
+          "enabled": true
+        },
+        "new_york": {
+          "enabled": false
+        }
+      },
+      "segments": 91,
+      "total_buy_realized_pnl": 2856.8092660841453,
+      "total_sell_realized_pnl": 3506.5147836666592,
+      "total_realized_pnl": 6363.324049750805,
+      "side_bias": "sell",
+      "forced_close_count": 0,
+      "sample_segment_count": 10
+    },
+    {
+      "pair": "GBPUSD",
+      "missing_data": false,
+      "enabled_sessions": [
+        "london",
+        "new_york"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": false
+        },
+        "london": {
+          "enabled": true
+        },
+        "new_york": {
+          "enabled": true
+        }
+      },
+      "segments": 82,
+      "total_buy_realized_pnl": 1089.4060631913435,
+      "total_sell_realized_pnl": 1582.9057877827593,
+      "total_realized_pnl": 2672.3118509741025,
+      "side_bias": "sell",
+      "forced_close_count": 2,
+      "sample_segment_count": 10
+    },
+    {
+      "pair": "USDJPY",
+      "missing_data": false,
+      "enabled_sessions": [
+        "asia",
+        "new_york"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": true
+        },
+        "london": {
+          "enabled": false
+        },
+        "new_york": {
+          "enabled": true
+        }
+      },
+      "segments": 14,
+      "total_buy_realized_pnl": 15.441245474849996,
+      "total_sell_realized_pnl": 87.1498819556878,
+      "total_realized_pnl": 102.5911274305378,
+      "side_bias": "sell",
+      "forced_close_count": 5,
+      "sample_segment_count": 10
+    },
+    {
+      "pair": "NZDUSD",
+      "missing_data": false,
+      "enabled_sessions": [
+        "asia",
+        "new_york"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": true
+        },
+        "london": {
+          "enabled": false
+        },
+        "new_york": {
+          "enabled": true
+        }
+      },
+      "segments": 82,
+      "total_buy_realized_pnl": 1553.2891492993874,
+      "total_sell_realized_pnl": 3724.0118753687693,
+      "total_realized_pnl": 5277.301024668157,
+      "side_bias": "sell",
+      "forced_close_count": 1,
+      "sample_segment_count": 10
+    },
+    {
+      "pair": "AUDJPY",
+      "missing_data": false,
+      "enabled_sessions": [
+        "asia",
+        "london"
+      ],
+      "policy_default": {
+        "enabled": false,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot_mode": "equity_scaled",
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "drawdown_limit_currency": 150.0,
+        "step_mode": "fixed",
+        "step_pips": 10.0,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      },
+      "pair_policy": {
+        "asia": {
+          "enabled": true
+        },
+        "london": {
+          "enabled": true
+        },
+        "new_york": {
+          "enabled": false
+        }
+      },
+      "segments": 14,
+      "total_buy_realized_pnl": 280.92928194742956,
+      "total_sell_realized_pnl": 304.3217212468665,
+      "total_realized_pnl": 585.2510031942961,
+      "side_bias": "sell",
+      "forced_close_count": 2,
+      "sample_segment_count": 10
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "window": "2026-06",
+    "request_path": "/economic-events/tradingview?from=2026-06-01&to=2026-06-30&countries=US,GB,JP,NZ,DE",
+    "status": 200,
+    "remaining": "9875",
+    "result_count": 0
+  },
+  "headers": {
+    "Date": "Wed, 22 Apr 2026 04:22:08 GMT",
+    "Content-Type": "application/json",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url",
+    "Cache-Control": "public, max-age=0, must-revalidate",
+    "Age": "0",
+    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+    "X-Matched-Path": "/api/economic-events/tradingview",
+    "X-Vercel-Cache": "MISS",
+    "X-Vercel-Id": "pdx1::iad1::ssnz4-1776831728056-0c4058c1f0c8",
+    "X-RateLimit-Requests-Limit": "10000",
+    "X-RateLimit-Requests-Remaining": "9875",
+    "X-RateLimit-Requests-Reset": "1984361",
+    "Server": "RapidAPI-0.0.30",
+    "X-RapidAPI-Version": "0.0.30",
+    "X-RapidAPI-Region": "AWS - us-west-2",
+    "X-RapidAPI-Request-Id": "55a0946956506ad5ebd8595e545deabefd579e017fb29ccec380231c998379ba",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": {
+    "result": [],
+    "status": "ok"
+  }
+}

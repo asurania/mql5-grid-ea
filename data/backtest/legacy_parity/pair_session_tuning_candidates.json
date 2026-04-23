@@ -1,0 +1,1174 @@
+{
+  "generated_at_utc": "2026-04-21T19:36:41.768505+00:00",
+  "candidates": [
+    {
+      "pair": "AUDNZD",
+      "session": "london",
+      "best": [
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 5,
+            "multiplier": 1.11,
+            "initial_lot": 0.01,
+            "tp_pips": 4.02,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 8.05,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 13,
+          "total_pnl": 1513.5384420000512,
+          "forced_close_count": 0,
+          "score": 1513.5384420000512
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.11,
+            "initial_lot": 0.01,
+            "tp_pips": 4.02,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 8.05,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 13,
+          "total_pnl": 1513.5384420000512,
+          "forced_close_count": 0,
+          "score": 1513.5384420000512
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.11,
+            "initial_lot": 0.01,
+            "tp_pips": 4.02,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 8.05,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 13,
+          "total_pnl": 1513.5384420000512,
+          "forced_close_count": 0,
+          "score": 1513.5384420000512
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 5,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 4.02,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 8.05,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 13,
+          "total_pnl": 1506.5303760001761,
+          "forced_close_count": 0,
+          "score": 1506.5303760001761
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 4.02,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 8.05,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 13,
+          "total_pnl": 1506.5303760001761,
+          "forced_close_count": 0,
+          "score": 1506.5303760001761
+        }
+      ]
+    },
+    {
+      "pair": "GBPJPY",
+      "session": "asia",
+      "best": [
+        {
+          "pair": "GBPJPY",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 4.25,
+            "sl_pips": 65.0,
+            "drawdown_limit_currency": 170.0,
+            "step_mode": "variable",
+            "step_pips": 6.8,
+            "variable_step_schedule": [
+              {
+                "start": "16:00",
+                "end": "18:30",
+                "value": 5.0
+              },
+              {
+                "start": "18:30",
+                "end": "21:00",
+                "value": 6.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "16:00",
+                "end": "21:00",
+                "value": 4.5
+              }
+            ]
+          },
+          "segments": 70,
+          "total_pnl": 1327.4333396871807,
+          "forced_close_count": 38,
+          "score": 377.4333396871807
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 5.0,
+            "sl_pips": 65.0,
+            "drawdown_limit_currency": 170.0,
+            "step_mode": "variable",
+            "step_pips": 6.8,
+            "variable_step_schedule": [
+              {
+                "start": "16:00",
+                "end": "18:30",
+                "value": 5.0
+              },
+              {
+                "start": "18:30",
+                "end": "21:00",
+                "value": 6.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "16:00",
+                "end": "21:00",
+                "value": 4.5
+              }
+            ]
+          },
+          "segments": 70,
+          "total_pnl": 1327.4333396871807,
+          "forced_close_count": 38,
+          "score": 377.4333396871807
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 5.75,
+            "sl_pips": 65.0,
+            "drawdown_limit_currency": 170.0,
+            "step_mode": "variable",
+            "step_pips": 6.8,
+            "variable_step_schedule": [
+              {
+                "start": "16:00",
+                "end": "18:30",
+                "value": 5.0
+              },
+              {
+                "start": "18:30",
+                "end": "21:00",
+                "value": 6.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "16:00",
+                "end": "21:00",
+                "value": 4.5
+              }
+            ]
+          },
+          "segments": 70,
+          "total_pnl": 1327.4333396871807,
+          "forced_close_count": 38,
+          "score": 377.4333396871807
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 4.25,
+            "sl_pips": 65.0,
+            "drawdown_limit_currency": 170.0,
+            "step_mode": "variable",
+            "step_pips": 8.0,
+            "variable_step_schedule": [
+              {
+                "start": "16:00",
+                "end": "18:30",
+                "value": 5.0
+              },
+              {
+                "start": "18:30",
+                "end": "21:00",
+                "value": 6.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "16:00",
+                "end": "21:00",
+                "value": 4.5
+              }
+            ]
+          },
+          "segments": 70,
+          "total_pnl": 1327.4333396871807,
+          "forced_close_count": 38,
+          "score": 377.4333396871807
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 5.0,
+            "sl_pips": 65.0,
+            "drawdown_limit_currency": 170.0,
+            "step_mode": "variable",
+            "step_pips": 8.0,
+            "variable_step_schedule": [
+              {
+                "start": "16:00",
+                "end": "18:30",
+                "value": 5.0
+              },
+              {
+                "start": "18:30",
+                "end": "21:00",
+                "value": 6.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "16:00",
+                "end": "21:00",
+                "value": 4.5
+              }
+            ]
+          },
+          "segments": 70,
+          "total_pnl": 1327.4333396871807,
+          "forced_close_count": 38,
+          "score": 377.4333396871807
+        }
+      ]
+    },
+    {
+      "pair": "GBPJPY",
+      "session": "london",
+      "best": [
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 9,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 3.82,
+            "sl_pips": 70.0,
+            "drawdown_limit_currency": 180.0,
+            "step_mode": "variable",
+            "step_pips": 7.65,
+            "variable_step_schedule": [
+              {
+                "start": "21:00",
+                "end": "00:30",
+                "value": 6.0
+              },
+              {
+                "start": "00:30",
+                "end": "04:00",
+                "value": 7.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "21:00",
+                "end": "04:00",
+                "value": 3.5
+              }
+            ]
+          },
+          "segments": 77,
+          "total_pnl": 2768.1877234225644,
+          "forced_close_count": 15,
+          "score": 2393.1877234225644
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 9,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 4.5,
+            "sl_pips": 70.0,
+            "drawdown_limit_currency": 180.0,
+            "step_mode": "variable",
+            "step_pips": 7.65,
+            "variable_step_schedule": [
+              {
+                "start": "21:00",
+                "end": "00:30",
+                "value": 6.0
+              },
+              {
+                "start": "00:30",
+                "end": "04:00",
+                "value": 7.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "21:00",
+                "end": "04:00",
+                "value": 3.5
+              }
+            ]
+          },
+          "segments": 77,
+          "total_pnl": 2768.1877234225644,
+          "forced_close_count": 15,
+          "score": 2393.1877234225644
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 9,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 5.17,
+            "sl_pips": 70.0,
+            "drawdown_limit_currency": 180.0,
+            "step_mode": "variable",
+            "step_pips": 7.65,
+            "variable_step_schedule": [
+              {
+                "start": "21:00",
+                "end": "00:30",
+                "value": 6.0
+              },
+              {
+                "start": "00:30",
+                "end": "04:00",
+                "value": 7.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "21:00",
+                "end": "04:00",
+                "value": 3.5
+              }
+            ]
+          },
+          "segments": 77,
+          "total_pnl": 2768.1877234225644,
+          "forced_close_count": 15,
+          "score": 2393.1877234225644
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 9,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 3.82,
+            "sl_pips": 70.0,
+            "drawdown_limit_currency": 180.0,
+            "step_mode": "variable",
+            "step_pips": 9.0,
+            "variable_step_schedule": [
+              {
+                "start": "21:00",
+                "end": "00:30",
+                "value": 6.0
+              },
+              {
+                "start": "00:30",
+                "end": "04:00",
+                "value": 7.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "21:00",
+                "end": "04:00",
+                "value": 3.5
+              }
+            ]
+          },
+          "segments": 77,
+          "total_pnl": 2768.1877234225644,
+          "forced_close_count": 15,
+          "score": 2393.1877234225644
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 9,
+            "multiplier": 1.15,
+            "initial_lot": 0.01,
+            "tp_pips": 4.5,
+            "sl_pips": 70.0,
+            "drawdown_limit_currency": 180.0,
+            "step_mode": "variable",
+            "step_pips": 9.0,
+            "variable_step_schedule": [
+              {
+                "start": "21:00",
+                "end": "00:30",
+                "value": 6.0
+              },
+              {
+                "start": "00:30",
+                "end": "04:00",
+                "value": 7.0
+              }
+            ],
+            "variable_tp_schedule": [
+              {
+                "start": "21:00",
+                "end": "04:00",
+                "value": 3.5
+              }
+            ]
+          },
+          "segments": 77,
+          "total_pnl": 2768.1877234225644,
+          "forced_close_count": 15,
+          "score": 2393.1877234225644
+        }
+      ]
+    },
+    {
+      "pair": "GBPUSD",
+      "session": "london",
+      "best": [
+        {
+          "pair": "GBPUSD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 145.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 78,
+          "total_pnl": 1417.808642165564,
+          "forced_close_count": 26,
+          "score": 767.8086421655639
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 145.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 78,
+          "total_pnl": 1344.913544352947,
+          "forced_close_count": 27,
+          "score": 669.9135443529469
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 145.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 78,
+          "total_pnl": 1376.498907754797,
+          "forced_close_count": 29,
+          "score": 651.4989077547971
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.07,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 145.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 78,
+          "total_pnl": 1312.4514458416631,
+          "forced_close_count": 28,
+          "score": 612.4514458416631
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "london",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 145.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 78,
+          "total_pnl": 1310.531833337387,
+          "forced_close_count": 28,
+          "score": 610.5318333373871
+        }
+      ]
+    },
+    {
+      "pair": "GBPUSD",
+      "session": "new_york",
+      "best": [
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.11,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 130.0,
+            "step_mode": "fixed",
+            "step_pips": 6.8,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 74,
+          "total_pnl": 2514.8964810891157,
+          "forced_close_count": 31,
+          "score": 1739.8964810891157
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.11,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 130.0,
+            "step_mode": "fixed",
+            "step_pips": 6.8,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 74,
+          "total_pnl": 2587.8434006888733,
+          "forced_close_count": 35,
+          "score": 1712.8434006888733
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 130.0,
+            "step_mode": "fixed",
+            "step_pips": 6.8,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 74,
+          "total_pnl": 2461.2504467186536,
+          "forced_close_count": 31,
+          "score": 1686.2504467186536
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 130.0,
+            "step_mode": "fixed",
+            "step_pips": 6.8,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 74,
+          "total_pnl": 2514.690856828437,
+          "forced_close_count": 34,
+          "score": 1664.690856828437
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.05,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 130.0,
+            "step_mode": "fixed",
+            "step_pips": 6.8,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 74,
+          "total_pnl": 2512.8097713597317,
+          "forced_close_count": 35,
+          "score": 1637.8097713597317
+        }
+      ]
+    },
+    {
+      "pair": "NZDUSD",
+      "session": "asia",
+      "best": [
+        {
+          "pair": "NZDUSD",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 3.4,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 150.0,
+            "step_mode": "fixed",
+            "step_pips": 5.1,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 59,
+          "total_pnl": 1143.0483375321726,
+          "forced_close_count": 29,
+          "score": 418.0483375321726
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 3.4,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 150.0,
+            "step_mode": "fixed",
+            "step_pips": 5.1,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 59,
+          "total_pnl": 1140.7545471887352,
+          "forced_close_count": 29,
+          "score": 415.75454718873516
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 3.4,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 150.0,
+            "step_mode": "fixed",
+            "step_pips": 5.1,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 59,
+          "total_pnl": 1136.7759373894987,
+          "forced_close_count": 29,
+          "score": 411.7759373894987
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 8,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 3.4,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 150.0,
+            "step_mode": "fixed",
+            "step_pips": 5.1,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 59,
+          "total_pnl": 1118.387095273527,
+          "forced_close_count": 30,
+          "score": 368.38709527352694
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "asia",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 3.4,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 150.0,
+            "step_mode": "fixed",
+            "step_pips": 5.1,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 59,
+          "total_pnl": 1116.4870961010265,
+          "forced_close_count": 30,
+          "score": 366.4870961010265
+        }
+      ]
+    },
+    {
+      "pair": "NZDUSD",
+      "session": "new_york",
+      "best": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 73,
+          "total_pnl": 4619.346176211442,
+          "forced_close_count": 26,
+          "score": 3969.346176211442
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 7,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 73,
+          "total_pnl": 4607.800453392577,
+          "forced_close_count": 26,
+          "score": 3957.800453392577
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 5,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 73,
+          "total_pnl": 4611.067215202916,
+          "forced_close_count": 27,
+          "score": 3936.0672152029156
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 5,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 73,
+          "total_pnl": 4584.480682600079,
+          "forced_close_count": 26,
+          "score": 3934.4806826000786
+        },
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.13,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 140.0,
+            "step_mode": "fixed",
+            "step_pips": 5.95,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 73,
+          "total_pnl": 4602.315228378481,
+          "forced_close_count": 27,
+          "score": 3927.315228378481
+        }
+      ]
+    },
+    {
+      "pair": "AUDUSD",
+      "session": "new_york",
+      "best": [
+        {
+          "pair": "AUDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 3,
+            "multiplier": 1.02,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 35.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 10.35,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 371.72850260000774,
+          "forced_close_count": 5,
+          "score": 246.72850260000774
+        },
+        {
+          "pair": "AUDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 3,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 35.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 10.35,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 370.6724216000099,
+          "forced_close_count": 5,
+          "score": 245.6724216000099
+        },
+        {
+          "pair": "AUDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 3,
+            "multiplier": 1.05,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 35.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 10.35,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 370.54535375000796,
+          "forced_close_count": 5,
+          "score": 245.54535375000796
+        },
+        {
+          "pair": "AUDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.02,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 35.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 10.35,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 357.7620098000075,
+          "forced_close_count": 5,
+          "score": 232.7620098000075
+        },
+        {
+          "pair": "AUDUSD",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.02,
+            "initial_lot": 0.01,
+            "tp_pips": 2.55,
+            "sl_pips": 35.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 9.0,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 332.295488096007,
+          "forced_close_count": 4,
+          "score": 232.29548809600698
+        }
+      ]
+    },
+    {
+      "pair": "USDJPY",
+      "session": "new_york",
+      "best": [
+        {
+          "pair": "USDJPY",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.02,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 8.5,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 143.66229841596615,
+          "forced_close_count": 8,
+          "score": -56.33770158403385
+        },
+        {
+          "pair": "USDJPY",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 8.5,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 143.51870790395438,
+          "forced_close_count": 8,
+          "score": -56.48129209604562
+        },
+        {
+          "pair": "USDJPY",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 4,
+            "multiplier": 1.05,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 8.5,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 142.6664004999577,
+          "forced_close_count": 8,
+          "score": -57.33359950004231
+        },
+        {
+          "pair": "USDJPY",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 3,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 8.5,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 141.4153478399609,
+          "forced_close_count": 8,
+          "score": -58.5846521600391
+        },
+        {
+          "pair": "USDJPY",
+          "session": "new_york",
+          "params": {
+            "enabled": true,
+            "grid_levels": 3,
+            "multiplier": 1.02,
+            "initial_lot": 0.01,
+            "tp_pips": 2.98,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 110.0,
+            "step_mode": "fixed",
+            "step_pips": 8.5,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          },
+          "segments": 11,
+          "total_pnl": 140.68738423996405,
+          "forced_close_count": 8,
+          "score": -59.31261576003595
+        }
+      ]
+    }
+  ]
+}

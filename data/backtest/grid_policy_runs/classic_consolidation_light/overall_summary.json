@@ -1,0 +1,49 @@
+{
+  "generated_at_utc": "2026-04-18T17:18:36.398868+00:00",
+  "pairs": [
+    "EURJPY",
+    "GBPJPY",
+    "GBPUSD",
+    "NZDUSD"
+  ],
+  "session_filter": "all",
+  "start_date": "2025-01-01",
+  "end_date": "2025-12-31",
+  "use_live_policy": false,
+  "policy_id_override": "classic_consolidation_light",
+  "risk_mode": "medium",
+  "account_equity": 10000.0,
+  "max_sessions": null,
+  "live_policy_path": "/home/asurani/.openclaw/workspace/data/live/policy/grid_policy.json",
+  "config_path": "/home/asurani/.openclaw/workspace/config/trading_config.json",
+  "overall": {
+    "sessions": 4380,
+    "pairs": [
+      "EURJPY",
+      "GBPJPY",
+      "GBPUSD",
+      "NZDUSD"
+    ],
+    "policies": [
+      "classic_consolidation_light"
+    ],
+    "total_pnl": 1498.7471699999999,
+    "avg_pnl": 0.34217971917808215,
+    "median_pnl": 0.957,
+    "best_session_pnl": 6.640223,
+    "worst_session_pnl": -32.515894,
+    "worst_drawdown": 32.754522,
+    "avg_trade_count": 2.4011415525114157,
+    "avg_gross_lots": 0.025583465981735158,
+    "winning_sessions": 2466,
+    "non_positive_sessions": 1914,
+    "exit_reason_counts": {
+      "basket_sl_pips": 61,
+      "basket_tp_currency": 11,
+      "basket_tp_pips": 2316,
+      "daily_liquidation": 117,
+      "no_bars": 1289,
+      "session_close": 586
+    }
+  }
+}

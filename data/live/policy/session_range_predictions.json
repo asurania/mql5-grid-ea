@@ -1,39 +1,39 @@
 {
-  "generated_at_utc": "2026-04-18T02:00:51.737152+00:00",
+  "generated_at_utc": "2026-04-23T00:03:10.416471+00:00",
   "session_name": "asia",
   "model": "lgbm_session_range_v1",
   "pairs": [
     {
       "pair": "EURJPY",
       "session_name": "asia",
-      "predicted_range_pips": 100.62262694344435,
-      "avg_range_5": 61.2441743963484,
-      "avg_range_10": 60.103185464070066,
-      "std_range_10": 32.38956865887656
+      "predicted_range_pips": 76.05750009540272,
+      "avg_range_5": 58.59798824711447,
+      "avg_range_10": 64.91541597701996,
+      "std_range_10": 36.210772732311895
     },
     {
       "pair": "GBPJPY",
       "session_name": "asia",
-      "predicted_range_pips": 107.51423150818142,
-      "avg_range_5": 78.4493809725086,
-      "avg_range_10": 73.44959851010174,
-      "std_range_10": 47.9772092865623
+      "predicted_range_pips": 90.89915048793993,
+      "avg_range_5": 74.98691482747745,
+      "avg_range_10": 77.74074551333655,
+      "std_range_10": 44.03036995350703
     },
     {
       "pair": "GBPUSD",
       "session_name": "asia",
-      "predicted_range_pips": 105.30298363949622,
-      "avg_range_5": 53.640000000000136,
-      "avg_range_10": 67.61000000000016,
-      "std_range_10": 55.36289270701967
+      "predicted_range_pips": 81.30926211906053,
+      "avg_range_5": 44.42000000000013,
+      "avg_range_10": 45.77999999999971,
+      "std_range_10": 32.58570920579205
     },
     {
       "pair": "NZDUSD",
       "session_name": "asia",
-      "predicted_range_pips": 90.64405471764127,
-      "avg_range_5": 36.95999999999988,
-      "avg_range_10": 39.779999999999816,
-      "std_range_10": 25.976433764301007
+      "predicted_range_pips": 74.09343089369719,
+      "avg_range_5": 32.73999999999999,
+      "avg_range_10": 34.60000000000007,
+      "std_range_10": 15.440782939274895
     }
   ]
 }

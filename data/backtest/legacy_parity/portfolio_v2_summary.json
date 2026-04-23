@@ -1,0 +1,423 @@
+{
+  "generated_at_utc": "2026-04-21T20:05:16.872992+00:00",
+  "portfolio_total_pnl": 10572.583643652306,
+  "portfolio_forced_close_count": 89,
+  "results": [
+    {
+      "pair": "NZDUSD",
+      "session": "new_york",
+      "segments": 73,
+      "total_pnl": 4615.547613299095,
+      "forced_close_count": 31,
+      "sample": [
+        {
+          "rows": 477,
+          "buy_realized_pnl": 31.981403999993354,
+          "sell_realized_pnl": 39.05719999999282,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 19.018999999995696,
+          "sell_realized_pnl": 65.62919999998734,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 477,
+          "buy_realized_pnl": -23.285808000001808,
+          "sell_realized_pnl": 45.20879999999162,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 18.49305639999668,
+          "sell_realized_pnl": 57.29723999998969,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 16.60408203999767,
+          "sell_realized_pnl": 43.789199999991645,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 15.25523999999743,
+          "sell_realized_pnl": 66.32079999998773,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 32.432399999994445,
+          "sell_realized_pnl": 73.6772399999865,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 7.649682039999233,
+          "sell_realized_pnl": 61.552399999988545,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 5.208839999998894,
+          "sell_realized_pnl": 60.42399999998868,
+          "buy_closed_reason": "forced_session_close",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 16.092439999996575,
+          "sell_realized_pnl": 72.61799999998588,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        }
+      ],
+      "policy": {
+        "pair": "NZDUSD",
+        "session": "new_york",
+        "enabled": true,
+        "grid_levels": 6,
+        "multiplier": 1.1,
+        "initial_lot": 0.01,
+        "tp_pips": 2.8,
+        "sl_pips": 40.0,
+        "drawdown_limit_currency": 140.0,
+        "step_mode": "fixed",
+        "step_pips": 6.4,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    {
+      "pair": "GBPJPY",
+      "session": "london",
+      "segments": 77,
+      "total_pnl": 2161.959937024496,
+      "forced_close_count": 19,
+      "sample": [
+        {
+          "rows": 240,
+          "buy_realized_pnl": 36.446399999984926,
+          "sell_realized_pnl": 7.243199999999193,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 180,
+          "buy_realized_pnl": 8.963758079998533,
+          "sell_realized_pnl": 10.929599999999187,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 240,
+          "buy_realized_pnl": 4.72319999999861,
+          "sell_realized_pnl": 32.52038399999374,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 406,
+          "buy_realized_pnl": 17.03262504959439,
+          "sell_realized_pnl": 28.473983999995447,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 180,
+          "buy_realized_pnl": 8.904383999997757,
+          "sell_realized_pnl": 9.08639999999892,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 240,
+          "buy_realized_pnl": 7.4159999999962745,
+          "sell_realized_pnl": 17.15748952888154,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 17.717183999994198,
+          "sell_realized_pnl": 23.74587647999394,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "forced_session_close",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 15.071967129597594,
+          "sell_realized_pnl": 22.181183999996108,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 25.19082613554352,
+          "sell_realized_pnl": 21.369599999996026,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 27.11618630221248,
+          "sell_realized_pnl": 24.717489528880577,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        }
+      ],
+      "policy": {
+        "pair": "GBPJPY",
+        "session": "london",
+        "enabled": true,
+        "grid_levels": 8,
+        "multiplier": 1.12,
+        "initial_lot": 0.01,
+        "tp_pips": 4.0,
+        "sl_pips": 70.0,
+        "drawdown_limit_currency": 180.0,
+        "step_mode": "fixed",
+        "step_pips": 8.2,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    {
+      "pair": "GBPUSD",
+      "session": "new_york",
+      "segments": 74,
+      "total_pnl": 2281.537651328663,
+      "forced_close_count": 39,
+      "sample": [
+        {
+          "rows": 480,
+          "buy_realized_pnl": 9.975929600002111,
+          "sell_realized_pnl": 12.376000000002563,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 24.627739136007847,
+          "sell_realized_pnl": 32.813184768004675,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 477,
+          "buy_realized_pnl": 2.4362823680044,
+          "sell_realized_pnl": 26.32448000000476,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 18.131859200004783,
+          "sell_realized_pnl": 0.0703872000028063,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 2.9532672000056275,
+          "sell_realized_pnl": -5.450182399998052,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 22.167308800005493,
+          "sell_realized_pnl": 27.088379136004683,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 32.89548953601305,
+          "sell_realized_pnl": 27.0863623680068,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": -11.970732799995925,
+          "sell_realized_pnl": 22.718675200005524,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "forced_session_close",
+          "breach_reason": null
+        },
+        {
+          "rows": 419,
+          "buy_realized_pnl": 7.554164800002626,
+          "sell_realized_pnl": 12.55304960000112,
+          "buy_closed_reason": "forced_session_close",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 480,
+          "buy_realized_pnl": 26.52832000000854,
+          "sell_realized_pnl": 44.20648960000441,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        }
+      ],
+      "policy": {
+        "pair": "GBPUSD",
+        "session": "new_york",
+        "enabled": true,
+        "grid_levels": 4,
+        "multiplier": 1.08,
+        "initial_lot": 0.01,
+        "tp_pips": 2.8,
+        "sl_pips": 40.0,
+        "drawdown_limit_currency": 130.0,
+        "step_mode": "fixed",
+        "step_pips": 7.3,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    },
+    {
+      "pair": "AUDNZD",
+      "session": "london",
+      "segments": 13,
+      "total_pnl": 1513.5384420000512,
+      "forced_close_count": 0,
+      "sample": [
+        {
+          "rows": 420,
+          "buy_realized_pnl": 40.04683800000302,
+          "sell_realized_pnl": 78.91260000000256,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 42.88978200000142,
+          "sell_realized_pnl": 101.90700000000305,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 180,
+          "buy_realized_pnl": 10.974600000000372,
+          "sell_realized_pnl": 25.084800000000868,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 240,
+          "buy_realized_pnl": 0.0,
+          "sell_realized_pnl": 66.8928000000023,
+          "buy_closed_reason": null,
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 180,
+          "buy_realized_pnl": 37.20389400000218,
+          "sell_realized_pnl": 29.960658000001132,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 240,
+          "buy_realized_pnl": 34.64838000000091,
+          "sell_realized_pnl": 42.330600000001475,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 54.78938400000449,
+          "sell_realized_pnl": 117.06240000000338,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 240,
+          "buy_realized_pnl": 21.881262000001282,
+          "sell_realized_pnl": 61.14420000000214,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 122.98345800000163,
+          "sell_realized_pnl": 75.77700000000249,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        },
+        {
+          "rows": 420,
+          "buy_realized_pnl": 63.08827200000319,
+          "sell_realized_pnl": 101.90700000000305,
+          "buy_closed_reason": "basket_tp_pips",
+          "sell_closed_reason": "basket_tp_pips",
+          "breach_reason": null
+        }
+      ],
+      "policy": {
+        "pair": "AUDNZD",
+        "session": "london",
+        "enabled": true,
+        "grid_levels": 5,
+        "multiplier": 1.11,
+        "initial_lot": 0.01,
+        "tp_pips": 4.02,
+        "sl_pips": 45.0,
+        "drawdown_limit_currency": 140.0,
+        "step_mode": "fixed",
+        "step_pips": 8.05,
+        "variable_step_schedule": [],
+        "variable_tp_schedule": []
+      }
+    }
+  ]
+}

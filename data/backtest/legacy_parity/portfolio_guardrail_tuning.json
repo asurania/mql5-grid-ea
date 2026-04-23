@@ -1,0 +1,325 @@
+{
+  "generated_at_utc": "2026-04-21T22:51:16.128835+00:00",
+  "best": [
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.03,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 180.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.03,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 220.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.03,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 260.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.04,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 180.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.04,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 220.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.04,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 260.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.05,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 180.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.05,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 220.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 3,
+        "max_total_initial_lots": 0.05,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 260.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "months": 40,
+      "worst_month": 1395.9028264625833,
+      "score": 73940.60570248989
+    },
+    {
+      "guardrails": {
+        "max_active_slots": 2,
+        "max_total_initial_lots": 0.03,
+        "max_total_drawdown_currency": 300.0,
+        "daily_loss_cap_currency": 180.0,
+        "session_loss_cap_currency": 120.0,
+        "flatten_on_account_breach": true,
+        "block_new_entries_after_daily_cap": true,
+        "slot_overrides": {
+          "GBPJPY:london": {
+            "max_grid_levels": 8,
+            "max_slot_drawdown_currency": 160.0,
+            "tail_loss_guard_currency": 90.0
+          },
+          "GBPUSD:new_york": {
+            "max_grid_levels": 4,
+            "max_slot_drawdown_currency": 110.0,
+            "forced_close_rate_warn": 0.45
+          },
+          "NZDUSD:new_york": {
+            "max_grid_levels": 6,
+            "max_slot_drawdown_currency": 130.0
+          }
+        }
+      },
+      "total_pnl": 74937.49725808368,
+      "total_forced": 381,
+      "months": 40,
+      "worst_month": 1082.0719304838167,
+      "score": 65107.85691050276
+    }
+  ]
+}

@@ -3,26 +3,57 @@ from __future__ import annotations
 import gzip
 import io
 import json
-from datetime import date, timedelta
+import os
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError
 
-AWS_ACCESS_KEY_ID = "15e42440-7867-4755-99c8-958420b3859d"
-AWS_SECRET_ACCESS_KEY = "njD7QQlS6C4hdRLZG7UBC6H2NreHwypW"
-ENDPOINT_URL = "https://files.massive.com"
-BUCKET = "flatfiles"
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from shared_env import load_project_env
+
+load_project_env()
+
+AWS_ACCESS_KEY_ID = os.environ.get("MASSIVE_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.environ.get("MASSIVE_SECRET_ACCESS_KEY", "")
+ENDPOINT_URL = os.environ.get("MASSIVE_S3_ENDPOINT", "https://files.massive.com")
+BUCKET = os.environ.get("MASSIVE_BUCKET", "flatfiles")
 RAW_DIR = Path("data/raw/massive/forex/minute_aggs")
 START_DATE = date(2023, 1, 1)
-END_DATE = date(2026, 3, 31)
+END_DATE = datetime.now(timezone.utc).date()
 
 TARGET_TICKERS = {
-    "C:EUR-JPY",
-    "C:GBP-JPY",
+    "C:EUR-USD",
+    "C:USD-JPY",
     "C:GBP-USD",
+    "C:USD-CHF",
+    "C:AUD-USD",
+    "C:USD-CAD",
     "C:NZD-USD",
+    "C:EUR-GBP",
+    "C:EUR-JPY",
+    "C:EUR-CHF",
+    "C:EUR-AUD",
+    "C:EUR-CAD",
+    "C:EUR-NZD",
+    "C:GBP-JPY",
+    "C:GBP-CHF",
+    "C:GBP-AUD",
+    "C:GBP-CAD",
+    "C:GBP-NZD",
+    "C:AUD-JPY",
+    "C:AUD-CHF",
+    "C:AUD-CAD",
+    "C:AUD-NZD",
+    "C:CAD-JPY",
+    "C:CAD-CHF",
+    "C:CHF-JPY",
+    "C:NZD-JPY",
+    "C:NZD-CHF",
+    "C:NZD-CAD",
 }
 
 
@@ -34,6 +65,8 @@ def iter_dates(start: date, end: date):
 
 
 def make_client():
+    if not AWS_ACCESS_KEY_ID or not AWS_SECRET_ACCESS_KEY:
+        raise RuntimeError("Missing Massive S3 credentials. Set MASSIVE_ACCESS_KEY_ID and MASSIVE_SECRET_ACCESS_KEY.")
     session = boto3.session.Session()
     return session.client(
         "s3",
@@ -80,9 +113,14 @@ def main() -> None:
             obj = s3.get_object(Bucket=BUCKET, Key=key)
         except ClientError as e:
             code = e.response.get("Error", {}).get("Code")
-            if code == "NoSuchKey":
+            status = e.response.get("ResponseMetadata", {}).get("HTTPStatusCode")
+            if code == "NoSuchKey" or status == 404:
                 manifest.append({"date": d.isoformat(), "key": key, "missing": True})
                 print(d.isoformat(), "MISSING")
+                continue
+            if status == 403:
+                manifest.append({"date": d.isoformat(), "key": key, "forbidden": True})
+                print(d.isoformat(), "FORBIDDEN")
                 continue
             raise
 

@@ -1,0 +1,49 @@
+{
+  "generated_at_utc": "2026-04-21T06:04:16.007000+00:00",
+  "results": [
+    {
+      "pair": "GBPJPY",
+      "rows": 4000,
+      "trading_enabled": true,
+      "breach_reason": null,
+      "managed_closing_only": true,
+      "buy_orders_open": 0,
+      "sell_orders_open": 0,
+      "buy_realized_pnl": 28.56269722419421,
+      "sell_realized_pnl": 434.7745723275699,
+      "buy_closed_reason": "forced_session_close",
+      "sell_closed_reason": "basket_tp_pips",
+      "risk": {
+        "account_equity": 10000.0,
+        "max_account_drawdown_currency": 150.0,
+        "max_basket_drawdown_currency": 150.0,
+        "target_basket_profit_currency": 150.0,
+        "stop_trading_on_breach": true
+      },
+      "managed_close_started": true,
+      "force_flattened": true
+    },
+    {
+      "pair": "GBPUSD",
+      "rows": 4000,
+      "trading_enabled": true,
+      "breach_reason": null,
+      "managed_closing_only": true,
+      "buy_orders_open": 0,
+      "sell_orders_open": 0,
+      "buy_realized_pnl": -58.464275634237524,
+      "sell_realized_pnl": 283.33025527897763,
+      "buy_closed_reason": "basket_tp_pips",
+      "sell_closed_reason": "basket_tp_pips",
+      "risk": {
+        "account_equity": 10000.0,
+        "max_account_drawdown_currency": 150.0,
+        "max_basket_drawdown_currency": 150.0,
+        "target_basket_profit_currency": 150.0,
+        "stop_trading_on_breach": true
+      },
+      "managed_close_started": true,
+      "force_flattened": true
+    }
+  ]
+}

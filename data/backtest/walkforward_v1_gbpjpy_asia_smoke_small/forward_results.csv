@@ -1,0 +1,3 @@
+week_start,week_end,pair,session,enabled,forward_total_pnl,forward_max_dd,forward_trade_count,forward_event_gated_sessions,forward_status
+2025-01-01,2025-01-08,GBPJPY,asia,True,-9.599791,19.18992,19,1,ok
+2025-01-08,2025-01-15,GBPJPY,asia,True,9.754837,6.1512,18,0,ok

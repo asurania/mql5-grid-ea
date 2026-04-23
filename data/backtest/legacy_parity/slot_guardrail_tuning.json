@@ -1,0 +1,335 @@
+{
+  "generated_at_utc": "2026-04-21T23:05:50.625569+00:00",
+  "best": [
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 140.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 90.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 140.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 110.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 140.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 130.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 160.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 90.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 160.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 110.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 160.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 130.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 180.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 90.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 180.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 110.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 8,
+          "max_slot_drawdown_currency": 180.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 130.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97081.09157017697,
+      "total_forced": 753,
+      "slot_forced": {
+        "GBPJPY:london": 116,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29331.48531946256,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -89.44448575029226,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67571.20259867639
+    },
+    {
+      "slot_overrides": {
+        "GBPJPY:london": {
+          "max_grid_levels": 9,
+          "max_slot_drawdown_currency": 140.0,
+          "tail_loss_guard_currency": 90.0
+        },
+        "GBPUSD:new_york": {
+          "max_grid_levels": 4,
+          "max_slot_drawdown_currency": 90.0,
+          "forced_close_rate_warn": 0.45
+        },
+        "NZDUSD:new_york": {
+          "max_grid_levels": 6,
+          "max_slot_drawdown_currency": 130.0
+        }
+      },
+      "total_pnl": 97144.67368829792,
+      "total_forced": 755,
+      "slot_forced": {
+        "GBPJPY:london": 118,
+        "GBPUSD:new_york": 372
+      },
+      "slot_pnl": {
+        "GBPJPY:london": 29395.06743758351,
+        "GBPUSD:new_york": 22143.59431209333
+      },
+      "slot_worst_seg": {
+        "GBPJPY:london": -111.24442338784485,
+        "GBPUSD:new_york": -23.377756755587264
+      },
+      "score": 67521.18484152223
+    }
+  ]
+}

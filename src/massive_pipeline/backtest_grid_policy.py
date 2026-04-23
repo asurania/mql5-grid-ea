@@ -59,6 +59,14 @@ EVENT_AVOID_COLUMN_BY_PAIR = {
 }
 
 
+def infer_pip_size(pair: str) -> float:
+    return 0.01 if pair.upper().endswith("JPY") else 0.0001
+
+
+def infer_pip_value_per_001_lot(pair: str) -> float:
+    return 0.1
+
+
 @dataclass(frozen=True)
 class Policy:
     pair: str
@@ -87,6 +95,8 @@ class PolicyOverrides:
     initial_lot: float | None = None
     basket_tp_currency: float | None = None
     basket_tp_pips: float | None = None
+    multiplier: float | None = None
+    max_basket_drawdown_currency: float | None = None
 
 
 @dataclass(frozen=True)
@@ -329,6 +339,12 @@ def build_policy(
         if overrides.basket_tp_currency is not None
         else optional_positive_float(base.get("basket_tp_currency"))
     )
+    resolved_multiplier = overrides.multiplier if overrides.multiplier is not None else float(base.get("multiplier", 1.0))
+    resolved_max_basket_dd = (
+        overrides.max_basket_drawdown_currency
+        if overrides.max_basket_drawdown_currency is not None
+        else optional_positive_float(base.get("max_basket_drawdown_currency"))
+    )
 
     return Policy(
         pair=pair,
@@ -337,13 +353,13 @@ def build_policy(
         seed_mode=str(base.get("seed_mode", "both_sides")),
         step_pips=step_pips,
         initial_lot=initial_lot,
-        multiplier=float(base.get("multiplier", 1.0)),
+        multiplier=resolved_multiplier,
         max_trades_per_side=max_trades_per_side,
         max_gross_lots=float(base.get("max_gross_lots", 0.0)),
         basket_tp_pips=resolved_basket_tp_pips,
         basket_sl_pips=basket_sl_pips,
         basket_tp_currency=resolved_basket_tp_currency,
-        max_basket_drawdown_currency=optional_positive_float(base.get("max_basket_drawdown_currency")),
+        max_basket_drawdown_currency=resolved_max_basket_dd,
         allow_new_basket=bool(base.get("allow_new_basket", True)),
         risk_mode=risk_mode,
         account_equity=account_equity,
@@ -497,6 +513,40 @@ def load_live_pair_policies(grid_policy_path: Path) -> dict[str, dict[str, Any]]
     payload = load_json(grid_policy_path)
     rows = payload.get("pairs", [])
     return {str(row["pair"]).upper(): row for row in rows if row.get("pair")}
+
+
+def build_backtest_context(
+    *,
+    pairs: list[str],
+    config: dict[str, Any],
+    live_pair_policies: dict[str, dict[str, Any]],
+    session_filter: str,
+    start_date: date,
+    end_date: date,
+    policy_id_override: str | None,
+    risk_mode: str,
+    account_equity: float,
+    use_live_policy: bool,
+    overrides: PolicyOverrides,
+    price_root: Path = PRICE_DIR,
+    event_path: Path = DEFAULT_EVENT_GATING_PATH,
+) -> tuple[list[SessionSpec], pl.DataFrame, set[tuple[str, str, date]]]:
+    session_specs = build_session_specs(
+        pairs=pairs,
+        config=config,
+        live_pair_policies=live_pair_policies,
+        session_filter=session_filter,
+        start_date=start_date,
+        end_date=end_date,
+        policy_id_override=policy_id_override,
+        risk_mode=risk_mode,
+        account_equity=account_equity,
+        use_live_policy=use_live_policy,
+        overrides=overrides,
+    )
+    bars = load_bars(price_root=price_root, pairs=pairs, session_specs=session_specs)
+    event_risk_gated_sessions = load_historical_event_gates(event_path=event_path, session_specs=session_specs)
+    return session_specs, bars, event_risk_gated_sessions
 
 
 def load_bars(
@@ -951,6 +1001,47 @@ def build_result(
         gated_by_entry_intent=False,
         derived_entry_direction=derived_entry_direction,
     )
+
+
+def run_session_backtest(
+    *,
+    session_specs: list[SessionSpec],
+    bars: pl.DataFrame,
+    event_risk_gated_sessions: set[tuple[str, str, date]],
+    max_sessions: int | None = None,
+    use_event_risk_gating: bool = False,
+    use_entry_intent_gating: bool = False,
+) -> list[SimulationResult]:
+    results: list[SimulationResult] = []
+    grouped_pair_bars = {pair: frame.sort("timestamp_utc") for pair, frame in bars.partition_by("pair", as_dict=True).items()}
+    for index, spec in enumerate(session_specs):
+        if max_sessions is not None and index >= max_sessions:
+            break
+        pair_bars = grouped_pair_bars.get((spec.pair,))
+        if pair_bars is None:
+            pair_bars = grouped_pair_bars.get(spec.pair)
+        if pair_bars is None or pair_bars.height == 0:
+            results.append(build_gated_result(spec, exit_reason="no_bars", bars_processed=0))
+            continue
+        session_bars = pair_bars.filter(
+            (pl.col("timestamp_utc") >= pl.lit(spec.session_start_utc))
+            & (pl.col("timestamp_utc") <= pl.lit(spec.session_end_utc))
+        )
+        pip_size = infer_pip_size(spec.pair)
+        pip_value_per_001_lot = infer_pip_value_per_001_lot(spec.pair)
+        results.append(
+            simulate_session(
+                spec,
+                pair_bars,
+                session_bars,
+                pip_size,
+                pip_value_per_001_lot,
+                use_event_risk_gating,
+                use_entry_intent_gating,
+                event_risk_gated_sessions,
+            )
+        )
+    return results
 
 
 def results_to_frame(results: list[SimulationResult]) -> pl.DataFrame:

@@ -8,10 +8,13 @@ IN_FILE = Path("data/processed/economic_calendar/events_with_risk_prior.parquet"
 OUT_DIR = Path("data/processed/economic_calendar")
 PAIRS = ["EURJPY", "GBPJPY", "GBPUSD", "NZDUSD"]
 
-ASIA_START_HOUR = 0
-ASIA_END_HOUR = 9
-LONDON_START_HOUR = 7
-LONDON_END_HOUR = 16
+CALGARY_TZ = "America/Edmonton"
+ASIA_START_HOUR = 16
+ASIA_END_HOUR = 21
+LONDON_START_HOUR = 21
+LONDON_END_HOUR = 4
+NEW_YORK_START_HOUR = 4
+NEW_YORK_END_HOUR = 12
 
 PAIR_CURRENCIES = {
     "EURJPY": {"EUR", "JPY"},
@@ -25,12 +28,15 @@ SESSION_AVOID_STRICT_CATEGORIES = {"central_bank", "inflation", "employment", "g
 
 
 def session_label_expr() -> pl.Expr:
-    h = pl.col("event_timestamp_utc").dt.hour()
+    local_ts = pl.col("event_timestamp_utc").dt.convert_time_zone(CALGARY_TZ)
+    h = local_ts.dt.hour()
     return (
         pl.when((h >= ASIA_START_HOUR) & (h < ASIA_END_HOUR))
         .then(pl.lit("asia"))
-        .when((h >= LONDON_START_HOUR) & (h < LONDON_END_HOUR))
+        .when((h >= LONDON_START_HOUR) | (h < LONDON_END_HOUR))
         .then(pl.lit("london"))
+        .when((h >= NEW_YORK_START_HOUR) & (h < NEW_YORK_END_HOUR))
+        .then(pl.lit("new_york"))
         .otherwise(pl.lit("other"))
         .alias("event_session")
     )
@@ -56,8 +62,10 @@ def avoid_expr(pair: str) -> pl.Expr:
         & is_primary
         & is_major
         & (
-            (risk_col == "halt" )
+            (risk_col == "halt")
             | (is_jpy_cross & (currency == "JPY") & is_strict)
+            | ((currency == "NZD") & is_strict & (importance >= 1))
+            | ((currency == "USD") & (pair == "NZDUSD") & is_strict & (importance >= 1))
         )
     )
 

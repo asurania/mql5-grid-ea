@@ -1,0 +1,2 @@
+pair,session_name,session_start_utc,session_end_utc,managed_close_start_utc,policy_id,policy_source,risk_mode,account_equity,trade_count,gross_lots,realized_pnl,max_drawdown,max_adverse_excursion,max_open_legs,exit_reason,bars_processed,entered_managed_close,gated_by_event_risk,gated_by_entry_intent,derived_entry_direction
+NZDUSD,london,2023-01-02T03:00:00.000000+0000,2023-01-02T10:00:00.000000+0000,2023-01-02T10:00:00.000000+0000,session_optimizer_new_york_nzdusd_medium,live_policy,medium,10000.0,3,0.1525,6.042622,0.0,0.0,3,basket_tp_pips,59,false,false,false,

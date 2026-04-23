@@ -11,6 +11,12 @@ from pathlib import Path
 from typing import Iterable
 import http.client
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from shared_env import load_project_env
+
+load_project_env()
+
 API_HOST = "ultimate-economic-calendar.p.rapidapi.com"
 DEFAULT_COUNTRIES = ["US", "GB", "JP", "NZ", "DE"]
 
@@ -77,7 +83,7 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    end_month_by_year = {2023: 12, 2024: 12, 2025: 12, 2026: 3}
+    end_month_by_year = {2023: 12, 2024: 12, 2025: 12, 2026: 6}
     windows = list(iter_months(2023, 2026, end_month_by_year))
 
     manifest: list[dict[str, object]] = []

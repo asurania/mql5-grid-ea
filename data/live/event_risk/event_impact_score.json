@@ -1,0 +1,108 @@
+{
+  "model_file": "data/models/event_impact/event_impact_model.json",
+  "profile_file": "data/models/event_impact/event_name_risk_profile.csv",
+  "generated_at_utc": "2026-04-22 05:40:00.alias(\"datetime\")",
+  "feature_count": 45,
+  "top_risk_events": [
+    {
+      "event_name": "Core CPI MM, SA",
+      "total_events": 22,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.4090909090909091,
+      "trend_danger_rate": 0.3181818181818182,
+      "affected_pairs": 2,
+      "event_category": "inflation"
+    },
+    {
+      "event_name": "S&P Global SVC PMI Final SA",
+      "total_events": 16,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.125,
+      "trend_danger_rate": 0.0625,
+      "affected_pairs": 2,
+      "event_category": "pmi"
+    },
+    {
+      "event_name": "Services YY",
+      "total_events": 24,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.25,
+      "trend_danger_rate": 0.0,
+      "affected_pairs": 2,
+      "event_category": "pmi"
+    },
+    {
+      "event_name": "Core CPI MM, SA*",
+      "total_events": 54,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.5,
+      "trend_danger_rate": 0.25925925925925924,
+      "affected_pairs": 2,
+      "event_category": "inflation"
+    },
+    {
+      "event_name": "Core CPI MM*",
+      "total_events": 54,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.42592592592592593,
+      "trend_danger_rate": 0.09259259259259259,
+      "affected_pairs": 2,
+      "event_category": "inflation"
+    },
+    {
+      "event_name": "CPI MM*",
+      "total_events": 54,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.42592592592592593,
+      "trend_danger_rate": 0.09259259259259259,
+      "affected_pairs": 2,
+      "event_category": "inflation"
+    },
+    {
+      "event_name": "GDP QQ *",
+      "total_events": 14,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.0,
+      "trend_danger_rate": 0.0,
+      "affected_pairs": 2,
+      "event_category": "gdp"
+    },
+    {
+      "event_name": "Core CPI YY, NSA",
+      "total_events": 24,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.375,
+      "trend_danger_rate": 0.2916666666666667,
+      "affected_pairs": 2,
+      "event_category": "inflation"
+    },
+    {
+      "event_name": "Services MM*",
+      "total_events": 54,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.24074074074074073,
+      "trend_danger_rate": 0.07407407407407407,
+      "affected_pairs": 2,
+      "event_category": "pmi"
+    },
+    {
+      "event_name": "GDP Final*",
+      "total_events": 18,
+      "empirical_risk": 1.0,
+      "risk_std": 0.0,
+      "vol_expansion_rate": 0.3333333333333333,
+      "trend_danger_rate": 0.16666666666666666,
+      "affected_pairs": 2,
+      "event_category": "gdp"
+    }
+  ]
+}

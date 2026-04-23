@@ -1,0 +1,2 @@
+policy_id,sessions,winning_sessions,total_pnl,avg_pnl,median_pnl,worst_drawdown,avg_trade_count,entered_managed_close_sessions,event_risk_gated_sessions,entry_intent_gated_sessions,win_rate
+classic_consolidation_normal,360,186,91.000296,0.2527786,0.8814,37.386495,2.4027777777777777,0,28,0,0.5166666666666667

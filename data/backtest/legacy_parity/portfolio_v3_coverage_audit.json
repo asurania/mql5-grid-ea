@@ -1,0 +1,1685 @@
+{
+  "generated_at_utc": "2026-04-21T20:24:42.685276+00:00",
+  "monthly": [
+    {
+      "year": 2023,
+      "month": 1,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 31999,
+          "segment_count": 19,
+          "qualifying_segment_count": 19,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 32893,
+          "segment_count": 24,
+          "qualifying_segment_count": 22,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 31649,
+          "segment_count": 19,
+          "qualifying_segment_count": 19,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 31859,
+          "segment_count": 18,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 32638,
+          "segment_count": 23,
+          "qualifying_segment_count": 20,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 31544,
+          "segment_count": 18,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 29970,
+          "segment_count": 18,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 30760,
+          "segment_count": 24,
+          "qualifying_segment_count": 21,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 29753,
+          "segment_count": 18,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 32326,
+          "segment_count": 21,
+          "qualifying_segment_count": 21,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 32242,
+          "segment_count": 23,
+          "qualifying_segment_count": 23,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 32242,
+          "segment_count": 21,
+          "qualifying_segment_count": 21,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 29073,
+          "segment_count": 18,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 28709,
+          "segment_count": 20,
+          "qualifying_segment_count": 20,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 28969,
+          "segment_count": 18,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 30280,
+          "segment_count": 19,
+          "qualifying_segment_count": 19,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 29819,
+          "segment_count": 22,
+          "qualifying_segment_count": 22,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 30349,
+          "segment_count": 19,
+          "qualifying_segment_count": 18,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 32928,
+          "segment_count": 19,
+          "qualifying_segment_count": 19,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 32738,
+          "segment_count": 21,
+          "qualifying_segment_count": 21,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 32721,
+          "segment_count": 19,
+          "qualifying_segment_count": 19,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 28910,
+          "segment_count": 17,
+          "qualifying_segment_count": 17,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 28379,
+          "segment_count": 19,
+          "qualifying_segment_count": 19,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 28663,
+          "segment_count": 17,
+          "qualifying_segment_count": 17,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 31087,
+          "segment_count": 20,
+          "qualifying_segment_count": 20,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 30937,
+          "segment_count": 21,
+          "qualifying_segment_count": 21,
+          "max_segment_rows": 420,
+          "status": "ok"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 30884,
+          "segment_count": 20,
+          "qualifying_segment_count": 20,
+          "max_segment_rows": 480,
+          "status": "ok"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 1,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 2,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 4,
+      "slots": [
+        {
+          "pair": "NZDUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPJPY",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "GBPUSD",
+          "session": "new_york",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        },
+        {
+          "pair": "AUDNZD",
+          "session": "london",
+          "raw_rows": 0,
+          "segment_count": 0,
+          "qualifying_segment_count": 0,
+          "max_segment_rows": 0,
+          "status": "no_raw_rows"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "generated_at_utc": "2026-04-22T18:33:16.320915+00:00",
+  "results": [
+    {
+      "pair": "GBPUSD",
+      "missing_data": false,
+      "sessions": {
+        "london": {
+          "segments": 78,
+          "total_rows": 25944,
+          "buy_pnl": 498.99882097013403,
+          "sell_pnl": 592.6392544801743,
+          "sample": [
+            {
+              "rows": 240,
+              "buy_realized_pnl": 20.20200000000358,
+              "sell_realized_pnl": 9.600500000001988,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 180,
+              "buy_realized_pnl": 25.712050000004805,
+              "sell_realized_pnl": 12.285000000002544,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 240,
+              "buy_realized_pnl": 8.201652550004006,
+              "sell_realized_pnl": -32.46866349999925,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 405,
+              "buy_realized_pnl": 13.1111025500046,
+              "sell_realized_pnl": 20.989150000005612,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 180,
+              "buy_realized_pnl": 4.142820500001916,
+              "sell_realized_pnl": 5.050500000001046,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 240,
+              "buy_realized_pnl": -0.9697349999973923,
+              "sell_realized_pnl": 22.88650000000474,
+              "buy_closed_reason": "forced_session_close",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 420,
+              "buy_realized_pnl": 26.34905000000493,
+              "sell_realized_pnl": 22.709050000003568,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 420,
+              "buy_realized_pnl": 14.360255000003,
+              "sell_realized_pnl": 19.9335500000036,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 420,
+              "buy_realized_pnl": 12.260475500003132,
+              "sell_realized_pnl": 10.021652550002155,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 420,
+              "buy_realized_pnl": 15.793050000002737,
+              "sell_realized_pnl": 21.077920500004506,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            }
+          ],
+          "policy": {
+            "enabled": true,
+            "grid_levels": 6,
+            "multiplier": 1.1,
+            "initial_lot": 0.01,
+            "tp_pips": 3.5,
+            "sl_pips": 45.0,
+            "drawdown_limit_currency": 145.0,
+            "step_mode": "fixed",
+            "step_pips": 7.0,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          }
+        },
+        "new_york": {
+          "segments": 74,
+          "total_rows": 34743,
+          "buy_pnl": 816.4429482060344,
+          "sell_pnl": 1391.8375995593667,
+          "sample": [
+            {
+              "rows": 480,
+              "buy_realized_pnl": 8.34849599999998,
+              "sell_realized_pnl": 12.089999999998678,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 24.756775679999485,
+              "sell_realized_pnl": 21.337169018874512,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "forced_session_close",
+              "breach_reason": null
+            },
+            {
+              "rows": 477,
+              "buy_realized_pnl": 33.47487037439918,
+              "sell_realized_pnl": 26.613599999995998,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 17.44579199999872,
+              "sell_realized_pnl": -8.476628992004322,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 28.248870374399694,
+              "sell_realized_pnl": 27.74698367999465,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 21.735791999999194,
+              "sell_realized_pnl": 23.360687999996145,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 32.95215805440157,
+              "sell_realized_pnl": 21.178971007987656,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 11.351574374399767,
+              "sell_realized_pnl": 19.146212799994466,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "forced_session_close",
+              "breach_reason": null
+            },
+            {
+              "rows": 419,
+              "buy_realized_pnl": 8.655295999999613,
+              "sell_realized_pnl": 12.669695999997003,
+              "buy_closed_reason": "forced_session_close",
+              "sell_closed_reason": "basket_tp_pips",
+              "breach_reason": null
+            },
+            {
+              "rows": 480,
+              "buy_realized_pnl": 27.19079999999971,
+              "sell_realized_pnl": 32.49623037439291,
+              "buy_closed_reason": "basket_tp_pips",
+              "sell_closed_reason": "forced_session_close",
+              "breach_reason": null
+            }
+          ],
+          "policy": {
+            "enabled": true,
+            "grid_levels": 5,
+            "multiplier": 1.08,
+            "initial_lot": 0.01,
+            "tp_pips": 3.0,
+            "sl_pips": 40.0,
+            "drawdown_limit_currency": 130.0,
+            "step_mode": "fixed",
+            "step_pips": 8.0,
+            "variable_step_schedule": [],
+            "variable_tp_schedule": []
+          }
+        }
+      }
+    }
+  ]
+}
