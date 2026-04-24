@@ -33,27 +33,37 @@ bool LoadNewsImpactFile(string filename)
    if(TimeCurrent()-last_news_load < 3600 && news_event_count > 0)
       return true;
    
-   string path=filename;
+   // Try multiple paths
+   string paths[];
+   ArrayResize(paths, 5);
+   paths[0] = filename;  // Just the filename (uses MQL5/Files)
+   paths[1] = TerminalInfoString(TERMINAL_DATA_PATH)+"\\MQL5\\Files\\"+filename;
+   paths[2] = TerminalInfoString(TERMINAL_COMMONDATA_PATH)+"\\MQL5\\Files\\"+filename;
+   paths[3] = TerminalInfoString(TERMINAL_DATA_PATH)+"\\"+filename;
+   paths[4] = TerminalInfoString(TERMINAL_COMMONDATA_PATH)+"\\"+filename;
    
-   // Try common locations
-   if(!FileIsExist(path))
+   int handle = INVALID_HANDLE;
+   string used_path = "";
+   
+   for(int i=0; i<ArraySize(paths); i++)
    {
-      path=TerminalInfoString(TERMINAL_DATA_PATH)+"\\MQL5\\Files\\"+filename;
-      if(!FileIsExist(path))
+      if(FileIsExist(paths[i]))
       {
-         path=TerminalInfoString(TERMINAL_DATA_PATH)+"\\"+filename;
-         if(!FileIsExist(path))
+         handle = FileOpen(paths[i], FILE_READ|FILE_TXT|FILE_COMMON);
+         if(handle != INVALID_HANDLE)
          {
-            Print("NewsImpactFilter: File not found: ", filename);
-            return false;
+            used_path = paths[i];
+            Print("NewsImpactFilter: Found file at: ", used_path);
+            break;
          }
       }
    }
    
-   int handle=FileOpen(path, FILE_READ|FILE_TXT|FILE_COMMON);
-   if(handle==INVALID_HANDLE)
+   if(handle == INVALID_HANDLE)
    {
-      Print("NewsImpactFilter: Failed to open: ", path, " Error: ", GetLastError());
+      Print("NewsImpactFilter: File not found in any location. Tried:");
+      for(int i=0; i<ArraySize(paths); i++)
+         Print("  ", i, ": ", paths[i], " Exists=", FileIsExist(paths[i]));
       return false;
    }
    
@@ -79,7 +89,12 @@ bool LoadNewsImpactFile(string filename)
       
       // Parse date: 2026-04-29 18:00:00+00:00 or 2026-04-29 18:00:00
       string date_str=fields[0];
+      // Remove timezone offset if present
       StringReplace(date_str, "+00:00", "");
+      StringReplace(date_str, "Z", "");
+      // Remove any trailing whitespace
+      StringTrimLeft(date_str);
+      StringTrimRight(date_str);
       news_events[news_event_count].date=StringToTime(date_str);
       
       news_events[news_event_count].symbol=fields[1];
@@ -92,7 +107,7 @@ bool LoadNewsImpactFile(string filename)
    
    FileClose(handle);
    last_news_load=TimeCurrent();
-   Print("NewsImpactFilter: Loaded ", news_event_count, " events from ", filename);
+   Print("NewsImpactFilter: Loaded ", news_event_count, " events from ", used_path);
    
    return true;
 }
