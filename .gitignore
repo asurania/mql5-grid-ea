@@ -1,7 +1,19 @@
-.tmp/
-.obsidian/workspace*.json
-.obsidian/cache/
-.obsidian/workspace.json
-node_modules/
+# Large data files
+*.parquet
+data/processed/
+data/raw/
+data/backtest/
+*.csv
 
-obsidian-openclaw-memory/
+# Python virtual environments
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db

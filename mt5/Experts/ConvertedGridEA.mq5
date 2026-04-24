@@ -586,12 +586,12 @@ void calc()
       if(b>0 && (g_level_buy==0 || b<g_level_buy))
       {
          if(!variable_ea) calc_step(buy);
-         if(ask-buy_price>=use_step_buy*pip*_Point){ trade(buy); tp_adjust(buy); }
+         if(buy_price-ask>=use_step_buy*pip*_Point){ trade(buy); tp_adjust(buy); }
       }
       if(s>0 && (g_level_sell==0 || s<g_level_sell))
       {
          if(!variable_ea) calc_step(sell);
-         if(sell_price-bid>=use_step_sell*pip*_Point){ trade(sell); tp_adjust(sell); }
+         if(bid-sell_price>=use_step_sell*pip*_Point){ trade(sell); tp_adjust(sell); }
       }
    }
 }

@@ -1,5 +1,6 @@
 #property strict
 #include <Trade/Trade.mqh>
+#include <NewsImpactFilter.mqh>
 
 CTrade trade_engine;
 
@@ -82,6 +83,13 @@ input double             ddeq_max=300.0;              //Max Equity Drawdown in U
 input double             prof_max=300.0;              //Max Overall Profit in USD /0 = Unlimited
 input bool               autotrade_off=true;          //Turn off Auto Trade
 input double             stop_equity=0;               //Target Equity Balance /0 = No Target Equity Balance
+
+input string             s_news="";                  //---------------News Impact Filter---------------
+input bool               use_news_filter=true;        //Use News Impact Filter
+input string             news_csv_file="event_scores.csv"; //CSV file with event scores
+input double             news_score_threshold=50.0;   //Score threshold to block trading (0-100)
+input int                news_pre_minutes=120;        //Minutes before event to start blocking (120 min = 2 hours)
+input int                news_post_minutes=120;       //Minutes after event to stop blocking (120 min = 2 hours)
 
 input string             s5="";                       //---------------Time Filter---------------
 input string             time_d0="";                  //Sunday
@@ -285,11 +293,14 @@ void calc_step(dir d)
    }
 }
 
+bool news_block_active=false;
+
 void reset_ea()
 {
    date_start=TimeCurrent();
    ballance_start=AccountInfoDouble(ACCOUNT_BALANCE);
    action_close=false; action_stop=false; action_manage=false;
+   news_block_active=false;
    use_tp_buy=g_tp; use_tp_sell=g_tp; use_tp_last=g_tp; ea_on=true; reset_step();
 }
 
@@ -531,6 +542,24 @@ void comment_view()
    c+="Grid Step Buy = "+DoubleToString(use_step_buy,1)+"\n";
    c+="Grid TP Sell = "+DoubleToString(use_tp_sell,1)+"\n";
    c+="Grid TP Buy = "+DoubleToString(use_tp_buy,1)+"\n";
+   
+   // News filter info
+   if(use_news_filter)
+   {
+      c+="\n--- News Impact Filter ---\n";
+      string active_events=GetActiveNewsEvents(_Symbol, news_score_threshold, news_pre_minutes, news_post_minutes);
+      if(active_events!="")
+         c+="ACTIVE EVENTS:\n"+active_events+"\n";
+      else
+      {
+         string next_event=GetNextNewsEvent(_Symbol, news_score_threshold);
+         if(next_event!="")
+            c+="Next Event: "+next_event+"\n";
+         else
+            c+="No upcoming events\n";
+      }
+   }
+   
    c+=s_day;
    Comment(c);
 }
@@ -565,6 +594,25 @@ void calc()
    if(autotrade_off && (nd(ddov_max)!=0 || nd(prof_max)!=0 || nd(ddeq_max)!=0) && b+s==0 && check_orders_history())
    { Comment("Autotrade is OFF"); ea_on=false; return; }
    
+   // News Impact Filter - use EA Action settings during news block
+   if(use_news_filter)
+   {
+      bool is_blocked=false;
+      if(LoadNewsImpactFile(news_csv_file))
+         is_blocked=IsNewsBlockingTrade(_Symbol, news_score_threshold, news_pre_minutes, news_post_minutes);
+
+      if(is_blocked)
+      {
+         news_block_active=true;
+         check_action();
+      }
+      else if(news_block_active)
+      {
+         news_block_active=false;
+         check_time();
+      }
+   }
+   
    // Wait for indicators to be ready
    double ma=MAValue(0);
    if(ma==0.0) return;
@@ -586,12 +634,12 @@ void calc()
       if(b>0 && (g_level_buy==0 || b<g_level_buy))
       {
          if(!variable_ea) calc_step(buy);
-         if(ask-buy_price>=use_step_buy*pip*_Point){ trade(buy); tp_adjust(buy); }
+         if(buy_price-ask>=use_step_buy*pip*_Point){ trade(buy); tp_adjust(buy); }
       }
       if(s>0 && (g_level_sell==0 || s<g_level_sell))
       {
          if(!variable_ea) calc_step(sell);
-         if(sell_price-bid>=use_step_sell*pip*_Point){ trade(sell); tp_adjust(sell); }
+         if(bid-sell_price>=use_step_sell*pip*_Point){ trade(sell); tp_adjust(sell); }
       }
    }
 }
@@ -608,6 +656,17 @@ int OnInit()
    if(!time_filter_calc()) ea_on=false;
    if(used_step==variable) if(!calc_steps()) ea_on=false;
    reset_step(); lot_digits_calc(); calc_k_pip(); tp_adjust(sell); tp_adjust(buy);
+   
+   // Initialize news impact filter
+   if(use_news_filter)
+   {
+      if(!LoadNewsImpactFile(news_csv_file))
+      {
+         Print("Warning: News impact filter enabled but file not found: ", news_csv_file);
+         Print("Trading will continue without news filtering until file is available.");
+      }
+   }
+   
    return INIT_SUCCEEDED;
 }
 
@@ -627,6 +686,7 @@ void OnDeinit(const int reason)
    if(ma_handle!=INVALID_HANDLE) IndicatorRelease(ma_handle);
    if(gann_high_handle!=INVALID_HANDLE) IndicatorRelease(gann_high_handle);
    if(gann_low_handle!=INVALID_HANDLE) IndicatorRelease(gann_low_handle);
+   CleanupNewsFilter();  // Clean up news filter resources
    if(reason==1 || reason==2) ObjectsDeleteAll(0,"ea_");
 }
 
